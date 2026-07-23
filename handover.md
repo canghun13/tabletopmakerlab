@@ -9,7 +9,7 @@
 - **Analytics:** GA4 `G-V25YKRCX01`.
 - **Source of truth:** This GitHub repository. Always pull it before working.
 
-This is a practical creator workbench?봭ot a generic board-game playing site. Its five work areas are Game Math, Components, Production, Crowdfunding, and Publishing.
+This is a practical creator workbench?遊춐t a generic board-game playing site. Its five work areas are Game Math, Components, Production, Crowdfunding, and Publishing.
 
 ## Technical and content rules
 
@@ -331,7 +331,7 @@ This is a practical creator workbench?봭ot a generic board-game playing site. I
 - Pledge Tier Margin: compares three tiers by per-backer variable cost, fees, contribution, margin rate, expected-backers contribution, and highlights the highest margin rate.
 - Stretch Goal Cost: keeps fixed tooling/other cost separate from per-backer incremental product, packaging, freight, fulfillment, reserve, and other cost; it reports current and expected-final scenarios without treating an unlock value as cost.
 - Add-on Profit: separates unit contribution from one-time setup cost and reports net expected contribution and break-even units.
-- Shipping Subsidy: calculates each region?셲 actual shipping plus handling less shipping charged after entered fees, then reports weighted total subsidy across Domestic, Nearby International, and Rest of World inputs.
+- Shipping Subsidy: calculates each region???actual shipping plus handling less shipping charged after entered fees, then reports weighted total subsidy across Domestic, Nearby International, and Rest of World inputs.
 
 ### Changed files
 
@@ -462,3 +462,22 @@ This is a practical creator workbench?봭ot a generic board-game playing site. I
 - JavaScript syntax, static SEO/schema essentials, sitemap XML, and diff whitespace checks passed.
 - Browser calculation checks: PnP default yield `8` items per page; inventory runway `9.09 months`; campaign-profit scenario `$15,900.00`.
 - Mobile `390x844` horizontal-overflow checks passed for all six new tools.
+
+
+## 2026-07-23 - Phase 8 Guides and Reference cluster
+
+### Completed
+
+- Published 16 evergreen Guides/Reference pages: 5 physical/manufacturing reference pages and 11 creator guides across production, crowdfunding, and publishing.
+- Replaced the two placeholder hubs with published resource cards, added all pages to sitemap and documented the learning library in llms.txt.
+- Current-data pages cite official Kickstarter, Gamefound, and ICC sources and show a 2026-07-23 review date.
+
+### Consolidation
+
+- Card stock and sleeve fit are combined to avoid near-duplicate search intent; distribution and royalty models are combined, while publisher versus self-publishing remains a separate decision guide.
+- No new calculators were added.
+
+### QA
+
+- Static validation passed for all 16 pages: H1, canonical, GA4, JSON-LD, BreadcrumbList, related-calculator links, sitemap XML, and whitespace checks.
+- Browser rendering sweep remains pending; browser automation setup returned a script parse error before navigation, so it is not recorded as passed.
