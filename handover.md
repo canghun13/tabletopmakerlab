@@ -505,3 +505,21 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - Automated test status: no repository browser-test framework exists; direct browser QA now passes. The prior setup error is resolved.
 - Deployment status: pass. After commit `ea623ee` reached `main`, cache-bypassed custom-domain requests returned HTTP 200 and the corrected canonical URL for all four repaired pages.
 - Residual risk: low. No Phase 1 blocker remains.
+
+## 2026-07-23 - Final UI / design polish
+
+### Completed
+
+- Added reusable `input-with-unit`, suffix, and prefix visual primitives without changing calculator input names, values, IDs, or JavaScript selectors.
+- Moved explicit `%`, `mm`, `g`, `days`, and `months` units out of 12 calculator labels into non-wrapping input suffixes.
+- Refined calculator panel proportions, form-grid spacing, label tracking, result-panel contrast, and Reset / Copy / Print grouping.
+- Refined Tools, Guides, and Reference card grids with responsive `minmax()` sizing, calmer card-title scale, and consistent metadata/title/description rhythm.
+
+### Validation
+
+- All shared JavaScript files pass Node syntax checks and `git diff --check` passes.
+- The UI-only update preserves the existing calculator names and calculation scripts; no formula, SEO, GA4, JSON-LD, sitemap, or URL change was made.
+
+### Remaining QA
+
+- Run the final deployed visual sweep at 1440, 1280, 1024, 768, and 390 after GitHub Pages propagation; this change is intentionally limited to presentation and explicit unit markup.
