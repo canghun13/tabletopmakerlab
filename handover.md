@@ -68,7 +68,7 @@ This is a practical creator workbench—not a generic board-game playing site. I
 - Public-page checks passed for 7 pages: title, description, canonical, robots, viewport, Open Graph, GA4, and one H1.
 - Internal absolute-link targets, duplicate IDs, and `sitemap.xml` XML parsing: passed.
 - `assets/js/site.js` syntax parsing: passed.
-- In-app browser could not reach this isolated local preview server. Run a rendered desktop/mobile check against the deployed domain after GitHub Pages publishes this commit; do not consider that check complete until then.
+- In-app browser could not reach this isolated local preview server or the deployed domain because its connection policy blocked navigation. Run a rendered desktop/mobile check against the deployed domain from an unrestricted browser; do not consider that check complete until then.
 
 ### Remaining issues
 
@@ -83,4 +83,4 @@ This is a practical creator workbench—not a generic board-game playing site. I
 
 ### Commit
 
-- Pending Phase 1 final validation and push.
+- `9b72d62` — `Build Tabletop Maker Lab phase one foundation` (pushed to `main`)
