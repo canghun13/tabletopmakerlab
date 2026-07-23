@@ -539,4 +539,4 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 
 ### Release status
 
-- Phase 1 is complete and the site is ready for operations monitoring. No additional UI work is required.
+- Source-level Phase 1 work is complete. At the final check, the cache-bypassed custom domain still returned the prior homepage HTML, so recheck the deployed `a618b59` response before declaring operations monitoring active.
