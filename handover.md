@@ -84,3 +84,42 @@ This is a practical creator workbench—not a generic board-game playing site. I
 ### Commit
 
 - `9b72d62` — `Build Tabletop Maker Lab phase one foundation` (pushed to `main`)
+
+## 2026-07-23 - Deployed browser rendering verification
+
+### Completed
+
+- Verified the deployed GitHub Pages domain directly in the in-app browser: `https://tabletopmakerlab.com`.
+- Rendered and checked Homepage, Tools, Guides, Reference, About, Contact, and Privacy at desktop `1440x1000` and mobile `390x844` viewports.
+- Confirmed Header/Footer partial injection, stylesheet application, shared JavaScript execution, favicon link, GA4 ID, canonical URL, one visible H1, and no `.html">` markup leak on every checked page.
+- Confirmed the deployed `/tools/` category anchors (`game-math`, `components`, `production`, `crowdfunding`, and `publishing`) exist. Root-relative navigation works from the GitHub Pages deployment paths.
+- Confirmed no horizontal scroll, offscreen visible text, or non-nested text-box overlap on the seven pages at both viewports. Mobile menu opens correctly without overflow.
+- Browser console error log was empty after the full page sweep.
+
+### Verification method
+
+- Used the deployed domain rather than a local server. The browser session was initialized with `https://tabletopmakerlab.com/`, which allowed direct rendering and avoided the prior isolated-localhost connection policy problem.
+- Visually inspected the desktop homepage and mobile homepage/menu and Tools hub. The remaining pages were rendered directly and checked with DOM geometry, CSS state, and runtime-console inspection at both target viewports.
+
+### Changed files
+
+- `handover.md` only. No product features, calculators, design, or site content were changed.
+
+### QA
+
+- Desktop: all 7 pages passed partial, CSS/JS, favicon link, GA4, canonical, visible content, internal root-link shape, no horizontal overflow, and no text-box overlap checks.
+- Mobile: all 7 pages passed partial presence, card-width, visible-text bounds, no horizontal overflow, and no text-box overlap checks.
+- Console: no errors.
+
+### Remaining issues
+
+- None found in the Phase 1 public-page rendering verification scope.
+
+### Recommended next work
+
+1. Begin the first substantive anchor calculator only after preserving this browser verification procedure.
+2. Re-run this deployed-domain sweep whenever shared CSS, header/footer partials, routing, or analytics code changes.
+
+### Commit
+
+- Pending this browser-verification handover commit and push.
