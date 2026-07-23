@@ -166,6 +166,7 @@ This is a practical creator workbench—not a generic board-game playing site. I
 ### Remaining issues
 
 - Results intentionally remain planning estimates. Final print imposition, die-cut nesting, sleeve behavior, and box/insert specifications must be confirmed with physical samples and suppliers.
+- The deployed browser did not expose the dynamically injected JSON-LD after the final calculator-script deployment, despite the source implementation. Treat deployed JSON-LD verification as pending; replace it with static per-page JSON-LD or cache-bust the shared script before claiming completion in a future SEO pass.
 
 ### Recommended next work
 
@@ -175,4 +176,7 @@ This is a practical creator workbench—not a generic board-game playing site. I
 
 ### Commit
 
-- Pending final Phase 2 documentation commit and push.
+- `70087ec` - `Add components planning calculators`
+- `20e2080` - `Document phase two calculator QA`
+- `36de454` - `Ensure calculator schema markup loads`
+- Pending final note about deployed JSON-LD verification.
