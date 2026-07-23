@@ -365,3 +365,38 @@ This is a practical creator workbench—not a generic board-game playing site. I
 ### Commit
 
 - Pending Phase 4 Crowdfunding calculator commit and push.
+
+## 2026-07-23 - Phase 5 Publishing calculator cluster
+
+### Completed
+
+- Added seven working Publishing tools: Board Game Royalty, Royalty Method Comparison, Advance Recoupment, Licensing Deal Comparison, Publisher Profit per Copy, Direct vs Distribution Margin, and Convention Break-even.
+- Added `assets/js/publishing-calculators.js` with live calculations, validation-safe numeric handling, Reset, Copy Results, and Print behavior.
+- Updated the Tools hub, homepage Publishing entry points, footer workstation links, and `sitemap.xml`.
+- Added page-specific SEO, GA4, canonical, Open Graph, static `WebApplication`, and `BreadcrumbList` JSON-LD to each calculator.
+
+### Calculation methods
+
+- Royalty tools preserve the distinction between MSRP, wholesale/selling price, net receipts, royalty base, earned royalty, recouped advance, and payable royalty.
+- Deal comparison ranks entered expected compensation as advance plus royalty payable after recoupment; it does not judge contractual terms.
+- Publisher/channel tools keep actual publisher revenue distinct from MSRP and use creator-entered costs and receipts.
+- Convention break-even divides entered fixed event cost by contribution per sale and provides editable sales scenarios.
+
+### QA
+
+- `publishing-calculators.js` syntax and sitemap XML parsing passed; all seven pages contain H1, canonical, GA4, static JSON-LD, and BreadcrumbList.
+- Browser interaction checks passed: net-receipts royalty `$0.70` per copy, advance recoupment `2,500` copies, direct contribution `$19.50`, and convention break-even `87` copies.
+- Mobile `390x844` geometry checks passed for all seven Publishing pages: visible H1 and result panel, with no document horizontal overflow. Licensing comparison table was made responsive after its initial overflow check.
+
+### Remaining issues
+
+- Calculations are planning scenarios only. Actual royalty definitions, recoupment, licensing scope, channel terms, fees, taxes, and event outcomes must be confirmed with the relevant agreement or quote.
+
+### Recommended next work
+
+1. Verify the newly published URLs and static JSON-LD against fresh custom-domain response bodies after GitHub Pages propagation.
+2. Add substantive Publishing guide/reference content only where it helps creators interpret their actual deal terms and inputs.
+
+### Commit
+
+- Pending Phase 5 Publishing calculator commit and push.
