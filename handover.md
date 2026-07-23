@@ -262,3 +262,56 @@ This is a practical creator workbench—not a generic board-game playing site. I
 ### Commit
 
 - Pending this root-cause verification handover commit and push.
+
+## 2026-07-23 - Phase 3 Production calculator cluster
+
+### Completed
+
+- Added five working static Production tools: Manufacturer Quote Comparison, Landed Cost Calculator, Freight Cost per Game Calculator, Production Overage Calculator, and Defect & Replacement Copy Reserve Calculator.
+- Added `assets/js/production-calculators.js` for shared input validation, live calculation, Reset, Copy Results, and Print behavior without changing the existing Components calculator script.
+- Added `assets/css/production-calculators.css` for the quote table and reserve/freight scenario layouts, while retaining the established calculator design system.
+- Updated the Tools hub Production section and `sitemap.xml`. Homepage Production navigation already targets `/tools/#production` and now reaches released tools.
+- Added direct, page-specific static JSON-LD to all five pages. Each contains a `WebApplication` and a three-item `BreadcrumbList`; no dynamic schema insertion, supplier data, real-time rate, price, rating, or author claim was added.
+
+### Calculation methods
+
+- Manufacturer Quote Comparison: totals manufacturing, tooling/QC/other fixed costs, freight/duty/customs/inbound logistics, and quantity times other per-unit costs for three entered quotes; exposes total and per-game comparisons and warns when quantities differ.
+- Landed Cost: combines entered manufacturing, logistics/import, and other costs; divides by entered production quantity and reports category shares.
+- Freight Cost per Game: divides entered total shipment logistics costs by shipment quantity; 80% and 120% quantity scenarios only change allocation and do not estimate shipping rates.
+- Production Overage: adds target sellable copies, replacement reserve, and non-sale copies, protects that post-defect requirement with the entered defect allowance, then applies an optional rounding increment. Defect allowance, customer-service reserve, and non-sale copies remain separate.
+- Defect & Replacement Reserve: derives expected defects from the entered quantity, applies claims to expected sellable copies, then adds spare-component and fixed service reserves. Lean/Base/Conservative outputs are stated planning multipliers, not defect forecasts.
+
+### Changed files
+
+- `assets/css/production-calculators.css`
+- `assets/js/production-calculators.js`
+- `tools/manufacturer-quote-comparison.html`
+- `tools/landed-cost-calculator.html`
+- `tools/freight-cost-per-game-calculator.html`
+- `tools/production-overage-calculator.html`
+- `tools/defect-replacement-copy-reserve-calculator.html`
+- `index.html`, `tools/index.html`, `sitemap.xml`, `handover.md`
+
+### QA
+
+- JavaScript syntax passed for `production-calculators.js` and `site.js`; `sitemap.xml` parsed successfully; `git diff --check` passed.
+- Local browser DOM checks confirmed one H1, Header/Footer partials, GA4 ID, canonical URL, static JSON-LD with `WebApplication` and `BreadcrumbList`, finite default output, no `.html">` leak, and no horizontal overflow on all five new tools.
+- Calculation/Reset checks: Quote winner `Quote 3 → Quote 1 → Quote 3`; Landed Cost `$25,850.00 → $30,050.00 → $25,850.00`; Freight `$1.87 → $3.73 → $1.87`; Overage `3,300 → 3,500 → 3,300`; Reserve `115 → 232 → 115`.
+- Negative input checks on each tool displayed the validation message and preserved finite output (no `NaN` or `Infinity`).
+- Browser rendering at desktop `1440x1000` and mobile `390x844` passed for all five Production tools and the Tools hub: Header/Footer present, controls inside viewport, and no horizontal overflow. Homepage Production link and one existing Components calculator were also checked. Browser console error log was empty.
+- Corrected the Homepage category links for unreleased Game Math, Crowdfunding, and Publishing workstations to the Tools hub rather than nonexistent fragment targets; the Components and Production cards retain their released-section anchors.
+
+### Remaining issues
+
+- The calculations intentionally use only creator-entered assumptions. Final supplier specifications, Incoterms, tax treatment, freight, QC results, and customer-service outcomes must be confirmed outside the tools.
+- Production pages were browser-tested from the local static server before this commit. Re-run the direct deployed-domain browser and raw-response comparison after GitHub Pages publishes this commit; do not rely on an old persistent browser document.
+
+### Recommended next work
+
+1. Perform the post-publish deployed-domain sweep for the five Production pages using fresh HTTP response bodies and desktop/mobile rendering.
+2. Add substantive Production guides or reference material only where it can explain inputs, assumptions, and supplier questions without inventing market data.
+3. Then choose the next cluster deliberately: Game Math, Crowdfunding, or Publishing; do not create thin calculators in bulk.
+
+### Commit
+
+- Pending Phase 3 Production calculator commit and push.
