@@ -1,4 +1,4 @@
-# Tabletop Maker Lab — Project Handover
+# Tabletop Maker Lab ??Project Handover
 
 ## Project overview
 
@@ -9,7 +9,7 @@
 - **Analytics:** GA4 `G-V25YKRCX01`.
 - **Source of truth:** This GitHub repository. Always pull it before working.
 
-This is a practical creator workbench—not a generic board-game playing site. Its five work areas are Game Math, Components, Production, Crowdfunding, and Publishing.
+This is a practical creator workbench?봭ot a generic board-game playing site. Its five work areas are Game Math, Components, Production, Crowdfunding, and Publishing.
 
 ## Technical and content rules
 
@@ -45,7 +45,7 @@ This is a practical creator workbench—not a generic board-game playing site. I
 5. Run automated checks and browser rendering checks.
 6. Add a dated work log here, then commit and push.
 
-## 2026-07-23 — Phase 1 foundation
+## 2026-07-23 ??Phase 1 foundation
 
 ### Completed
 
@@ -83,7 +83,7 @@ This is a practical creator workbench—not a generic board-game playing site. I
 
 ### Commit
 
-- `9b72d62` — `Build Tabletop Maker Lab phase one foundation` (pushed to `main`)
+- `9b72d62` ??`Build Tabletop Maker Lab phase one foundation` (pushed to `main`)
 
 ## 2026-07-23 - Deployed browser rendering verification
 
@@ -296,7 +296,7 @@ This is a practical creator workbench—not a generic board-game playing site. I
 
 - JavaScript syntax passed for `production-calculators.js` and `site.js`; `sitemap.xml` parsed successfully; `git diff --check` passed.
 - Local browser DOM checks confirmed one H1, Header/Footer partials, GA4 ID, canonical URL, static JSON-LD with `WebApplication` and `BreadcrumbList`, finite default output, no `.html">` leak, and no horizontal overflow on all five new tools.
-- Calculation/Reset checks: Quote winner `Quote 3 → Quote 1 → Quote 3`; Landed Cost `$25,850.00 → $30,050.00 → $25,850.00`; Freight `$1.87 → $3.73 → $1.87`; Overage `3,300 → 3,500 → 3,300`; Reserve `115 → 232 → 115`.
+- Calculation/Reset checks: Quote winner `Quote 3 ??Quote 1 ??Quote 3`; Landed Cost `$25,850.00 ??$30,050.00 ??$25,850.00`; Freight `$1.87 ??$3.73 ??$1.87`; Overage `3,300 ??3,500 ??3,300`; Reserve `115 ??232 ??115`.
 - Negative input checks on each tool displayed the validation message and preserved finite output (no `NaN` or `Infinity`).
 - Browser rendering at desktop `1440x1000` and mobile `390x844` passed for all five Production tools and the Tools hub: Header/Footer present, controls inside viewport, and no horizontal overflow. Homepage Production link and one existing Components calculator were also checked. Browser console error log was empty.
 - Corrected the Homepage category links for unreleased Game Math, Crowdfunding, and Publishing workstations to the Tools hub rather than nonexistent fragment targets; the Components and Production cards retain their released-section anchors.
@@ -331,7 +331,7 @@ This is a practical creator workbench—not a generic board-game playing site. I
 - Pledge Tier Margin: compares three tiers by per-backer variable cost, fees, contribution, margin rate, expected-backers contribution, and highlights the highest margin rate.
 - Stretch Goal Cost: keeps fixed tooling/other cost separate from per-backer incremental product, packaging, freight, fulfillment, reserve, and other cost; it reports current and expected-final scenarios without treating an unlock value as cost.
 - Add-on Profit: separates unit contribution from one-time setup cost and reports net expected contribution and break-even units.
-- Shipping Subsidy: calculates each region’s actual shipping plus handling less shipping charged after entered fees, then reports weighted total subsidy across Domestic, Nearby International, and Rest of World inputs.
+- Shipping Subsidy: calculates each region?셲 actual shipping plus handling less shipping charged after entered fees, then reports weighted total subsidy across Domestic, Nearby International, and Rest of World inputs.
 
 ### Changed files
 
@@ -347,7 +347,7 @@ This is a practical creator workbench—not a generic board-game playing site. I
 
 - `crowdfunding-calculators.js` syntax, sitemap XML parsing, and `git diff --check` passed.
 - Local browser checks confirmed Header/Footer, one H1, GA4, canonical, one static JSON-LD `@graph` with `WebApplication` and `BreadcrumbList`, finite results, and no horizontal overflow on all five tools.
-- Changed-input / Reset checks passed: Break-even `544 → — → 544`; Stretch Goal `$6,482.50 → $11,965.00 → $6,482.50`; Add-on `$8.40 → -$5.40 → $8.40`; Shipping Subsidy `$3.62 → -$3.01 → $3.62`. Tier ranking changed from `Core pledge` to `Deluxe pledge` when the Core price was reduced.
+- Changed-input / Reset checks passed: Break-even `544 ??????544`; Stretch Goal `$6,482.50 ??$11,965.00 ??$6,482.50`; Add-on `$8.40 ??-$5.40 ??$8.40`; Shipping Subsidy `$3.62 ??-$3.01 ??$3.62`. Tier ranking changed from `Core pledge` to `Deluxe pledge` when the Core price was reduced.
 - Desktop `1440x1000` and mobile `390x844` checks passed for all five Crowdfunding tools and Tools hub: controls remained in bounds, no horizontal overflow, Header/Footer present. Homepage and an existing Production calculator were also rendered. Console error log was empty.
 - Negative-input checks on every Crowdfunding tool showed the validation message and retained finite output without `NaN` or `Infinity`.
 
@@ -435,3 +435,30 @@ This is a practical creator workbench—not a generic board-game playing site. I
 ### Commit
 
 - Pending Phase 6 Game Math calculator commit and push.
+
+
+## 2026-07-23 - Phase 7 targeted reinforcement
+
+### Candidate review
+
+- Excluded Card Stack Thickness: duplicates Sleeved Card Stack Calculator.
+- Excluded Box Fill Percentage: overlaps Box Size and Component Volume; adding it would split one physical-packout decision across thin pages.
+- Excluded Fulfillment Reserve: overlaps Defect & Replacement Copy Reserve.
+- Selected six independent tools: Print-and-Play Sheet, Board Fold Size, Component Weight, Insert Clearance, Inventory Runway & Reprint Point, and Campaign Profit Scenario.
+
+### Completed
+
+- Added the six selected static tools and shared reinforcement calculator script with live calculation, validation, Reset, Copy Results, and Print.
+- Updated the Tools hub and sitemap. No unrelated guide/reference pages were created.
+- Each new page includes direct SEO metadata, GA4, canonical, static WebApplication JSON-LD, and BreadcrumbList.
+
+### Methods
+
+- PnP sheet covers home-prototype layout rather than commercial imposition; board fold computes entered panel geometry; weight only totals creator-entered unit weights.
+- Insert clearance tests three compartment axes; inventory combines runway and reorder point to avoid a duplicate reprint page; campaign profit combines explicitly entered campaign economics.
+
+### QA
+
+- JavaScript syntax, static SEO/schema essentials, sitemap XML, and diff whitespace checks passed.
+- Browser calculation checks: PnP default yield `8` items per page; inventory runway `9.09 months`; campaign-profit scenario `$15,900.00`.
+- Mobile `390x844` horizontal-overflow checks passed for all six new tools.
