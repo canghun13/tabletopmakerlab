@@ -481,3 +481,27 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 
 - Static validation passed for all 16 pages: H1, canonical, GA4, JSON-LD, BreadcrumbList, related-calculator links, sitemap XML, and whitespace checks.
 - Browser rendering sweep remains pending; browser automation setup returned a script parse error before navigation, so it is not recorded as passed.
+
+## 2026-07-23 - Phase 9 final QA
+
+### Defect fixed
+
+- Corrected the canonical URL, Open Graph URL, WebApplication URL, and final Breadcrumb item URL in four Phase 7 pages: Print-and-Play Sheet, Insert Clearance, Inventory Runway, and Campaign Profit Scenario. The page-generation call had used its description as the URL slug, creating malformed encoded canonical URLs.
+
+### QA results
+
+- Static audit: all 60 public HTML pages have one H1, title, meta description, and canonical; all JavaScript files pass Node syntax validation; `git diff --check` passes.
+- Browser automation: the previous parse error was a malformed browser-control snippet, not a repository test or runtime failure. A fresh custom-domain browser document was used for the corrected direct sweep.
+- Desktop browser sweep: 29 representative public pages across hubs, legal pages, calculator clusters, Guides, and Reference loaded with header, footer, a single H1, and no horizontal overflow.
+- Mobile `390x844`: the same 29-page sweep passed with no horizontal overflow and all primary landmarks present.
+- Calculator checks: 2d6 target 7 = `16.67%` (6/36); 40-card 4-target 7-card draw = `55.22%`; duplicate-face custom die result = `44.44%`; royalty, advance recoupment, campaign cost/profit, inventory trigger, PnP orientation/page yield, and insert fit/no-fit/reset all updated correctly. Default reference outputs included campaign profit `$15,900.00`, inventory runway `9.09 months`, and PnP yield `8`.
+
+### Release status
+
+- Published page count: 60 public HTML pages.
+- Calculator count: 37.
+- Guides + Reference count: 16.
+- Browser status: pass (fresh-document desktop and mobile checks).
+- Automated test status: no repository browser-test framework exists; direct browser QA now passes. The prior setup error is resolved.
+- Deployment status: pre-fix custom-domain responses returned HTTP content and exposed the four malformed canonical URLs; re-check after pushing this correction is required.
+- Residual risk: low after deployment propagation. No Phase 1 blocker remains once the pushed custom-domain response exposes the corrected canonical URLs.
