@@ -123,3 +123,56 @@ This is a practical creator workbench—not a generic board-game playing site. I
 ### Commit
 
 - Pending this browser-verification handover commit and push.
+
+## 2026-07-23 - Phase 2 Components & Box Planning calculators
+
+### Completed
+
+- Added five working, static calculator pages: Board Game Box Size Estimator, Sleeved Card Stack Calculator, Component Volume Calculator, Punchboard Token Yield Calculator, and Cards per Sheet Calculator.
+- Added reusable calculator UI styles and vanilla JavaScript for live updates, validation-safe numeric handling, Reset, Copy Results, Print, ARIA live results, and WebApplication JSON-LD.
+- Updated the Tools hub Components section and sitemap with the five released tools.
+
+### Calculation methods
+
+- Box estimator: sums simple card, dice, token, and folded-board volumes, then applies a user-controlled planning allowance and reports an equivalent internal cube.
+- Sleeved stack: calculates card thickness plus selected sleeve layers, optional compression, and deck-well clearance.
+- Component volume: calculates cuboid or cylinder/disc volume by quantity, then applies packing allowance.
+- Punchboard yield: calculates a conservative rectangular row/column grid after margins and gutters; circle mode uses diameter as the planning footprint.
+- Cards per sheet: compares simple normal and 90-degree rotated rectangular grids after bleed, gutter, and margins.
+
+### Changed files
+
+- `assets/css/calculators.css`
+- `assets/js/calculators.js`
+- `tools/index.html`
+- `tools/board-game-box-size-estimator.html`
+- `tools/sleeved-card-stack-calculator.html`
+- `tools/component-volume-calculator.html`
+- `tools/punchboard-token-yield-calculator.html`
+- `tools/cards-per-sheet-calculator.html`
+- `sitemap.xml`, `handover.md`
+
+### QA
+
+- Static checks: calculator-page SEO essentials, canonical, GA4, H1, calculator CSS/JS references, duplicate IDs, sitemap XML, and JavaScript syntax passed.
+- Deployed browser checks: all five pages loaded Header/Footer partials, canonical, GA4, initial finite results, and no horizontal overflow.
+- Interaction checks: one changed-input and Reset cycle passed for each calculator. Initial -> changed results: Box `9.6` to `6.9 cm` equivalent side; Stack `64.6` to `20.2 mm`; Volume `97` to `1 cm3`; Punchboard `234` to `144 tokens`; Cards per Sheet `42` to `24 cards`.
+- Mobile `390x844`: all five pages passed input/button bounds, visible results, partial loading, and no horizontal overflow. Browser console error log was empty.
+
+### Browser verification
+
+- Used the deployed domain directly at desktop and mobile widths. A mobile screenshot call timed out in the browser automation layer, but DOM geometry and runtime checks completed successfully; do not treat that screenshot timeout as a site console error.
+
+### Remaining issues
+
+- Results intentionally remain planning estimates. Final print imposition, die-cut nesting, sleeve behavior, and box/insert specifications must be confirmed with physical samples and suppliers.
+
+### Recommended next work
+
+1. Add substantive Components guides/reference material and link it from each calculator as those pages are written.
+2. Consider multi-component rows for Component Volume Calculator only after a clear creator workflow and QA plan are defined.
+3. Re-run deployed browser verification after any shared calculator CSS/JS change.
+
+### Commit
+
+- Pending final Phase 2 documentation commit and push.
