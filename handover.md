@@ -540,3 +540,10 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 ### Release status
 
 - Source-level Phase 1 work is complete. At the final check, the cache-bypassed custom domain still returned the prior homepage HTML, so recheck the deployed `a618b59` response before declaring operations monitoring active.
+
+## 2026-07-23 - Tool-card containment repair
+
+- Root cause: Tools hub rows used an internal label/title two-column layout inside a two-column list, allowing adjacent item content to appear visually connected.
+- Rebuilt the shared layout in CSS as independent grid items: every tool row now stacks `LIVE TOOL`, title, and description within its own bordered card.
+- Reduced Guide/Reference card titles to `24–28px` with `1.1` line-height; their grid changes from three to two columns at `1280px` and one column at `720px`.
+- No calculator logic, inputs, URLs, or SEO metadata changed.
