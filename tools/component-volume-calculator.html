@@ -1,1 +1,138 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Component Volume Calculator | Tabletop Maker Lab</title><meta name="description" content="Calculate tabletop component volume and add a packing allowance for practical box planning."><meta name="robots" content="index,follow"><link rel="canonical" href="https://tabletopmakerlab.com/tools/component-volume-calculator.html"><meta property="og:type" content="website"><meta property="og:title" content="Component Volume Calculator"><meta property="og:description" content="Plan real component packing volume."><meta property="og:url" content="https://tabletopmakerlab.com/tools/component-volume-calculator.html"><meta property="og:site_name" content="Tabletop Maker Lab"><link rel="icon" href="/assets/icons/favicon.svg"><link rel="stylesheet" href="/assets/css/site.css"><link rel="stylesheet" href="/assets/css/calculators.css"><script async src="https://www.googletagmanager.com/gtag/js?id=G-V25YKRCX01"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V25YKRCX01');</script></head><body><a class="skip-link" href="#main">Skip to content</a><div data-partial="header"></div><main id="main" class="page calc-page"><section class="calc-hero"><p class="eyebrow">Components & box planning</p><h1>Component Volume Calculator</h1><p class="lede">Estimate component volume, then deliberately add space for the way real pieces sort, shift, and resist perfect packing.</p></section><section class="calc-shell" data-calc="volume"><div class="calc-panel"><p class="panel-label">One component type · millimetres</p><form><fieldset class="fieldset"><legend>Shape and quantity</legend><div class="fields"><div class="field"><label>Shape <select name="shape"><option value="cuboid">Cuboid / custom dimensions</option><option value="cylinder">Cylinder / disc</option></select></label></div><div class="field"><label>Quantity <input name="qty" type="number" min="0" value="80"></label></div><div class="field"><label>Width or diameter <input name="w" type="number" min="0" value="18"></label></div><div class="field"><label>Height <input name="h" type="number" min="0" value="18"></label></div><div class="field"><label>Depth (cuboid only) <input name="d" type="number" min="0" value="3"></label></div><div class="field"><label>Packing allowance % <input name="allowance" type="number" min="0" value="25"></label></div></div></fieldset><div class="actions"><button type="button" class="reset secondary">Reset</button></div></form></div><aside class="result-panel" aria-live="polite"><p class="panel-label">Packing result</p><div class="result-main" data-result="main"></div><p class="result-unit" data-result="unit"></p><ul class="breakdown"><li><span>One component</span><strong data-result="a"></strong></li><li><span>Raw total</span><strong data-result="b"></strong></li><li><span>Allowance</span><strong data-result="c"></strong></li><li><span>Shape</span><strong data-result="d"></strong></li></ul><p class="status"></p><div class="utility"><button type="button" class="copy">Copy results</button><button type="button" class="print">Print</button></div><p class="warning">Add component types separately, then use the total as a box-planning input. Empty volume is often useful clearance.</p></aside></section><article class="calc-copy"><h2>Why packing allowance matters</h2><p>Geometric volume assumes pieces tile perfectly. Components rarely do: discs roll, irregular shapes bridge gaps, and players need room to sort and remove pieces.</p><h2>Method</h2><p>Cuboids use width × height × depth. Cylinders and discs use pi × radius squared × height. The allowance is applied only after quantity is calculated.</p><h2>Example</h2><p>Use a 20–35% allowance for loose tokens, then compare with a bag, tray, or compartment mock-up.</p><h2>Limits</h2><p>This calculator handles one component type at a time and is not an automated nesting engine.</p><h2>Related workbench tools</h2><div class="related"><a href="/tools/board-game-box-size-estimator.html">Board Game Box Size Estimator</a><a href="/tools/sleeved-card-stack-calculator.html">Sleeved Card Stack Calculator</a><a href="/tools/punchboard-token-yield-calculator.html">Punchboard Token Yield Calculator</a><a href="/tools/cards-per-sheet-calculator.html">Cards per Sheet Calculator</a></div></article></main><div data-partial="footer"></div><script src="/assets/js/site.js"></script><script src="/assets/js/calculators.js"></script></body></html>
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Component Volume Calculator | Tabletop Maker Lab</title>
+<meta name="description" content="Calculate tabletop component volume and add a packing allowance for practical box planning.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://tabletopmakerlab.com/tools/component-volume-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Component Volume Calculator">
+<meta property="og:description" content="Plan real component packing volume.">
+<meta property="og:url" content="https://tabletopmakerlab.com/tools/component-volume-calculator.html">
+<meta property="og:site_name" content="Tabletop Maker Lab">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Component Volume Calculator","description":"Calculate tabletop component volume and add a packing allowance for practical box planning.","url":"https://tabletopmakerlab.com/tools/component-volume-calculator.html","applicationCategory":"BusinessApplication","operatingSystem":"Any"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tabletopmakerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://tabletopmakerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Component Volume Calculator","item":"https://tabletopmakerlab.com/tools/component-volume-calculator.html"}]}]}
+</script>
+<link rel="icon" href="/assets/icons/favicon.svg">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/calculators.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V25YKRCX01">
+</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V25YKRCX01');</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div data-partial="header">
+</div>
+<main id="main" class="page calc-page">
+<section class="calc-hero">
+<p class="eyebrow">Components & box planning</p>
+<h1>Component Volume Calculator</h1>
+<p class="lede">Estimate component volume, then deliberately add space for the way real pieces sort, shift, and resist perfect packing.</p>
+</section>
+<section class="calc-shell" data-calc="volume">
+<div class="calc-panel">
+<p class="panel-label">One component type 쨌 millimetres</p>
+<form>
+<fieldset class="fieldset">
+<legend>Shape and quantity</legend>
+<div class="fields">
+<div class="field">
+<label>Shape <select name="shape">
+<option value="cuboid">Cuboid / custom dimensions</option>
+<option value="cylinder">Cylinder / disc</option>
+</select>
+</label>
+</div>
+<div class="field">
+<label>Quantity <input name="qty" type="number" min="0" value="80">
+</label>
+</div>
+<div class="field">
+<label>Width or diameter <input name="w" type="number" min="0" value="18">
+</label>
+</div>
+<div class="field">
+<label>Height <input name="h" type="number" min="0" value="18">
+</label>
+</div>
+<div class="field">
+<label>Depth (cuboid only) <input name="d" type="number" min="0" value="3">
+</label>
+</div>
+<div class="field">
+<label>Packing allowance % <input name="allowance" type="number" min="0" value="25">
+</label>
+</div>
+</div>
+</fieldset>
+<div class="actions">
+<button type="button" class="reset secondary">Reset</button>
+</div>
+</form>
+</div>
+<aside class="result-panel" aria-live="polite">
+<p class="panel-label">Packing result</p>
+<div class="result-main" data-result="main">
+</div>
+<p class="result-unit" data-result="unit">
+</p>
+<ul class="breakdown">
+<li>
+<span>One component</span>
+<strong data-result="a">
+</strong>
+</li>
+<li>
+<span>Raw total</span>
+<strong data-result="b">
+</strong>
+</li>
+<li>
+<span>Allowance</span>
+<strong data-result="c">
+</strong>
+</li>
+<li>
+<span>Shape</span>
+<strong data-result="d">
+</strong>
+</li>
+</ul>
+<p class="status">
+</p>
+<div class="utility">
+<button type="button" class="copy">Copy results</button>
+<button type="button" class="print">Print</button>
+</div>
+<p class="warning">Add component types separately, then use the total as a box-planning input. Empty volume is often useful clearance.</p>
+</aside>
+</section>
+<article class="calc-copy">
+<h2>Why packing allowance matters</h2>
+<p>Geometric volume assumes pieces tile perfectly. Components rarely do: discs roll, irregular shapes bridge gaps, and players need room to sort and remove pieces.</p>
+<h2>Method</h2>
+<p>Cuboids use width 횞 height 횞 depth. Cylinders and discs use pi 횞 radius squared 횞 height. The allowance is applied only after quantity is calculated.</p>
+<h2>Example</h2>
+<p>Use a 20??5% allowance for loose tokens, then compare with a bag, tray, or compartment mock-up.</p>
+<h2>Limits</h2>
+<p>This calculator handles one component type at a time and is not an automated nesting engine.</p>
+<h2>Related workbench tools</h2>
+<div class="related">
+<a href="/tools/board-game-box-size-estimator.html">Board Game Box Size Estimator</a>
+<a href="/tools/sleeved-card-stack-calculator.html">Sleeved Card Stack Calculator</a>
+<a href="/tools/punchboard-token-yield-calculator.html">Punchboard Token Yield Calculator</a>
+<a href="/tools/cards-per-sheet-calculator.html">Cards per Sheet Calculator</a>
+</div>
+</article>
+</main>
+<div data-partial="footer">
+</div>
+<script src="/assets/js/site.js">
+</script>
+<script src="/assets/js/calculators.js">
+</script>
+</body>
+</html>
