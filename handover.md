@@ -224,3 +224,41 @@ This is a practical creator workbench—not a generic board-game playing site. I
 
 - `ca1fd0d` - `Embed static calculator schema markup`
 - Pending documentation commit for this verification result.
+
+## 2026-07-23 - Deployed static JSON-LD root-cause verification
+
+### Actual cause
+
+- GitHub Pages was not serving a different branch, directory, build artifact, or duplicate calculator file. The apparent mismatch came from a persistent in-app browser document that continued to expose an older DOM with the former dynamic schema marker.
+- Direct HTTP retrieval of the deployed custom-domain HTML shows the current static source. This conclusion is based on response-body comparison, not a cache assumption.
+
+### Repository and deployment trace
+
+- All five calculator HTML files on `main` contain one direct `<script type="application/ld+json">` block in `<head>`.
+- The repository has no GitHub Actions workflow, alternate Pages build configuration, `_config.yml`, or `docs/` deployment root. Root `CNAME` contains `tabletopmakerlab.com`.
+- No duplicate file names were found for the five calculator targets.
+- GitHub Pages responded from `Server: GitHub.com`; no HTML build or overwrite process is present in this repository.
+
+### Deployed verification
+
+- Compared the raw `main` file from GitHub with the deployed `https://tabletopmakerlab.com/tools/...` response for all five tools. Each raw/deployed pair was byte-for-byte identical by SHA-256.
+- Each deployed page has exactly one `application/ld+json` block, includes an `@graph` containing its page-specific `WebApplication` and three-item `BreadcrumbList`, has no `data-calculator-schema` dynamic marker, and has schema URLs equal to the canonical URL.
+- Verified targets: Board Game Box Size Estimator, Sleeved Card Stack Calculator, Component Volume Calculator, Punchboard Token Yield Calculator, and Cards per Sheet Calculator.
+- No calculator logic, design, routes, or production tools changed during this verification-only pass.
+
+### Changed files
+
+- `handover.md`
+
+### Remaining issues
+
+- None in the static JSON-LD deployment scope. If a browser inspection disagrees again, fetch the response body directly before diagnosing Pages configuration or cache behavior.
+
+### Recommended next work
+
+1. When authorized, begin the Production calculator cluster with Manufacturer Quote Comparison, followed by Landed Cost Calculator, Freight Cost per Game, Production Overage Calculator, and Defect / Replacement Copy Reserve.
+2. Keep the direct raw-vs-deployed response comparison in the release QA checklist for future schema changes.
+
+### Commit
+
+- Pending this root-cause verification handover commit and push.
