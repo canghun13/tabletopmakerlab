@@ -553,3 +553,9 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - Replaced the malformed footer copyright bytes with the source-safe `&copy;` entity, rendering as `©` with the existing dynamic year.
 - Adjusted only footer padding, footer-column rhythm, divider spacing, and bottom-row alignment. The bottom row remains horizontal on desktop and stacks naturally below `720px`.
 - No header, body, card, calculator, SEO, analytics, schema, or route was changed.
+
+## 2026-07-23 - Tools hub density pass
+
+- Cause: the two-column Tools grid stretched every item in a row to its tallest neighbor, compounded by 22px card padding and an 18px gap.
+- Tools-only CSS now uses `align-items:start` and `align-self:start`; cards remain `height:auto`, use 20px desktop / 18px mobile padding, and use a 16px desktop / 14px mobile gap.
+- Applied uniformly to Game Math, Components, Production, Crowdfunding, and Publishing. No card title, underline, calculator, guide, reference, or footer rule changed.
