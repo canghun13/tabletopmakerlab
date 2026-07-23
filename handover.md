@@ -315,3 +315,53 @@ This is a practical creator workbench—not a generic board-game playing site. I
 ### Commit
 
 - Pending Phase 3 Production calculator commit and push.
+
+## 2026-07-23 - Phase 4 Crowdfunding calculator cluster
+
+### Completed
+
+- Added five static Crowdfunding tools: Backer Break-even Calculator, Pledge Tier Margin Calculator, Stretch Goal Cost Calculator, Add-on Profit Calculator, and Shipping Subsidy Calculator.
+- Added `assets/js/crowdfunding-calculators.js` for independent live calculation, validation, Reset, Copy Results, and Print behavior; existing Components and Production scripts were not modified.
+- Added a Crowdfunding section to the Tools hub and all five URLs to `sitemap.xml`.
+- Every new page contains direct static `WebApplication` and `BreadcrumbList` JSON-LD, canonical, GA4, Open Graph, robots meta, favicon, and page-specific SEO content.
+
+### Calculation methods
+
+- Backer Break-even: divides fixed campaign costs by positive per-backer contribution margin after entered product, packaging, fulfillment, subsidy, other variable costs, and editable percentage fees. It explicitly warns when contribution is zero or negative.
+- Pledge Tier Margin: compares three tiers by per-backer variable cost, fees, contribution, margin rate, expected-backers contribution, and highlights the highest margin rate.
+- Stretch Goal Cost: keeps fixed tooling/other cost separate from per-backer incremental product, packaging, freight, fulfillment, reserve, and other cost; it reports current and expected-final scenarios without treating an unlock value as cost.
+- Add-on Profit: separates unit contribution from one-time setup cost and reports net expected contribution and break-even units.
+- Shipping Subsidy: calculates each region’s actual shipping plus handling less shipping charged after entered fees, then reports weighted total subsidy across Domestic, Nearby International, and Rest of World inputs.
+
+### Changed files
+
+- `assets/js/crowdfunding-calculators.js`
+- `tools/backer-break-even-calculator.html`
+- `tools/pledge-tier-margin-calculator.html`
+- `tools/stretch-goal-cost-calculator.html`
+- `tools/add-on-profit-calculator.html`
+- `tools/shipping-subsidy-calculator.html`
+- `tools/index.html`, `sitemap.xml`, `handover.md`
+
+### QA
+
+- `crowdfunding-calculators.js` syntax, sitemap XML parsing, and `git diff --check` passed.
+- Local browser checks confirmed Header/Footer, one H1, GA4, canonical, one static JSON-LD `@graph` with `WebApplication` and `BreadcrumbList`, finite results, and no horizontal overflow on all five tools.
+- Changed-input / Reset checks passed: Break-even `544 → — → 544`; Stretch Goal `$6,482.50 → $11,965.00 → $6,482.50`; Add-on `$8.40 → -$5.40 → $8.40`; Shipping Subsidy `$3.62 → -$3.01 → $3.62`. Tier ranking changed from `Core pledge` to `Deluxe pledge` when the Core price was reduced.
+- Desktop `1440x1000` and mobile `390x844` checks passed for all five Crowdfunding tools and Tools hub: controls remained in bounds, no horizontal overflow, Header/Footer present. Homepage and an existing Production calculator were also rendered. Console error log was empty.
+- Negative-input checks on every Crowdfunding tool showed the validation message and retained finite output without `NaN` or `Infinity`.
+
+### Remaining issues
+
+- As with Phase 3, the new pages were verified against the local static server only. The custom domain had not yet published the Phase 3 new files at the last direct HTTP check, so do not claim deployed Crowdfunding rendering or deployed static JSON-LD until fresh responses return these URLs.
+- All fees, shipping, and costs are editable creator assumptions; no platform fee, tax, shipping rate, exchange rate, supplier quote, or outcome is predicted.
+
+### Recommended next work
+
+1. First verify that GitHub Pages has published the Phase 3 and Phase 4 new URLs through direct HTTP response checks, then perform a fresh deployed browser sweep.
+2. Build substantive campaign economics guides/reference material only where it explains assumptions and questions to ask.
+3. Choose the next cluster between Game Math and Publishing after deployed verification is closed.
+
+### Commit
+
+- Pending Phase 4 Crowdfunding calculator commit and push.
