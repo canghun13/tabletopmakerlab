@@ -523,3 +523,20 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 ### Remaining QA
 
 - Run the final deployed visual sweep at 1440, 1280, 1024, 768, and 390 after GitHub Pages propagation; this change is intentionally limited to presentation and explicit unit markup.
+
+## 2026-07-23 - Post-deployment visual QA
+
+### Findings and fix
+
+- Fresh custom-domain checks at 1440, 1280, 1024, 768, and 390 confirmed the deployed calculator unit wrappers and responsive shared CSS.
+- Repaired pre-existing malformed homepage arrow markup and three visible encoding artifacts in the Homepage, Guides hub, and Reference hub. The malformed homepage markup caused the only observed mobile horizontal overflow.
+
+### QA
+
+- A 90-render responsive sweep (18 representative pages × 5 breakpoints) found no suffix collision, offscreen result panel, clipped button, missing partial, or horizontal overflow after the homepage correction.
+- Representative calculator outputs and existing selector-driven behavior remain unchanged; this fix does not modify calculator logic, identifiers, or SEO metadata.
+- Final custom-domain cache-bypassed response checks returned HTTP 200 and showed the deployed unit wrapper markup.
+
+### Release status
+
+- Phase 1 is complete and the site is ready for operations monitoring. No additional UI work is required.
