@@ -304,7 +304,7 @@ This is a practical creator workbench—not a generic board-game playing site. I
 ### Remaining issues
 
 - The calculations intentionally use only creator-entered assumptions. Final supplier specifications, Incoterms, tax treatment, freight, QC results, and customer-service outcomes must be confirmed outside the tools.
-- Production pages were browser-tested from the local static server before this commit. Re-run the direct deployed-domain browser and raw-response comparison after GitHub Pages publishes this commit; do not rely on an old persistent browser document.
+- Production pages were browser-tested from the local static server before this commit. Direct custom-domain verification immediately after push is **not passed yet**: `https://tabletopmakerlab.com/tools/landed-cost-calculator.html` returned HTTP `404`, while the matching `raw.githubusercontent.com` `main` file returned HTTP `200`. The deployed `/tools/` response also reports the older `Last-Modified` time. Do not interpret this as a calculator fault or claim deployed Production rendering until Pages serves the new files. Re-run the direct deployed-domain browser and raw-response comparison after Pages publishes; do not rely on an old persistent browser document.
 
 ### Recommended next work
 
