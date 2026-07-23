@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://tabletopmakerlab.com/</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/dice-probability-calculator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/dice-pool-probability-calculator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/custom-dice-probability-calculator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/exploding-dice-calculator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/reroll-probability-calculator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/card-draw-probability-calculator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/opening-hand-probability-calculator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/bag-token-draw-probability-calculator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/expected-value-calculator.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/board-game-box-size-estimator.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/sleeved-card-stack-calculator.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/component-volume-calculator.html</loc></url>

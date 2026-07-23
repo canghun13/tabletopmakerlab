@@ -400,3 +400,38 @@ This is a practical creator workbench—not a generic board-game playing site. I
 ### Commit
 
 - Pending Phase 5 Publishing calculator commit and push.
+
+## 2026-07-23 - Phase 6 Game Math calculator cluster
+
+### Completed
+
+- Added nine static Game Math tools: Dice Probability, Dice Pool, Custom Dice, Exploding Dice, Reroll Probability, Card Draw, Opening Hand, Bag / Token Draw, and Expected Outcome / Expected Value.
+- Added `assets/js/game-math-calculators.js` for live calculations, safe validation, Reset, Copy Results, Print, dynamic expected-outcome rows, and finite result handling.
+- Added a Game Math section to the Tools hub, linked the homepage and footer, and added all nine pages to `sitemap.xml`.
+- Every tool has page-specific canonical, GA4, Open Graph, static `WebApplication`, and `BreadcrumbList` JSON-LD.
+
+### Calculation methods
+
+- Dice totals use exact dynamic-programming outcome counts; success pools use binomial probabilities.
+- Custom dice count repeated face entries as physical weighted faces. Card, opening-hand, and no-replacement bag draws use exact hypergeometric probabilities.
+- Exploding dice exposes exact expected-value/extra-die treatment and explicitly labels its threshold result as a bounded simulation for safe unlimited-chain handling.
+- Expected Outcome validates probability totals and shows expected value, spread, best/worst outcome, and weighted row contributions.
+
+### QA
+
+- JavaScript syntax, page SEO/schema essentials, and sitemap XML passed.
+- Browser checks: 2d6 exact 7 = `16.67%`, default 40-card / 4-target / 7-card draw = `55.22%`, and default 50/50 expected outcome = `2`.
+- Mobile `390x844` checks passed for all nine pages: H1 and results present, no document horizontal overflow.
+
+### Remaining issues
+
+- Exploding-die target chance is intentionally a labeled simulation; all other stated exact distributions use their appropriate exact model within input limits.
+
+### Recommended next work
+
+1. Verify newly published Game Math URLs and JSON-LD from fresh custom-domain response bodies after GitHub Pages propagation.
+2. Add only substantive Game Math guides where they help designers interpret distributions and player-facing risk.
+
+### Commit
+
+- Pending Phase 6 Game Math calculator commit and push.
