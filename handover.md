@@ -503,5 +503,5 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - Guides + Reference count: 16.
 - Browser status: pass (fresh-document desktop and mobile checks).
 - Automated test status: no repository browser-test framework exists; direct browser QA now passes. The prior setup error is resolved.
-- Deployment status: pre-fix custom-domain responses returned HTTP content and exposed the four malformed canonical URLs; re-check after pushing this correction is required.
-- Residual risk: low after deployment propagation. No Phase 1 blocker remains once the pushed custom-domain response exposes the corrected canonical URLs.
+- Deployment status: pass. After commit `ea623ee` reached `main`, cache-bypassed custom-domain requests returned HTTP 200 and the corrected canonical URL for all four repaired pages.
+- Residual risk: low. No Phase 1 blocker remains.
