@@ -547,3 +547,9 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - Rebuilt the shared layout in CSS as independent grid items: every tool row now stacks `LIVE TOOL`, title, and description within its own bordered card.
 - Reduced Guide/Reference card titles to `24–28px` with `1.1` line-height; their grid changes from three to two columns at `1280px` and one column at `720px`.
 - No calculator logic, inputs, URLs, or SEO metadata changed.
+
+## 2026-07-23 - Footer final polish
+
+- Replaced the malformed footer copyright bytes with the source-safe `&copy;` entity, rendering as `©` with the existing dynamic year.
+- Adjusted only footer padding, footer-column rhythm, divider spacing, and bottom-row alignment. The bottom row remains horizontal on desktop and stacks naturally below `720px`.
+- No header, body, card, calculator, SEO, analytics, schema, or route was changed.
