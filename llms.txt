@@ -1,0 +1,15 @@
+# Tabletop Maker Lab
+
+> Free tools for board game designers, creators & publishers.
+
+Tabletop Maker Lab is a static, creator-first workbench for practical tabletop-game planning: game math, components, production, crowdfunding, and publishing.
+
+## Core pages
+
+- [Home](https://tabletopmakerlab.com/): Site positioning and areas of work.
+- [Tools](https://tabletopmakerlab.com/tools/): Current tool roadmap and anchor calculators.
+- [Guides](https://tabletopmakerlab.com/guides/): Practical creator guides.
+- [Reference](https://tabletopmakerlab.com/reference/): Terms and planning reference.
+- [About](https://tabletopmakerlab.com/about.html): Editorial approach and limits.
+
+Do not represent this site as a source of live manufacturer pricing, legal advice, or a generic board-game playing service.
