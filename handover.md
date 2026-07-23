@@ -180,3 +180,47 @@ This is a practical creator workbench—not a generic board-game playing site. I
 - `20e2080` - `Document phase two calculator QA`
 - `36de454` - `Ensure calculator schema markup loads`
 - Pending final note about deployed JSON-LD verification.
+
+## 2026-07-23 - Static calculator JSON-LD stabilization
+
+### Completed
+
+- Removed both dynamic JSON-LD injection blocks from `assets/js/calculators.js`; calculator logic and UI were not changed.
+- Added one static `application/ld+json` block directly inside the `<head>` of each of the five calculator pages.
+- Each schema contains a page-specific `WebApplication` and `BreadcrumbList` in an `@graph`; no price, rating, author, FAQ, or unsupported feature data was added.
+
+### Changed files
+
+- `assets/js/calculators.js`
+- `tools/board-game-box-size-estimator.html`
+- `tools/sleeved-card-stack-calculator.html`
+- `tools/component-volume-calculator.html`
+- `tools/punchboard-token-yield-calculator.html`
+- `tools/cards-per-sheet-calculator.html`
+- `handover.md`
+
+### Validation
+
+- Local source validation parsed the static JSON-LD for all five pages successfully.
+- Each page has exactly one static JSON-LD block with a `WebApplication`, a three-item `BreadcrumbList`, a tool-specific name/description, and a schema URL equal to its canonical URL.
+- HTML SEO essentials, duplicate IDs, dynamic JSON-LD removal, sitemap XML, and JavaScript syntax checks passed.
+- Google Rich Results Test / Schema.org Validator was not used because this environment did not provide a reliable external validator connection.
+
+### Deployment verification
+
+- After pushing `ca1fd0d`, the deployed custom domain continued to serve the previously cached calculator HTML and dynamic JSON-LD, including on query-string cache-bypass attempts. Therefore, the deployed static JSON-LD existence check is **not passed** yet.
+- This is a deployment/cache propagation observation, not a source JSON parsing failure. Recheck the five deployed URLs after the GitHub Pages/Cloudflare cache refresh; expected result is one JSON-LD block per page with `@graph`, `WebApplication`, and `BreadcrumbList`.
+
+### Remaining issues
+
+- Pending only the deployed-domain cache refresh and final five-page static JSON-LD confirmation. Do not describe deployed static JSON-LD as verified until that check is complete.
+
+### Recommended next work
+
+1. Re-run the five deployed JSON-LD checks after cache refresh, then update this handover with the final result.
+2. After SEO verification closes, begin the Production calculator cluster in this order: Manufacturer Quote Comparison, Landed Cost Calculator, Freight Cost per Game, Production Overage Calculator, then Defect / Replacement Copy Reserve.
+
+### Commit
+
+- `ca1fd0d` - `Embed static calculator schema markup`
+- Pending documentation commit for this verification result.
