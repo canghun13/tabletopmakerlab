@@ -559,3 +559,10 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - Cause: the two-column Tools grid stretched every item in a row to its tallest neighbor, compounded by 22px card padding and an 18px gap.
 - Tools-only CSS now uses `align-items:start` and `align-self:start`; cards remain `height:auto`, use 20px desktop / 18px mobile padding, and use a 16px desktop / 14px mobile gap.
 - Applied uniformly to Game Math, Components, Production, Crowdfunding, and Publishing. No card title, underline, calculator, guide, reference, or footer rule changed.
+
+## 2026-07-24 - Core/legal mobile layout and contact email
+
+- Public contact email: `canghun13@naver.com`. Do not replace it with a placeholder or business-domain address in future edits.
+- Updated the Contact page mailto/text and confirmed no `hello@tabletopmakerlab.com` remains in the repository.
+- Added the Core/Legal-only `.core-page` mobile hero rules: H1 changes from the global 53px mobile value to a contained 44–52px range, with reduced hero and lead spacing.
+- Contact dark section uses 22px mobile padding, a 30px heading, and email-safe wrapping. About and Privacy share the same core-page hero behavior.
