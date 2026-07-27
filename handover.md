@@ -597,3 +597,30 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 ### Git
 
 - Commit pending this audit/remediation record. Per user direction, do not push without explicit authorization.
+
+## 2026-07-27 - Content-depth audit deployment confirmation
+
+### Push and GitHub Pages
+
+- Confirmed the local branch was `main`, clean, and one commit ahead of `origin/main` with no unexpected remote commit (`1 ahead / 0 behind`) after `git fetch origin`.
+- Pushed the completed content-depth audit commit `a478c1b` (`Audit and enrich site content`) to `origin/main`. The post-push comparison was `0 ahead / 0 behind`.
+- GitHub Pages is serving the new source. Cache-bypassed public HTTP responses for all 12 verification pages returned HTTP `200` from `GitHub.com` and exactly matched the corresponding `a478c1b` repository file after trailing newline normalization.
+- This direct response comparison confirmed the newly added static content, including the MOQ decision section, quote-comparison checklist, card-size and punchboard reference guidance, and three calculator interpretation sections. It is response-body evidence, not a screen-cache assumption.
+
+### Public-site browser QA
+
+- Rendered 12 public pages at `1440x1000` and `390x844` (24 rendered checks): Home, Tools, MOQ guide, Quote Comparison Checklist guide, Card Sizes reference, Punchboard Tokens reference, Pledge Tier Margin calculator, Dice Probability calculator, Inventory Runway calculator, About, Contact, and Privacy.
+- Every render had one H1, loaded Header and Footer partials, loaded shared CSS and `site.js`, showed the expected latest content marker, had no visible `.html\">` markup leak, and had no horizontal overflow or off-viewport visible content.
+- The three checked calculators exposed their rendered result panels. The Contact page rendered `canghun13@naver.com`.
+- Mobile navigation was tested directly at 390px: the single menu control changed to `aria-expanded="true"`, displayed all five navigation links without overflow, and its Tools link navigated successfully to `/tools/` with Header/Footer and one H1 intact.
+- Browser console errors: `0`. No page errors were captured in the browser error log: `0`. Observed internal asset failures: `0`.
+- Direct public HTTP checks also returned `200` for shared CSS, `site.js`, the three checked calculator scripts, Header/Footer partials, and the favicon.
+
+### Final status
+
+- Tabletop Maker Lab content-depth audit is fully deployed and publicly verified. No deployment or rendering blocker remains in this release scope.
+- Remaining product risk is unchanged: planning tools and guides depend on creator-entered assumptions and must not replace supplier quotes, platform policies, contracts, or professional advice.
+
+### Git
+
+- `a478c1b` is the pushed content-depth audit commit. Commit and push this deployment-confirmation handover entry as the immediate follow-up record.
