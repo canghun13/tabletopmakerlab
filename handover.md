@@ -566,3 +566,34 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - Updated the Contact page mailto/text and confirmed no `hello@tabletopmakerlab.com` remains in the repository.
 - Added the Core/Legal-only `.core-page` mobile hero rules: H1 changes from the global 53px mobile value to a contained 44–52px range, with reduced hero and lead spacing.
 - Contact dark section uses 22px mobile padding, a 30px heading, and email-safe wrapping. About and Privacy share the same core-page hero behavior.
+
+## 2026-07-27 - Content-depth audit and remediation
+
+### Starting state
+
+- Started from `7838b09` on `main`; `origin/main` was identical (`0 ahead / 0 behind`) after a read-only fetch. The initial working tree had the preserved `guides/moq-explained.html` draft and new `tools/content_audit.py` audit utility.
+- Verified 60 public HTML pages: 37 calculator pages, 11 Guides, 5 Reference pages, and 7 other public/hub/legal pages. The 37-calculator count is correct; it is the current `tools/*.html` count excluding `tools/index.html`, not a duplicate calculator or a sitemap error.
+
+### Audit result and remediation
+
+- Pre-remediation final review: 24 sufficient, 20 needing reinforcement, and 16 Thin Content pages. The Thin group was the 10 unexpanded Guides, five Reference articles, and the original MOQ guide; the reinforcement group was 15 short Game Math/practical calculators plus five Crowdfunding calculators.
+- Post-remediation review: 60 sufficient, 0 needing reinforcement, and 0 Thin Content pages. Hub and legal pages were assessed for their stated navigational/legal purpose rather than article word count.
+- Rewrote all 11 Guides and five Reference articles as topic-specific static content. The duplicate `Creator workflow`, `Common mistakes`, and generic `Limits` paragraphs were removed. Each resource now addresses its own decision, a practical example or comparison, partner/supplier questions, bounded limitations, and real related links. MOQ was retained and expanded as the quality reference.
+- Added topic-specific static interpretation sections to 20 low-density calculators: all five Crowdfunding tools, Bag/Token Draw, Board Fold, Campaign Profit, Card Draw, Component Weight, Custom Dice, Dice Pool, Dice Probability, Expected Value, Exploding Dice, Insert Clearance, Inventory Runway, Opening Hand, Print-and-Play Sheet, and Reroll Probability.
+- No URL, filename, input/result ID, JavaScript calculator connection, calculation formula, CSS design system, SEO metadata, sitemap entry, or analytics identifier was changed. No calculation defect was found or corrected.
+
+### QA
+
+- `tools/content_audit.py` now validates public-page title, description, canonical, one H1, duplicate IDs, static JSON-LD on article/calculator pages, calculator-script connection, internal targets, anchors, and partial-navigation-aware orphan detection. Final public-page issue count: 0.
+- All shared JavaScript files passed Node syntax checks; `sitemap.xml` parsed; `git diff --check` passed. Contact email remains `canghun13@naver.com`.
+- Browser QA used a local static server and fresh documents. All 36 changed content pages rendered at 1440px and 390px (72 renders) with Header/Footer, one H1, finite calculator output where applicable, and no horizontal overflow. Six representative changed page types also passed at 1280px and 768px (12 renders).
+- All 37 calculators passed default-result smoke checks at 1024px: a calculator script loaded, at least one result existed, no `NaN`/`Infinity` was visible, and no horizontal overflow occurred. Browser console errors: 0; page errors: 0; local asset failures observed: 0.
+
+### Remaining risk
+
+- Content and calculations remain creator-entered planning material. Supplier terms, platform fees, taxes, contracts, freight, manufacturing tolerances, and delivery terms must be confirmed with the relevant official source or partner.
+- This audit did not add speculative industry benchmarks. The seven existing core/hub/legal pages deliberately do not use JSON-LD; all 53 calculator and Guide/Reference article pages retain validated static structured data.
+
+### Git
+
+- Commit pending this audit/remediation record. Per user direction, do not push without explicit authorization.
