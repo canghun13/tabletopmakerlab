@@ -682,3 +682,11 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 
 - Source validation and local browser QA are complete. Commit, push, GitHub Pages propagation, and public-domain verification remain to be recorded below after the release command succeeds.
 - Remaining risk: these are creator-entered planning aids. They do not run or observe real playtests, prove player enjoyment, certify a rulebook, or replace fresh testers and physical prototype checks.
+
+## 2026-08-02 - Playtesting & Rulebook Validation deployment confirmation
+
+- Pushed `a21b515` (`Add playtesting validation tools`) to `origin/main`; local `HEAD` and `origin/main` were identical (`0 ahead / 0 behind`) immediately after the push.
+- GitHub Pages initially served the preceding build: the root returned `200` but the new Hub route returned `404`. After propagation, the cache-bypassed Hub returned `200` from `GitHub.com` with both `Playtesting &amp; Rulebook Validation` and `Playtest Session Planner` present.
+- Public HTTP verification then returned `200` and expected current-page content for all eight released Hub/Tool/Guide/Reference pages and the representative existing Board Game Box Size Estimator at `https://tabletopmakerlab.com/`.
+- Local browser rendering and interaction QA remains the visual/functional verification source for this release; public HTTP verification confirms the deployed response body rather than replacing that render check.
+- Commit and push this deployment-confirmation record as the final follow-up handover entry.
