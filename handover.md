@@ -633,3 +633,52 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 ## 2026-07-30
 
 - 메인 페이지 푸터 아래의 디렉토리 뱃지 영역은 사용자가 직접 관리하는 영역이므로 수정·삭제·리팩터링하지 않는다.- https://twelve.tools, https://findly.tools/에 등록 (내가 직접함)
+
+## 2026-08-02 - Playtesting & Rulebook Validation validation and release
+
+### Repository and protected-area check
+
+- Started from `c727a29` (`Update handover.md`) on `main`; after connecting the initially empty local workspace to the specified repository, `origin/main` and local `HEAD` were identical (`0 ahead / 0 behind`).
+- Confirmed the public-site baseline was 60 HTML pages: 37 calculator pages, 11 Guides, 5 Reference pages, and 7 common/hub/legal pages.
+- Read the handover history and preserved the user-managed directory-badge area below the homepage Footer, including KittyLaunch, SellWithBoost, Twelve Tools, and Findly registrations. `index.html` was not modified.
+
+### Search and candidate decision
+
+- Searched: `board game playtest planner`, `board game playtesting checklist`, `blind playtest checklist board game`, `blind playtest readiness board game`, `board game playtest feedback form template`, `board game feedback form playtest`, `board game rulebook completeness checklist`, `rulebook checklist board game`, `board game player count testing matrix playtest`, `board game player count testing checklist`, `board game playtest issue tracker`, and `board game playtest session plan template`.
+- Search intent showed repeated creator needs around structured session setup, blind testing, feedback, rulebook clarity, player-count coverage, and issue follow-up. Search results are dominated by guides/PDF templates and account-based platforms such as Boardssey, Playtest Exchange, Playtest Parlor, and form services; the direct no-account static-tool alternative was not found in the reviewed top results.
+- Existing internal pages cover game math, components, production, crowdfunding, publishing, and supporting manufacturing content; none accepts the same inputs or produces playtest planning, packet-readiness, player-count coverage, rulebook-revision, or playtest-issue outputs.
+- `PASS`: Playtest Session Planner, Player Count Test Matrix, Blind Playtest Readiness Checker, Rulebook Completeness Checker, Playtest Issue Log & Priority Tool.
+- `MERGE / not released`: Playtest Feedback Form Generator. Free downloadable forms, Google/Form-builder templates, and account-based feedback tools are strong direct alternatives, so it was not added merely to fill a page count.
+- Cluster decision: `PASS`. Five independent local tools, one Hub, one Guide, and one Reference page form an eight-page structure without an internal near-duplicate.
+
+### Released structure and methods
+
+- Hub: `/tools/playtesting-rulebook-validation.html`.
+- Tools: `/tools/playtest-session-planner.html`, `/tools/player-count-test-matrix.html`, `/tools/blind-playtest-readiness-checker.html`, `/tools/rulebook-completeness-checker.html`, and `/tools/playtest-issue-log-priority-tool.html`.
+- Guide: `/guides/board-game-playtest-plan.html`. Reference: `/reference/board-game-rulebook-sections.html`.
+- Session Planner converts creator-entered objective, people, timing, rounds, observers, and instruction mode into an agenda, evidence prompts, and a close-out sequence.
+- Player Count Matrix prioritizes a creator-entered player range around the target count, exposes untested counts, and labels low/high-count stress sessions. It does not claim balance from coverage.
+- Blind Readiness separates missing packet elements (blockers) from revision items and states likely designer-intervention risk; it explicitly does not substitute for a blind test.
+- Rulebook Completeness separates missing sections from ambiguity flags and sends the user to the narrowest appropriate blind-test step. A writer's clear mark is not presented as reader validation.
+- Issue Log uses an explicit precedence rule: blocked progression or repeatable critical failure first, then severity, frequency, reproducibility, and impact. It provides a fix-and-retest sequence rather than a score alone.
+- Sources consulted and dated at validation: [KIBAKO blind-playtest checklist](https://kibako.habitat-hub.com/en/guides/online-blind-playtest-checklist), [Boardssey playtest setup guide](https://learn.boardssey.com/en/articles/10693423-setting-up-your-first-playtest-how-to-gather-feedback), [BackerKit feedback-form guidance](https://www.backerkit.com/blog/playtest-feedback-form/), [Nerdlab feedback-form template](https://nerdlab-games.com/playtest-feedback-form-template/), and [Playtest Exchange](https://playtestexchange.com/). These sources informed workflow context only; no external rates, benchmarks, or scoring claims were added.
+
+### Changed files
+
+- Added `assets/js/playtesting-calculators.js` and `assets/css/playtesting.css`.
+- Added the eight released Hub, Tool, Guide, and Reference pages listed above.
+- Updated `tools/index.html`, `guides/index.html`, `reference/index.html`, and `sitemap.xml` for the new information architecture.
+- Added this handover record. The protected homepage badge area was not touched.
+
+### QA
+
+- `tools/content_audit.py` passed across 68 public pages: title, description, canonical, one H1, duplicate IDs, static JSON-LD where required, calculator-script links, internal targets, anchors, and orphan detection. Reported issue count: 0.
+- All shared JavaScript files, including `playtesting-calculators.js`, passed Node syntax parsing. `sitemap.xml` parsed. `git diff --check` passed.
+- Local HTTP browser QA completed 80 renders: all eight released pages plus eight representative existing page types at 1440px, 1280px, 1024px, 768px, and 390px. Each had one H1, Header/Footer partials, no control crossing the viewport, no horizontal overflow, and no visible `NaN`/`Infinity`.
+- New-tool interaction checks passed: normal and edge session planning; player-range clamp and coverage output; blind-test blocker path; rulebook missing-section path; issue add/remove; reset; copy; and printable controls present. Browser console errors: 0. Page errors and observed local asset failures: 0.
+- Existing calculator assurance in this pass: the full audit verified all calculator script connections and one representative existing calculator (Board Game Box Size Estimator) passed the complete five-viewport rendering sweep. The 37-calculator default-result browser smoke suite should be rerun before a later shared-calculator-script release.
+
+### Release status
+
+- Source validation and local browser QA are complete. Commit, push, GitHub Pages propagation, and public-domain verification remain to be recorded below after the release command succeeds.
+- Remaining risk: these are creator-entered planning aids. They do not run or observe real playtests, prove player enjoyment, certify a rulebook, or replace fresh testers and physical prototype checks.
