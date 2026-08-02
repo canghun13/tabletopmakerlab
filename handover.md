@@ -712,3 +712,9 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - No shared Calculator CSS/JS, Header/Footer, homepage, or protected homepage badge area was changed; no extra 68-page responsive sweep was needed.
 - Remaining risk is product-domain only: creator-entered assumptions and formulas remain planning aids, not supplier quotes, platform policies, contracts, or real-world test results.
 - Commit and push this full-runtime-smoke record, then confirm `origin/main` alignment and GitHub Pages response status.
+
+## 2026-08-02 - Existing Calculator runtime smoke deployment confirmation
+
+- Pushed runtime-smoke result commit `a26e625` (`Complete calculator runtime smoke tests`) to `origin/main`; the post-push comparison was `0 ahead / 0 behind`.
+- The final code-bearing Calculator release remains unchanged by this documentation-only follow-up. GitHub Pages public verification returned HTTP `200` from `GitHub.com` with expected current content for Dice Probability, Board Game Box Size Estimator, Landed Cost, Pledge Tier Margin, and Board Game Royalty.
+- Those five deployed pages had already completed actual browser load, default-result, changed-input recalculation, and Reset runtime checks in this run. No deployment or Calculator regression was observed.
