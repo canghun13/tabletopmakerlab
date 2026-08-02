@@ -690,3 +690,25 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - Public HTTP verification then returned `200` and expected current-page content for all eight released Hub/Tool/Guide/Reference pages and the representative existing Board Game Box Size Estimator at `https://tabletopmakerlab.com/`.
 - Local browser rendering and interaction QA remains the visual/functional verification source for this release; public HTTP verification confirms the deployed response body rather than replacing that render check.
 - Commit and push this deployment-confirmation record as the final follow-up handover entry.
+
+## 2026-08-02 - Existing Calculator full runtime smoke completion
+
+### Scope
+
+- Started from `8d3cd76` (`Document playtesting tools deployment`) on clean `main`; `origin/main` was identical before the run.
+- Confirmed the 37 existing Calculators from the Tools directory, Tools hub, sitemap, and prior handover count. Excluded the five new Playtesting Tools (`playtest-session-planner`, `player-count-test-matrix`, `blind-playtest-readiness-checker`, `rulebook-completeness-checker`, and `playtest-issue-log-priority-tool`) plus the new Hub, Guide, Reference, and all non-calculator pages.
+- Tested URLs: `/tools/add-on-profit-calculator.html`, `/tools/advance-recoupment-calculator.html`, `/tools/backer-break-even-calculator.html`, `/tools/bag-token-draw-probability-calculator.html`, `/tools/board-fold-size-calculator.html`, `/tools/board-game-box-size-estimator.html`, `/tools/board-game-royalty-calculator.html`, `/tools/campaign-profit-scenario-calculator.html`, `/tools/card-draw-probability-calculator.html`, `/tools/cards-per-sheet-calculator.html`, `/tools/component-volume-calculator.html`, `/tools/component-weight-estimator.html`, `/tools/convention-break-even-calculator.html`, `/tools/custom-dice-probability-calculator.html`, `/tools/defect-replacement-copy-reserve-calculator.html`, `/tools/dice-pool-probability-calculator.html`, `/tools/dice-probability-calculator.html`, `/tools/direct-vs-distribution-margin-calculator.html`, `/tools/expected-value-calculator.html`, `/tools/exploding-dice-calculator.html`, `/tools/freight-cost-per-game-calculator.html`, `/tools/insert-clearance-calculator.html`, `/tools/inventory-runway-calculator.html`, `/tools/landed-cost-calculator.html`, `/tools/licensing-deal-comparison.html`, `/tools/manufacturer-quote-comparison.html`, `/tools/opening-hand-probability-calculator.html`, `/tools/pledge-tier-margin-calculator.html`, `/tools/print-and-play-sheet-calculator.html`, `/tools/production-overage-calculator.html`, `/tools/publisher-profit-per-copy-calculator.html`, `/tools/punchboard-token-yield-calculator.html`, `/tools/reroll-probability-calculator.html`, `/tools/royalty-method-comparison.html`, `/tools/shipping-subsidy-calculator.html`, `/tools/sleeved-card-stack-calculator.html`, and `/tools/stretch-goal-cost-calculator.html`.
+
+### Runtime method and result
+
+- Used a local HTTP server and an actual Chromium-based browser session. Each page was loaded individually, waited for Header/Footer partial completion, confirmed a connected calculator JavaScript asset and a non-empty default result, changed the first enabled numeric input to a valid adjacent value, confirmed a finite non-empty recalculated result, and ran Reset before confirming a finite non-empty restored result.
+- Scenario count: 111 calculator interactions (37 default-result checks, 37 changed-input recalculations, 37 Reset checks), plus 37 page-load/script/result checks and per-page console inspection.
+- Passed: 37/37. Initial failures: 0. Failures after retest: 0. No calculator, HTML, JavaScript, CSS, or formula change was required.
+- `NaN`: 0. `Infinity`: 0. `undefined` result text: 0. Blank required result: 0. Console errors: 0. Page errors: 0. Observed internal asset failures: 0.
+- Public-domain regression: cache-bypassed runtime smoke also passed for five representative existing Calculator types: Dice Probability, Board Game Box Size Estimator, Landed Cost, Pledge Tier Margin, and Board Game Royalty. Each loaded the deployed calculator script, produced a finite default result, recalculated after input change, and Reset successfully.
+
+### Boundaries and remaining risk
+
+- No shared Calculator CSS/JS, Header/Footer, homepage, or protected homepage badge area was changed; no extra 68-page responsive sweep was needed.
+- Remaining risk is product-domain only: creator-entered assumptions and formulas remain planning aids, not supplier quotes, platform policies, contracts, or real-world test results.
+- Commit and push this full-runtime-smoke record, then confirm `origin/main` alignment and GitHub Pages response status.
