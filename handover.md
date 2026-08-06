@@ -718,3 +718,7 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - Pushed runtime-smoke result commit `a26e625` (`Complete calculator runtime smoke tests`) to `origin/main`; the post-push comparison was `0 ahead / 0 behind`.
 - The final code-bearing Calculator release remains unchanged by this documentation-only follow-up. GitHub Pages public verification returned HTTP `200` from `GitHub.com` with expected current content for Dice Probability, Board Game Box Size Estimator, Landed Cost, Pledge Tier Margin, and Board Game Royalty.
 - Those five deployed pages had already completed actual browser load, default-result, changed-input recalculation, and Reset runtime checks in this run. No deployment or Calculator regression was observed.
+
+## 2026-08-06
+
+- 메인 페이지 푸터 아래의 디렉토리 뱃지 영역은 사용자가 직접 관리하는 영역이므로 수정·삭제·리팩터링하지 않는다.- https://launchbuff.com/에 등록 (내가 직접함)
