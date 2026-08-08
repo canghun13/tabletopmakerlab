@@ -722,3 +722,30 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 ## 2026-08-06
 
 - 메인 페이지 푸터 아래의 디렉토리 뱃지 영역은 사용자가 직접 관리하는 영역이므로 수정·삭제·리팩터링하지 않는다.- https://launchbuff.com/, https://boostdomainrating.com/ 에 등록 (내가 직접함)
+## 2026-08-08 - New domain opportunity gate (NO-GO)
+
+### Starting state
+
+- Start commit: `7838b09`; repository root and `origin` both point to `https://github.com/canghun13/tabletopmakerlab.git`; branch: `main`; local HEAD matched `origin/main` before this review.
+- Existing public scope: 60 pages, 37 calculators, and 16 Guides/Reference pages. This review did not modify any user-managed backlink, badge, or footer-placement area.
+
+### Candidates researched
+
+| Candidate | Need signal | Direct competition / overlap | Decision |
+| --- | --- | --- | --- |
+| Playtest feedback analysis | Survey templates and playtest platforms show persistent demand for structured feedback. | Existing Playtesting & Rulebook Validation scope is already the designated cluster; Boardssey also supplies form and result workflows. | NO-GO: duplicate scope. |
+| Tabletop accessibility checks | Accessibility checklists and color-vision testing are recurring creator concerns. | Boardssey provides an image-upload color-blindness simulator; a meaningful equivalent needs image processing rather than a small static calculator. | HOLD: not suitable for this static, no-upload architecture today. |
+| Board-game localization planning | Board-game localization specialists emphasize word count, languages, DTP, glossary, and LQA planning. | The Geeky Pen offers a quote calculator; Wordarch offers a localization calculation spreadsheet; broad game-localization calculators already cover cost/time. | NO-GO: a generic estimator would not be distinct enough. |
+| Product safety / compliance | Creators need compliance information before manufacture. | Requirements are jurisdiction- and product-specific, with high legal/safety risk; a static checklist could be misleading. | NO-GO: needs authoritative, maintained legal review. |
+
+### Sources and reasoning
+
+- Jotform and SuperSurvey expose generic playtest-feedback templates, while Boardssey documents dedicated feedback collection and review workflows (researched 2026-08-08).
+- Boardssey documents an image-upload color-blindness simulator; BoardGames.News publishes an accessibility checklist. The best user value needs visual asset analysis, which this static site intentionally does not accept or upload.
+- The Geeky Pen publishes a board-game localization quote calculator; Wordarch offers a localization calculation spreadsheet; Alconost and Glodom describe the broader localization workflow. These validate the need but also show an existing tool/service market rather than a clear unserved static-tool gap.
+
+### Outcome
+
+- GO: none. HOLD: accessibility asset review. NO-GO: playtest feedback, localization estimator, and safety/compliance.
+- No new Hub, Tool, Guide, Reference, URL, SEO metadata, JavaScript, calculator logic, sitemap entry, or user-managed area was created or changed.
+- Residual risk: low. Revisit only if an upload-free, decision-changing tabletop accessibility workflow is identified with distinct creator demand.
