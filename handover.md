@@ -749,3 +749,19 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - GO: none. HOLD: accessibility asset review. NO-GO: playtest feedback, localization estimator, and safety/compliance.
 - No new Hub, Tool, Guide, Reference, URL, SEO metadata, JavaScript, calculator logic, sitemap entry, or user-managed area was created or changed.
 - Residual risk: low. Revisit only if an upload-free, decision-changing tabletop accessibility workflow is identified with distinct creator demand.
+
+## 2026-08-10 - Print binding and mobile Footer browser QA
+
+### Scope and fixes
+
+- Started from `69609fd`; preserved and completed the six pre-existing calculator metadata corrections: Board Fold Size, Campaign Profit Scenario, Component Weight, Insert Clearance, Inventory Runway & Reprint Point, and Print-and-Play Sheet. Their public titles, H1s, canonical URLs, OG URLs, and JSON-LD URLs remain page-specific; the two prior malformed Board Fold/Component Weight URL cases are corrected.
+- Reproduced the Print defect as an event-listener receiver issue: passing the browser `print` function directly to `addEventListener` invokes it with the button rather than the Window receiver, producing `Illegal invocation` in affected Chromium contexts.
+- Updated all seven shared calculator script families (`calculators`, `game-math`, `production`, `crowdfunding`, `publishing`, `reinforcement`, and `playtesting`) so every `.print` handler calls `window.print()` inside an arrow callback. No calculator formulas or UI content changed.
+- Added a mobile-only (`max-width:720px`) footer rule: `.footer-top .brand` becomes a block and gains the existing-scale 12px bottom gap. Desktop footer layout and the user-managed homepage badge/backlink area were not changed.
+
+### Verification
+
+- Static QA: `tools/content_audit.py` (68 public pages, zero reported issues), all shared JavaScript syntax checks, sitemap XML parse, and `git diff --check` passed.
+- Public-browser QA before the final all-script normalization: 42/42 Print pages were loaded and Print controls clicked at 390px; no observed `Illegal invocation`, console errors, page errors, overflow, `NaN`, or `Infinity`. Six corrected calculators additionally passed 1440px, 1024px, 768px, and 390px layout/control checks (24/24); all six H1s wrap cleanly at 390px.
+- Footer QA passed on Home, Tools, a Guide, a Reference, the Playtesting Hub, and a Playtesting Tool at 390px and 768px, plus Home desktop 1440px. At 390px the measured logo-to-tagline gap was 12px on all six pages; mobile navigation opened normally and no horizontal overflow occurred. The desktop footer retained its row layout.
+- The initial code commit was `6d6549e` (`Fix calculator print binding and mobile footer spacing`). The complete all-script Print fix was pushed as `5d0a757` (`Bind all calculator print actions to window`). GitHub Pages propagation should be reconfirmed from the public script responses before any later unrelated release; no feature work remains in this scope.
