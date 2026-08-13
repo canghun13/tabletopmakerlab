@@ -94,6 +94,7 @@ for page in link_sources:
         if not href.startswith("/") or href.startswith("//"):
             continue
         path, _, fragment = href.partition("#")
+        path, _, _ = path.partition("?")
         target = Path("index.html") if path == "/" else Path(path.lstrip("/"))
         if path != "/" and path.endswith("/"):
             target /= "index.html"
