@@ -50,6 +50,13 @@
   <url><loc>https://tabletopmakerlab.com/tools/blind-playtest-readiness-checker.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/rulebook-completeness-checker.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/playtest-issue-log-priority-tool.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/game-data-integrity-release-qa.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/board-game-csv-schema-validator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/game-data-reference-integrity-checker.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/component-manifest-reconciler.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/board-game-version-diff-generator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/expansion-compatibility-validator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/deck-set-composition-rules-checker.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/reference/card-sizes.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/reference/box-board-sizes.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/reference/card-stock-sleeves.html</loc></url>

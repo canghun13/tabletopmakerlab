@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Data Integrity &amp; Release QA Tools | Tabletop Maker Lab</title>
+<meta name="description" content="Validate board game card data, reconcile component manifests, compare versions, and check expansion or deck constraints locally in your browser.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://tabletopmakerlab.com/tools/game-data-integrity-release-qa.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Game Data Integrity &amp; Release QA Tools | Tabletop Maker Lab">
+<meta property="og:description" content="A browser-local QA workbench for tabletop CSV data, manifests, releases, expansions, and set rules.">
+<meta property="og:url" content="https://tabletopmakerlab.com/tools/game-data-integrity-release-qa.html">
+<meta property="og:site_name" content="Tabletop Maker Lab">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","name":"Game Data Integrity and Release QA","description":"Browser-local tools for validating and comparing structured tabletop game data.","url":"https://tabletopmakerlab.com/tools/game-data-integrity-release-qa.html"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tabletopmakerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://tabletopmakerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Game Data Integrity and Release QA","item":"https://tabletopmakerlab.com/tools/game-data-integrity-release-qa.html"}]}]}</script>
+<link rel="icon" href="/assets/icons/favicon.svg">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/data-integrity.css?v=data-qa-20260813b">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V25YKRCX01"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V25YKRCX01');</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div data-partial="header"></div>
+<main id="main" class="page">
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/">Tools</a><span>/</span><span>Game data QA</span></nav>
+<section class="page-intro">
+<p class="eyebrow">Local-file creator workflow</p>
+<h1>Game Data Integrity &amp; Release QA</h1>
+<p class="lede">Catch broken rows, missing references, manifest drift, undocumented release changes, expansion conflicts, and composition-rule failures before they reach a prototype, playtest build, or production handoff.</p>
+<p class="privacy-note"><strong>Your files stay on your device.</strong> Every check runs in this browser tab. No CSV content is uploaded, stored, or sent to Tabletop Maker Lab.</p>
+</section>
+<section class="section">
+<div class="section-head"><div><p class="eyebrow">One source of truth, six release decisions</p><h2>Choose the check that matches the handoff.</h2></div><p>Each tool answers a different question. They can use similar CSV data without reducing the workflow to six names for one generic validator.</p></div>
+<div class="tool-grid">
+<a class="tool-card" href="/tools/board-game-csv-schema-validator.html"><small>Validator</small><h3>CSV Schema Validator</h3><p>Check required columns and values, unique IDs, numeric fields, row shape, quoting, and encoding.</p></a>
+<a class="tool-card" href="/tools/game-data-reference-integrity-checker.html"><small>Checker</small><h3>ID &amp; Reference Integrity Checker</h3><p>Verify that scenario, recipe, upgrade, and component references point to real master IDs.</p></a>
+<a class="tool-card" href="/tools/component-manifest-reconciler.html"><small>Checker</small><h3>Component Manifest Reconciler</h3><p>Compare expected and actual manifests for missing, extra, renamed, and quantity-mismatched components.</p></a>
+<a class="tool-card" href="/tools/board-game-version-diff-generator.html"><small>Generator</small><h3>Version Diff &amp; Release Notes</h3><p>Group added, removed, and modified records by stable ID and list the fields that changed.</p></a>
+<a class="tool-card" href="/tools/expansion-compatibility-validator.html"><small>Validator</small><h3>Expansion Compatibility Validator</h3><p>Check creator-defined IDs, dependencies, replacements, and component types across base and expansion files.</p></a>
+<a class="tool-card" href="/tools/deck-set-composition-rules-checker.html"><small>Validator</small><h3>Deck / Set Composition Rules Checker</h3><p>Apply your own total, copy-limit, allowed-category, and category-range rules to a component list.</p></a>
+</div>
+</section>
+<section class="section split">
+<div><p class="eyebrow">Suggested release sequence</p><h2>Structure → references → package → change → compatibility → composition</h2><ol><li>Validate the source CSV before trusting downstream output.</li><li>Resolve broken IDs between related datasets.</li><li>Reconcile the component list used for handoff.</li><li>Review exactly what changed since the prior version.</li><li>Check expansion dependencies and replacements.</li><li>Run creator-defined deck or set constraints.</li></ol></div>
+<div class="note"><p class="eyebrow">What these tools do not decide</p><h2>Integrity is not balance or production approval.</h2><p>A passing report means the files satisfy the rules you supplied. It does not prove fun, balance, legal compliance, print quality, supplier acceptance, or physical completeness.</p></div>
+</section>
+<section class="section"><div class="hub-flow"><article><strong>Prototype iteration</strong><p>Use stable IDs so revised text and values can be compared without treating reordered rows as new cards.</p></article><article><strong>Manufacturing handoff</strong><p>Reconcile the approved component manifest against the file being handed to a supplier or assembly partner.</p></article><article><strong>Expansion release</strong><p>Declare dependencies and replacements explicitly instead of relying on memory or a prose-only change log.</p></article></div></section>
+</main>
+<div data-partial="footer"></div>
+<script src="/assets/js/site.js?v=print-20260813"></script>
+<script src="/assets/js/data-integrity-calculators.js"></script>
+</body>
+</html>
