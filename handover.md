@@ -917,3 +917,42 @@ Candidate C — Campaign & Scenario Structure QA:
 - Manufacturing QA: Eastar Board Game quality-control process and current board-game component-count/inspection guidance. These were used to establish workflow stages, not to copy proprietary acceptance rules or invent universal thresholds.
 - Scenario tooling: Branchy, Arcweave, Story Synth, Danu Scenario Generator, and current game-specific scenario/setup generators.
 - Previous rejected candidates reused: **NO**.
+
+## 2026-08-13 - Game Data Integrity & Release QA cluster (GO and shipped)
+
+### Decision and evidence
+
+- Resumed from clean `main` at `06ff88b`; the implementation commit is `d733ec1` (`Add game data integrity QA tools`). The user-managed homepage badge/backlink area was not opened or changed.
+- **GO:** spreadsheet-backed tabletop data is a recurring creator workflow, not a one-off content topic. Current creator discussions describe spreadsheets/CSV as the source of truth, stable IDs, duplicate detection, version history, patch notes, and manual drift between data and production files.
+- Direct tabletop competitors checked: Chitmunk (spreadsheet-to-deck design/export and export validation), nanDECK (spreadsheet-linked rendering/printing), Dextrous (Google Sheets data binding), and Component Studio. These products validate the workflow but concentrate on design, merge, rendering, or export rather than a standalone release-integrity workbench.
+- Generic competitors checked: DataDoctor, CSV Workbench, FileDiffs, BeanToolBox's CSV foreign-key checker, and DiffQuery. They cover generic schema, diff, or key checks, but not the combined tabletop handoff sequence or release-oriented output.
+- The cluster passed the independence gate because each page answers a different release decision: source structure, cross-file references, physical manifest agreement, field-level version change, expansion dependency/replacement compatibility, and creator-defined deck/set constraints.
+- Bing returned `NoDataFound` and was not used as a gate, per the request. The decision rests on observable workflow demand, SERP competition, practical static implementation, and internal non-overlap.
+
+### Released scope
+
+- Hub: `/tools/game-data-integrity-release-qa.html`.
+- Tools: `/tools/board-game-csv-schema-validator.html`, `/tools/game-data-reference-integrity-checker.html`, `/tools/component-manifest-reconciler.html`, `/tools/board-game-version-diff-generator.html`, `/tools/expansion-compatibility-validator.html`, and `/tools/deck-set-composition-rules-checker.html`.
+- Added browser-local CSV parsing and report utilities in `assets/js/data-integrity-calculators.js` plus cluster-specific responsive/report styling in `assets/css/data-integrity.css`.
+- Updated the Tools index and sitemap only. No Guide or Reference page was required because every tool includes its own operational explanation, limits, and related-check path.
+- All rules that could vary by game are creator-entered. Passing results explicitly do not claim balance, completeness, supplier approval, certification, or legal compliance. Files remain local to the browser tab.
+
+### QA completed
+
+- Static: JavaScript syntax, sitemap XML parse, `git diff --check`, and `tools/content_audit.py` passed; the audit covers 75 public pages with no reported issues.
+- Parser: validated UTF-8 and BOM-marked UTF-16LE, CRLF/LF, quoted commas, escaped quotes, embedded line breaks, empty input, malformed/unclosed quotes, row-shape errors, and repeated execution.
+- Functional browser QA covered both sample and passing inputs across all six tools, plus empty/malformed inputs, duplicates, missing references, total/range boundaries, clear-file, reset, and repeat-run behavior. Copy report succeeded and contained the expected issue text. The browser harness did not surface a programmatic Blob download event, but the enabled download control and Blob/CSV handler completed without console errors.
+- Responsive browser QA passed at 390, 768, 1024, 1280, and 1440 px. The final result table uses contained horizontal scrolling; no page-level horizontal overflow remained at any width. Console review found no warnings or errors on the exercised local pages.
+
+### Risks and next task
+
+- Large CSV files are processed in the main browser thread; no arbitrary upload-size promise is made. Very large projects may need a worker or streaming parser later, but adding that now would be speculative.
+- The tools intentionally do not infer proprietary schemas, game-specific expansion rules, balance rules, manufacturer acceptance thresholds, or campaign semantics. Those are user-defined inputs or out of scope.
+- Generic CSV utilities remain a search competitor. Measure Search Console impressions/clicks by the seven released URLs before expanding the cluster or changing page intent.
+- Next discovery should not add another cluster immediately. Revisit Manufacturing Inspection or Campaign/Scenario Structure only if new demand evidence identifies at least four independent, stable-input decisions and resolves their safety/competition concerns.
+
+### Research references checked
+
+- Creator workflow discussions: `https://www.reddit.com/r/tabletopgamedesign/comments/kqlzfu`, `https://www.reddit.com/r/BoardgameDesign/comments/10spb7x`, `https://www.reddit.com/r/tabletopgamedesign/comments/1rn3lro/how_do_you_keep_track_of_rules_and_playtest/`, `https://www.reddit.com/r/tabletopgamedesign/comments/1uuj52u/those_of_you_whove_actually_manufactured_your/`, `https://www.reddit.com/r/tabletopgamedesign/comments/pguist`, and `https://www.reddit.com/r/BoardgameDesign/comments/1mdnysj`.
+- Tabletop/data tools: `https://chitmunk.com/`, `https://chitmunk.com/guides/export-options`, `https://nandeck.com/features`, `https://www.dextrous.com.au/`, and `https://docs.dextrous.com.au/p/iknWFBnwyHkE9i/Google-Sheets`.
+- Generic integrity/diff tools: `https://datadoctor.net/`, `https://csvworkbench.com/`, `https://filediffs.com/csv-compare`, `https://beantoolbox.com/tools/csv-foreign-key-checker`, and `https://www.diffquery.com/csv-compare`.
