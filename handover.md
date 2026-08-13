@@ -833,3 +833,87 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - d117049 Version print tool scripts for cache refresh
 - b60b8d7 Keep print summaries off screen
 - Final local HEAD and origin/main matched after push. The user-managed homepage badge/backlink area remains untouched.
+
+## 2026-08-13 - Workflow tool-cluster discovery gate (BING CHECK NEEDED)
+
+### Starting state and exclusions
+
+- Start commit: `29c1460`; after a clean `git fetch` and `git pull --ff-only`, local `main`, `origin/main`, and live `refs/heads/main` matched. The initial working tree was clean.
+- Reviewed the current 68-page structure and the Playtesting & Rulebook Validation release before research. The user-managed homepage badge/backlink area was not modified.
+- Did not recycle fulfillment/carton planning, publisher pitch, convention operations, manufacturing timeline, prototype cutting, assembly labor, retail/wholesale readiness, card collation, play-surface/setup footprint, setup/teardown, prototype materials, dieline/prepress, accessibility, localization, safety, or regulatory work.
+
+### Discovery breadth
+
+- Explored 12 new creator workflow areas: card/component CSV schema integrity; unique-ID and cross-reference integrity; component-manifest reconciliation; version diff/change notes; base-game/expansion compatibility; campaign/scenario dependency validation; constrained setup randomization; manufacturing defect-inspection planning; prototype-kit completeness; rulebook-to-component terminology cross-checking; reviewer/demo-copy dispatch operations; and structured game-state test-case generation.
+- Repeated workflow evidence was strongest around spreadsheet-backed card/component data. Creator discussions describe spreadsheets as the source of truth, use them to find duplicates and track changes, and report merge mistakes, broken formulas, encoding problems, and manual source/layout drift. Component.Studio, Chitmunk/ShuffleKit, nanDECK, and similar products validate the spreadsheet-to-component creation market, but the reviewed SERPs emphasize design, merge, rendering, playtesting, and export rather than a small standalone local validator/release-QA workbench.
+- Manufacturer documentation confirms a separate QA workflow around controlled specification sheets, approved samples, component counts, defect quantities, pre-shipment inspection, and current-version checks. The workflow is real, but a general tool must not invent AQL thresholds or replace a supplier/inspector's sampling plan.
+- Scenario/campaign searches found spreadsheet-driven generators and mature narrative graph editors such as Branchy, Arcweave, Story Synth, and game-specific scenario builders. They validate structural graph problems but make a tabletop-specific static-tool gap less clear.
+
+### Shortlist
+
+| Cluster / workflow | Target user and actual problem | Demand / SERP competition | Long-tail gap and independent tools | Existing overlap / implementation | Decision |
+| --- | --- | --- | --- | --- | --- |
+| Game Data Integrity & Release QA | Designers/publishers maintaining card, token, component, and scenario data in CSV need to catch broken rows and understand exactly what changed before a prototype or production handoff. | Strong spreadsheet workflow evidence; Component.Studio, Chitmunk/ShuffleKit, and nanDECK serve creation/rendering. Generic CSV validators and spreadsheet diff tools exist, but no strong standalone tabletop-focused validator appeared in reviewed top results. | Six natural tools: CSV Schema Validator (validator), ID & Reference Integrity Checker (checker), Component Manifest Reconciler (checker), Version Diff & Release Notes Generator (generator), Expansion Compatibility Validator (validator), and Deck/Set Composition Rules Checker (validator). | Distinct from probability, component-sizing, production-cost, and playtest-readiness tools. Browser-local CSV processing is stable and privacy-preserving. Maintenance risk is low if rules are user-defined. | **HOLD — Bing demand comparison needed** |
+| Board Game Manufacturing Inspection Workbench | Indie publishers need to turn a current component spec and approved sample into repeatable inspection records without losing defect locations or version context. | Eastar and other manufacturer/inspection pages show component, in-process, first-production, and pre-shipment checks. SERPs are service/document-led rather than tool-led. | Five possible tools: user-defined Inspection Plan Builder, Random Sample Selector, Component Count Reconciler, Defect Tally Analyzer, and Approved-Sample Comparison Log. | Some adjacency to Production tools, but the final decision is conformity/acceptance rather than cost. Safe only with user-entered acceptance rules and explicit non-certification language. | **HOLD — Bing demand and risk check needed** |
+| Campaign & Scenario Structure QA | Campaign-game designers need to find unreachable scenarios, missing prerequisites, dead ends, component conflicts, and incomplete setup manifests. | Real graph/reference problems appear in narrative-design workflows; Branchy, Arcweave, Story Synth, Danu, and game-specific editors are capable competitors. | Five possible tools: Dependency Graph Validator, Reachability/Dead-End Checker, Unlock Conflict Checker, Scenario Component Availability Checker, and Setup Manifest Generator/Visualizer. | No direct internal duplicate, but creator search intent may resolve to video-game narrative tools or game-specific editors. Static JSON/CSV processing is feasible. | **HOLD — Bing demand comparison needed** |
+| Constrained Setup & Test-Case Generation | Designers want reproducible randomized setups that obey entered constraints and expose coverage across repeated tests. | Boardssey offers variable distribution; many strong game-specific balanced-map/setup generators exist. Generic demand often shifts toward players or RPG prompt generation. | Four possible tools exist, but Seeded Setup Generator, Role/Objective Distributor, Constraint Coverage Checker, and Batch Test-Case Generator depend heavily on each game's custom semantics. | Risks becoming an abstract framework with weak immediate value or a player-site utility; some overlap with Game Math and Playtesting. | **REJECT** |
+| Reviewer & Demo-Copy Operations | Small publishers track who receives a copy, what is packed, deadlines, and follow-up status in spreadsheets. | Reviewer lists and publisher policies confirm the workflow, but SERPs do not show strong tool intent; useful matching depends on current contacts, audience data, shipping, and CRM state. | Copy Allocation Planner, Kit Manifest Generator, Contact Dedupe, and Follow-up Schedule can be named, but only the manifest is a strong standalone utility. | Would drift toward account-backed outreach/CRM or reuse recently rejected publisher-pitch and fulfillment scope. | **REJECT** |
+
+### Best candidate and Bing gate
+
+- Best candidate: **Game Data Integrity & Release QA**.
+- Demand: the underlying workflow is clearly recurring. Spreadsheet-backed card/component data, repeated exports, duplicate detection, source-of-truth maintenance, and version changes appear across creator discussions and current commercial tools.
+- SERP gap: reviewed direct competitors primarily create/render components or compare generic spreadsheets. A free, no-account, browser-local tabletop validator with row/column issue locations, user-defined rules, cross-file reference checks, and release-oriented outputs was not found.
+- Uncertainty: explicit search demand for `board game card data validator`, `component manifest checker`, and related validator/diff terms is not strong enough in ordinary SERPs to choose confidently between this cluster, manufacturing inspection QA, and scenario structure QA.
+- Bing needed: **YES**. Use recommended-keyword, ad-impression, and trend data only as relative signals and query-discovery aids, not as exact organic search volume.
+- Final decision for this pass: **BING CHECK NEEDED**. Production pages added: `0`.
+
+### Bing Keyword Research input set
+
+Candidate A — Game Data Integrity & Release QA:
+
+1. `board game card data validator`
+2. `card game spreadsheet checker`
+3. `board game CSV validator`
+4. `card database duplicate checker`
+5. `board game component manifest checker`
+6. `board game component list validator`
+7. `card game CSV schema checker`
+8. `compare board game card spreadsheet versions`
+9. `board game card version diff tool`
+10. `board game expansion compatibility checker`
+11. `validate card IDs and references CSV`
+12. `deck composition rules checker for game designers`
+
+Candidate B — Manufacturing Inspection Workbench:
+
+1. `board game quality control checklist`
+2. `board game manufacturing inspection checklist`
+3. `board game component count checker`
+4. `board game pre shipment inspection tool`
+5. `board game defect inspection report template`
+6. `board game production sample checklist`
+7. `board game component inspection plan`
+8. `board game quality assurance plan template`
+9. `board game missing component inspection`
+10. `board game approved sample comparison checklist`
+
+Candidate C — Campaign & Scenario Structure QA:
+
+1. `board game scenario validator`
+2. `board game campaign editor tool`
+3. `board game scenario dependency graph`
+4. `campaign board game scenario planner`
+5. `board game campaign flowchart maker`
+6. `board game scenario generator spreadsheet`
+7. `board game scenario prerequisite checker`
+8. `board game campaign dead end checker`
+9. `board game scenario component list generator`
+10. `tabletop campaign branching tool`
+
+### Research references checked
+
+- Creator/data workflows: current Chitmunk/ShuffleKit CSV workflow and export pages; Component.Studio dataset and pricing documentation; nanDECK features and creator support discussions; current tabletop-design community discussions about spreadsheet source-of-truth, duplicates, encoding, merge mistakes, and version control.
+- Manufacturing QA: Eastar Board Game quality-control process and current board-game component-count/inspection guidance. These were used to establish workflow stages, not to copy proprietary acceptance rules or invent universal thresholds.
+- Scenario tooling: Branchy, Arcweave, Story Synth, Danu Scenario Generator, and current game-specific scenario/setup generators.
+- Previous rejected candidates reused: **NO**.
