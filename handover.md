@@ -799,3 +799,37 @@ This is a practical creator workbench?遊춐t a generic board-game playing site.
 - Closest candidate: physical play-surface and setup footprint. It fails the independent-tool and brand-positioning gates, not merely because generic competition exists. Revisit only if evidence identifies four separate prototype-design decisions (rather than player table-buying questions) with stable measured inputs.
 - New production pages: `0`. No Hub, Tool, Guide, Reference, public URL, sitemap, metadata, JavaScript, CSS, homepage, Header/Footer, or user-managed badge/backlink change was made.
 - Research references checked 2026-08-11: Boardssey Dieline Generator, Reamly Punchboard Token Sheet, Hero Time quote-request checklist, Iron & Blossom retail reorder calculator, Calcrux wholesale pricing calculator, MTG Set Skeleton Builder, Board Game Serial play-time estimator, Board Game Storage Lab shelf-fit calculator, Turn Order table guide, and current creator discussions on prototype cutting and setup time.
+
+## 2026-08-13 - Tool print-document UX stabilization
+
+### Scope and root cause
+
+- Started from clean main at d542668; no calculator formula, tool content, navigation, footer, badge, backlink, or SEO change was made.
+- Print support exists on 42 Tools. The shared calculator families already called window.print(), but the site had no shared print-document treatment: native printing exposed interactive fields, select arrows, Reset, and other control chrome instead of a readable decision record.
+
+### Changes
+
+- assets/js/site.js now builds a print-only summary from the live form state at startup, Print-button capture, and beforeprint. It writes values with DOM text nodes (not interpolated HTML), includes label + current value, selected option text, checkbox state, selected radios, text values, and dynamically added inputs.
+- assets/css/calculators.css hides interactive application chrome only in print and presents the Tool name, lede, input conditions, and existing result panel as a compact document. Header/Footer, navigation, buttons, original form panels, input/select chrome, and action UI are excluded from print.
+- Real public-browser testing found the initial generic .print-summary selector lost to an existing more-specific calculator-section rule, exposing the summary on screen. The final .calc-shell > .print-summary selector fixes this; normal-screen summaries are hidden.
+- The 42 Print Tools use versioned common JS and calculator CSS references so a deployed Print fix is not masked by a previously cached shared asset. tools/content_audit.py now strips query strings before resolving local link targets, preserving meaningful broken-link checks for those valid asset URLs.
+
+### Verification
+
+- Static QA: all assets/js/*.js syntax checks passed; tools/content_audit.py reported no broken targets, anchors, duplicate IDs, missing required metadata, or invalid JSON-LD; git diff --check passed.
+- Public deployment: GitHub Pages workflow run 31677577390 completed successfully for final commit b60b8d7. The live Opening Hand response includes both /assets/js/site.js?v=print-20260813 and /assets/css/calculators.css?v=print-20260813b.
+- Public Chromium Print regression: 42/42 Print buttons were executed in fresh browser pages. Each check changed a current numeric/text value where available, selected the final select option where present, confirmed a non-empty result panel, and confirmed the generated summary contains Input conditions with no input/select/textarea/button controls. Header/Footer loaded and no normal-screen horizontal overflow was observed at the available browser width. One Royalty Method Comparison first-field attempt was reset by its existing MSRP synchronization; a separate a-rate=6 retest confirmed the current value in its Print summary.
+- Separate control checks passed for the two checkbox Tools (Board Game Box Size and Print-and-Play Sheet) and the dynamic Add Issue row in Playtest Issue Log. No radio controls exist in the current Print Tool set.
+- Browser console review: 54 checked public tabs, 0 tabs with error-level console messages.
+
+### Explicit verification limitation / next step
+
+- The available in-app Chromium browser executed the actual Print controls but does not surface a native Print-preview window to automation. Its documented viewport override also remained at innerWidth=1280 when set to 390/768/1024/1440, and no Chrome-extension connection was available. Therefore, native preview visual inspection and exact 390/768/1024/1440 responsive checks are **not recorded as passed**.
+- Recommended next step: in a connected desktop Chrome session, inspect the native Print preview for Opening Hand, Manufacturer Quote Comparison, and Playtest Issue Log at the requested widths; confirm each printed page has no controls, no horizontal clipping, and no unwanted extra page. No new Tool or calculator work is recommended until that final visual-only check is available.
+
+### Commits and deployment
+
+- 36d3e0f Improve calculator print summaries
+- d117049 Version print tool scripts for cache refresh
+- b60b8d7 Keep print summaries off screen
+- Final local HEAD and origin/main matched after push. The user-managed homepage badge/backlink area remains untouched.
