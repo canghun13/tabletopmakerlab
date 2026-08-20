@@ -956,3 +956,73 @@ Candidate C — Campaign & Scenario Structure QA:
 - Creator workflow discussions: `https://www.reddit.com/r/tabletopgamedesign/comments/kqlzfu`, `https://www.reddit.com/r/BoardgameDesign/comments/10spb7x`, `https://www.reddit.com/r/tabletopgamedesign/comments/1rn3lro/how_do_you_keep_track_of_rules_and_playtest/`, `https://www.reddit.com/r/tabletopgamedesign/comments/1uuj52u/those_of_you_whove_actually_manufactured_your/`, `https://www.reddit.com/r/tabletopgamedesign/comments/pguist`, and `https://www.reddit.com/r/BoardgameDesign/comments/1mdnysj`.
 - Tabletop/data tools: `https://chitmunk.com/`, `https://chitmunk.com/guides/export-options`, `https://nandeck.com/features`, `https://www.dextrous.com.au/`, and `https://docs.dextrous.com.au/p/iknWFBnwyHkE9i/Google-Sheets`.
 - Generic integrity/diff tools: `https://datadoctor.net/`, `https://csvworkbench.com/`, `https://filediffs.com/csv-compare`, `https://beantoolbox.com/tools/csv-foreign-key-checker`, and `https://www.diffquery.com/csv-compare`.
+
+## 2026-08-20 - New workflow discovery gate and Tabletop Art Asset Handoff cluster (GO)
+
+### Starting state and constraints
+
+- Began at local `main` commit `29c1460`, clean but three commits behind `origin/main`. Fetched and fast-forwarded with `git pull --ff-only origin main` to clean commit `0f052ac` before discovery or implementation.
+- Read `README.md` and the full `handover.md`, then built an exclusion map covering all 37 original calculators, Playtesting & Rulebook Validation, Game Data Integrity & Release QA, and every previously explored/rejected family. No previous rejection was renamed or repackaged.
+- Preserved the existing homepage, header/footer partials, calculator logic, released Guides/Reference pages, and user-managed homepage badge/backlink area. No dependency, framework, backend, IDE, Guide, or Reference page was added.
+
+### External discovery: 13 genuinely new workflow families reviewed
+
+| New workflow family | Need / SERP signal | Competition or fit finding | Decision |
+| --- | --- | --- | --- |
+| Tabletop art commissioning and asset handoff | Board-game-specific creative-brief examples and asset spreadsheets repeatedly connect gameplay context, framing, dimensions, status, and named deliverables. Manufacturer artwork guides add a real final-file handoff stage. | Generic asset managers and tabletop layout suites exist, but reviewed results did not expose a small, browser-local commission-to-delivery QA workbench. | **GO** |
+| Digital tabletop prototype packaging | Tabletop Simulator documents custom-deck sheets; creators repeatedly need deck-sheet generation and import packaging. | Official TTS guidance plus ShuffleKit, Boardssey, Durdle Games, Prototable, and open-source converters make this crowded and platform-specific. | REJECT |
+| Iconography system consistency and proofing | Design guidance repeatedly stresses distinct silhouettes, consistent grammar, testing, and a glossary. | Semantic correctness and confusion cannot be safely inferred from static files without game context; adjacent to prior accessibility and terminology checks. | HOLD |
+| Tutorial and onboarding sequence validation | Rulebook/design guidance supports examples, staged learning, and first-turn clarity. | Closely overlaps the released playtest/rulebook cluster; meaningful judgment depends on observed player behavior. | REJECT |
+| Player-aid and reference-card coverage | Creator discussions show recurring demand for turn order, action reminders, costs, and exceptions at the table. | Coverage is game-specific and mostly duplicates rulebook completeness and blind-playtest readiness. | REJECT |
+| Print-and-play bundle QA | Current community tools and discussions cover card PDF assembly, duplex alignment, cut marks, and bundle preparation. | Crowded by PnP generators and overlaps the released Print-and-Play Sheet and Cards per Sheet calculators. | REJECT |
+| Board game product-photography shot planning | Tabletop photography specialists and media-kit guidance establish recurring component, setup, lifestyle, box, and campaign-image deliverables. | The static value collapses toward a checklist; lighting, styling, and image quality remain human decisions. | REJECT |
+| Crowdfunding media deliverables planning | BackerKit and crowdfunding guidance define campaign-page, advertising, and social asset families. | Too close to the existing Crowdfunding cluster and current campaign-management products; four independent local tools were not justified. | REJECT |
+| Organized-play and tournament-kit operations | Publisher organized-play programs use event guides, kits, reporting, and store-facing materials. | Usually account-backed, game-specific, and operational/player-facing rather than a durable creator workbench. | REJECT |
+| Companion-app content and data handoff | Current companion apps and scenario editors use structured scenarios, state, custom content, localization, and packaged imports. | Requires a target app schema, software integration, or game-specific state model; static generic outputs would not be trustworthy. | REJECT |
+| 3D-printed prototype part preparation | Designers report repeated model revisions and reprints for physical component testing. | Generic CAD/slicer tools dominate; the remaining tabletop-specific layer overlaps earlier prototype-material and component-design work. | REJECT |
+| Educational-game objective alignment | Current learning-game worksheets map instructional goals, player actions, mechanics, feedback, time, and assessment. | Real but narrower than the site's core publisher/creator audience; useful evaluation remains pedagogical and playtest-dependent. | HOLD |
+| After-sales replacement-part service | Publisher support pages demonstrate recurring missing/damaged component intake and component-identification work. | Requires customer data, inventory, fulfillment, and communication; adjacent to previously rejected fulfillment operations and unsafe as a backend-free cluster. | REJECT |
+
+### Shortlist and hard gate
+
+1. **Tabletop Art Asset Handoff — GO.** Recurring creator-to-artist-to-production workflow; five independent outputs; stable creator-entered or local-file inputs; local processing; no current internal duplicate; no account or proprietary data required.
+2. **Digital Tabletop Prototype Packaging — REJECT.** Strong need, but major current tools and platform-specific import rules already own the intent; maintenance would follow external platform changes.
+3. **Iconography System QA — HOLD.** Strong design need, but the valuable decision is semantic and visual, while deterministic checks would be shallow or overlap prior accessibility/terminology work.
+
+The selected cluster passed every implementation gate: one coherent workflow, five independent decisions, static HTML/CSS/Vanilla JS feasibility, useful non-placeholder output, browser-local privacy, editable project/supplier thresholds, and no invented universal approval rule. Search ambiguity remains, so the released URLs should be measured independently in Search Console before adding adjacent art tools.
+
+### Released scope
+
+- Hub: `/tools/tabletop-art-asset-handoff.html`.
+- Tool 1: `/tools/board-game-art-brief-builder.html` — generates a structured brief and identifies missing commissioning/review inputs.
+- Tool 2: `/tools/board-game-art-asset-tracker.html` — summarizes status and finds duplicate IDs, missing briefs, invalid dates, and overdue incomplete assets in local CSV data.
+- Tool 3: `/tools/artwork-delivery-manifest-checker.html` — reconciles an expected CSV with local filenames and reports missing, extra, duplicate, and same-base/wrong-format files.
+- Tool 4: `/tools/board-game-image-resolution-checker.html` — reads local image pixel dimensions and calculates effective PPI against creator-entered trim, bleed, rotation, and minimum PPI.
+- Tool 5: `/tools/artwork-credits-attribution-builder.html` — validates creator/role/rights/source/credit records and generates the exact approved publication credit block.
+- Added shared behavior in `assets/js/art-handoff-calculators.js` and cluster-only responsive/report styling in `assets/css/art-handoff.css`; added six Tools-hub entries and six sitemap URLs. Public HTML count is now 81.
+- Every released page contains direct title, description, robots, canonical, Open Graph, favicon, GA4 `G-V25YKRCX01`, and static page-specific JSON-LD. Tools use `WebApplication`; the Hub uses `CollectionPage`; all include a three-item `BreadcrumbList`.
+- All project/supplier-dependent acceptance values remain user-entered. Outputs explicitly do not claim artistic quality, ownership, license compatibility, color/prepress approval, contract sufficiency, or manufacturer acceptance.
+
+### QA completed before commit
+
+- Static audit: `tools/content_audit.py` passed all 81 public pages with zero reported issues, including metadata, one H1, duplicate IDs, JSON-LD parse, internal targets/anchors, calculator-script connection, and orphan detection. `sitemap.xml` parsed; `assets/js/art-handoff-calculators.js` passed Node syntax parsing; `git diff --check` passed.
+- Actual local-browser render sweep: all six new pages passed at 1440 × 900 and 390 × 844 with one Header, one Footer, one H1, correct canonical, GA4, static JSON-LD, zero page-level horizontal overflow, zero escaped panel/card bounds, and no `.html">` markup leak. The Tools hub anchor `#art-handoff` exposed all six cluster links.
+- Mobile menu changed from closed/`aria-expanded=false` to visible/`true` and back correctly. Desktop and mobile full-page screenshots plus a mobile result screenshot were inspected.
+- Functional paths exercised: valid and missing-field Art Brief; sample, clear-file, and empty-input Asset Tracker; sample Credits plus Reset; expected-manifest plus local multi-file delivery with missing, unexpected, and same-base wrong-format results; image-resolution pass at 1 PPI and fail at 100000 PPI using the existing SVG favicon. Repeated runs updated rather than duplicated output.
+- Problems found and fixed during QA: quoted the comma-containing sample credit line; collapsed a same-base wrong extension from misleading missing+extra issues into one format error; constrained report tables to internal horizontal scrolling at 390 px instead of page-level overflow.
+- Final exercised-tab console errors: 0; console warnings: 0. Local server requests for pages, shared partials, CSS, JavaScript, and favicon returned 200/304; no internal 404 appeared.
+
+### Remaining risks and next recommendation
+
+- Browser-readable image dimensions do not inspect production-native layers, color profiles, linked fonts, vector semantics, or rights. Final preflight and legal review remain outside the tools.
+- The asset tracker uses the current date for overdue decisions, and all CSV/image processing runs on the main browser thread. No large-file performance promise is made.
+- After deployment, verify all six public URLs, their assets/partials, 390 px and 1440 px layout, functional representative inputs, console errors, and response/source alignment. Then record the implementation commit, deployment result, and final `origin/main` state below.
+- Next task: measure Search Console impressions/clicks for the Hub and five Tool URLs before adding any adjacent art page. Do not expand this cluster merely to increase page count.
+
+### Research references checked
+
+- Art workflow and handoff: `https://www.deckofwondersgame.com/2020/07/board-game-art-creative-brief-template.html`, `https://sites.google.com/view/indiana-game-design-template/art-and-sound-assets`, `https://gamepiece.studio/`, `https://cartamundi.com/en/technical/`, `https://www.qinprinting.com/blog/board-game-print-file-preparation/`, and `https://pandagm.com/wp-content/uploads/2022/10/PandaGM-GraphicDesignGuidebook-V4-0922.pdf`.
+- Digital prototype tools: `https://kb.tabletopsimulator.com/custom-content/custom-deck/`, `https://shufflekit.com/tools/tabletop-simulator-card-maker`, `https://learn.boardssey.com/en/articles/12754661-tts-deck-editor-tool`, `https://www.durdlegames.com/decksheet-tool/index.html`, and `https://prototable.gg/`.
+- Iconography, tutorial, and player aids: `https://madegooddesigns.com/board-game-design/`, `https://www.leagueofgamemakers.com/whats-that-symbol-mean-again-building-clear-iconography-into-your-game/`, `https://mindclashgames.com/news/board-game-iconography-how-smart-symbols-enhance-ux-and-playability/`, `https://victoriafraser.ca/2023/03/01/how-to-write-the-perfect-boardgame-rulebook-with-examples/`, and `https://ocw.mit.edu/courses/cms-608-game-design-spring-2014/c2ac8e16ad060f36e9755db63310853b_MITCMS_608S14_WrittenGuide.pdf`.
+- PnP, photography, and campaign media: `https://www.meeplephotography.com/blog/the-art-of-board-game-photography-capturing-components-that-sell`, `https://www.meeplemountain.com/articles/how-to-create-a-killer-board-game-media-kit/`, `https://help.backerkit.com/article/607-asset-recommendations-for-your-marketing-campaign`, and `https://www.backerkit.com/blog/tabletop-games-crowdfunding-roadmap/campaign/draft-your-kickstarter-campaign-page/`.
+- Other reviewed families: `https://slugfestgames.com/store-events/op/`, `https://www.fantasyflightgames.com/ffg_content/organized-play/support/op-flyer-booklet.pdf`, `https://github.com/NPBruce/valkyrie`, `https://github.com/Lurkars/gloomhavensecretariat`, `https://www.siue.edu/faculty-center/pdf/Educational-Game-Design-Planning-Worksheet.pdf`, `https://thamesandkosmos.zendesk.com/hc/en-us/articles/360047790614-Replacement-Parts-Request-Form`, and `https://www.reddit.com/r/3Dprinting/comments/kslml6`.
