@@ -1037,3 +1037,34 @@ The selected cluster passed every implementation gate: one coherent workflow, fi
 - Public functional QA passed representative paths for all five Tools: default Art Brief generation; three-row Asset Tracker sample; two-row Credits sample and generated credit text; Delivery sample with the local favicon correctly reported as an unexpected file plus three missing expectations; favicon resolution check produced a finite 40.5 PPI and the expected configured-threshold blocker.
 - Public mobile menu passed closed/visible state and `aria-expanded=false/true`. Final public exercised-tab console errors: 0; warnings: 0. Eight deployed internal assets (site/calculator/cluster CSS, site/cluster JS, Header/Footer partials, favicon) returned 200; internal asset failures: 0.
 - Final status: **GO cluster shipped and deployment-verified.** Remaining concerns are the documented prepress/legal/performance boundaries, not known defects. Measure Search Console URL performance before any follow-on art cluster work.
+
+## 2026-08-20 - Existing growth-page upgrade: Rulebook Completeness Checker
+
+### Starting state and search evidence
+
+- Restored clean `main` from `507765d28be99978e6ba3b2801dedfa86bfcd058` before analysis. The repository contained 81 public pages and the completed Art Asset Handoff deployment record.
+- No current GSC, Bing Webmaster Tools, or GA4 export was available in the repository, handover, supplied attachments, common export folders, or available connectors. Search Console opened only its signed-out landing page, so no date range or performance values were inferred.
+- Historical handover/request context identified several existing pages with impressions; Rulebook Completeness Checker had the clearest specific Bing long-tail signal. A live Bing exact-query check on 2026-08-20 surfaced the deployed checker as the main result.
+- Current SERP review found rulebook articles, templates, and blind-test checklists, but no directly comparable browser-local board-game rulebook completeness checker in the reviewed results. Card-draw probability had strong direct calculator competition, while Kickstarter's official guidance includes its own funding calculator and fee model.
+
+### Hard gate and selected scope
+
+- **UPGRADE:** `/tools/rulebook-completeness-checker.html` passed all five gates: an observed existing-query signal; a concrete UX/content gap; meaningful creator value; low rank/function risk; and a change larger than cosmetic SEO.
+- The previous form contained a visibly corrupted legend, did not define Clear/Unclear/Missing, and returned only section names. The upgrade preserves URL, title, H1, canonical, Open Graph, WebApplication JSON-LD, and the existing default choices.
+- Added explicit rating criteria, an 11-part checklist explanation, a worked review example, result interpretation, evidence-oriented blind-test guidance, and direct linkage to the Playtesting & Rulebook Validation workflow.
+- Results now put missing sections before unclear sections and generate section-specific revision actions plus a next-validation instruction. Shared CSS only adds the new instructions panel style; shared JS changes only the Rulebook handler.
+- No page, sitemap entry, Tools-hub entry, Guide, Reference, dependency, or framework was added. The homepage and user-managed badge/backlink area were not changed.
+
+### QA and deployment
+
+- Static QA passed: Node syntax, `git diff --check`, targeted HTML/title/H1/canonical/JSON-LD/internal-target checks, and `tools/content_audit.py` across all 81 public pages with no reported issue.
+- Functional browser QA passed default, all-clear, one-missing/one-unclear, all-11-missing, reset, repeated update, and Copy control status paths. Output contained no `undefined` or `NaN`. Fixed-option selects have no empty/invalid numeric state. The unchanged Print handler was not expanded.
+- Responsive local QA passed the changed page at 390, 768, 900, 1024, 1280, and 1440 px with zero page-level horizontal overflow, one H1, loaded Header/Footer, and contained calculator/result panels. Mobile and desktop screenshots were visually inspected. The Blind Playtest Readiness Checker passed representative shared-asset regression at 390 and 1440 px, including its ready/reset states. Exercised local console warnings/errors: 0.
+- Implementation commit `3911a1f68e146b486f64503cdab2e35559dc3347` (`Improve rulebook completeness checker`) was pushed to `origin/main`. GitHub Pages run `32366377892` completed successfully for that exact SHA.
+- Cache-bypassed public HTTP checks returned 200 for the page, changed CSS/JS, Header/Footer partials, and favicon. Public HTML matched the committed local HTML exactly after CRLF/LF normalization and contained the new instructions with no corrupted legend.
+- Public runtime verification passed the default and missing-Setup result paths, 390 and 1440 px layouts, Header/Footer loading, one H1, and zero horizontal overflow. Exercised public console warnings/errors: 0.
+
+### Remaining measurement need
+
+- This upgrade is evidence-led but current platform performance metrics remain unavailable. Do not claim traffic, click, CTR, or ranking improvement until a dated GSC/Bing/GA4 export is supplied or authenticated access becomes available.
+- Measure the upgraded URL's query, impressions, clicks, CTR, average position, landing-page engagement, and outbound/internal workflow use before making another content or logic expansion.
