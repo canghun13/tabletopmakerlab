@@ -50,6 +50,12 @@
   <url><loc>https://tabletopmakerlab.com/tools/blind-playtest-readiness-checker.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/rulebook-completeness-checker.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/playtest-issue-log-priority-tool.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/board-game-balance-test-analysis.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/board-game-win-rate-confidence-calculator.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/first-player-advantage-analyzer.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/board-game-faction-matchup-analyzer.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/player-count-balance-analyzer.html</loc></url>
+  <url><loc>https://tabletopmakerlab.com/tools/board-game-score-path-analyzer.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/game-data-integrity-release-qa.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/board-game-csv-schema-validator.html</loc></url>
   <url><loc>https://tabletopmakerlab.com/tools/game-data-reference-integrity-checker.html</loc></url>

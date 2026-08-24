@@ -1068,3 +1068,119 @@ The selected cluster passed every implementation gate: one coherent workflow, fi
 
 - This upgrade is evidence-led but current platform performance metrics remain unavailable. Do not claim traffic, click, CTR, or ranking improvement until a dated GSC/Bing/GA4 export is supplied or authenticated access becomes available.
 - Measure the upgraded URL's query, impressions, clicks, CTR, average position, landing-page engagement, and outbound/internal workflow use before making another content or logic expansion.
+
+## 2026-08-24 - New workflow discovery and Board Game Balance Test Analysis cluster (GO)
+
+### Starting state and exclusions
+
+- Began from a clean `main` at `f4490e6e6ffc4b95cc80b3da52d120250bdb854f`; local `HEAD`, `origin/main`, and the remote `refs/heads/main` matched after fetch, with 0 ahead / 0 behind.
+- Read the full README and handover before research. The exclusion map covered all 37 original calculator workflows, Playtesting & Rulebook Validation, Game Data Integrity & Release QA, Tabletop Art Asset Handoff, the Rulebook upgrade, and every prior HOLD/REJECT family.
+- In particular, this pass did not rename or recycle fulfillment/carton, publishing pitch, convention operations, manufacturing timeline, prototype cutting/materials, assembly labor, retail/wholesale, collation, footprint/setup, prepress/dielines, accessibility, localization, safety/regulatory, manufacturing inspection, campaign/scenario structure, constrained setup generation, review-copy operations, digital prototype packaging, iconography, onboarding/player aids, PnP packaging, product photography, crowdfunding media, organized play, companion apps, 3D parts, educational alignment, replacement service, or playtest-feedback collection.
+- The homepage and its user-managed badge/backlink area were not opened for editing and remain byte-for-byte outside the diff. No dependency, framework, backend, system setting, Guide, or Reference page was added.
+
+### Broad discovery: 40 genuinely new workflow/search families
+
+1. Quantitative playtest outcome analytics.
+2. First-player and seat equity analysis.
+3. Faction matchup analysis.
+4. Score-path contribution analysis.
+5. Game-length and pacing data analysis.
+6. Game-economy source/sink modeling.
+7. Resource-conversion and arbitrage QA.
+8. Engine growth-curve simulation.
+9. Card/ability cost-value curve modeling.
+10. Market-row churn modeling.
+11. Map/network structural QA.
+12. Starting-position fairness analysis.
+13. Route bottleneck and redundancy analysis.
+14. Modular-board combination coverage.
+15. Scoring-system architecture QA.
+16. Victory-path coverage analysis.
+17. Endgame-trigger pacing analysis.
+18. Equal-turn and turn-order fairness planning.
+19. Action-economy capacity modeling.
+20. Worker-placement space-capacity planning.
+21. Asymmetric faction stat-budget analysis.
+22. Cooperative difficulty scaling.
+23. Solo/automa decision-deck design.
+24. Draft-pool composition planning.
+25. Auction-mechanism stress testing.
+26. Hidden-information leakage mapping.
+27. Bluff/hidden-role distribution planning.
+28. Decision-space branching estimation.
+29. State-space coverage planning without test-case generation.
+30. Player-elimination timing analysis.
+31. Runaway-leader and score-gap trajectory analysis.
+32. Catch-up mechanism evaluation.
+33. Action-use and dead-option analysis.
+34. Component-use frequency and wear analysis.
+35. Simultaneous-action conflict mapping.
+36. Timing-window dependency mapping.
+37. Deck exhaustion and reshuffle pacing.
+38. Random-event impact distribution.
+39. Team-role coverage and balance.
+40. Technology-tree dependency and balance QA.
+
+### Mid validation: 11 candidates
+
+| Candidate | Workflow / SERP finding | Independence / static fit | Mid decision |
+| --- | --- | --- | --- |
+| Quantitative balance analytics | Creator discussions repeatedly describe manually tracking wins, scores, player counts, and game length in spreadsheets. Reviewed alternatives skew toward account platforms, services, simulations, or game-specific public statistics. | Five distinct post-playtest datasets and decisions; local CSV; deterministic descriptive statistics. | DEEP |
+| Game-economy modeling | Repeated source/sink and conversion-spreadsheet need; Machinations and a current economy calculator confirm tool intent. | Static math is feasible, but custom resource semantics and strong digital/live-economy competition weaken the tabletop-specific gap. | DEEP |
+| Map/network QA | Creators ask about adjacency, asymmetric maps, routes, and starting balance; exact generic tool SERPs were sparse. | Graph checks are feasible, but input construction is complex and the natural value may collapse into one suite rather than four independent URLs. | DEEP |
+| Turn/endgame pacing | Real questions around turn-order advantage, equal turns, game length, and end triggers. | Useful pieces exist, but the strongest quantitative work belongs inside outcome analytics and does not justify four separate tools. | DEEP |
+| Scoring-system QA | Real concern around point-salad concentration, alternate paths, and end scoring. | Score-path analysis is strong; the remaining proposed pages overlapped or depended on custom game semantics. | MERGE one tool into winner |
+| Asymmetric faction balance | Faction budgets and matchup fairness recur in asymmetric-design discussions. | Matchup outcomes are strong; generic stat budgets require game-specific value assumptions. | MERGE one tool into winner |
+| Cooperative difficulty scaling | Designers need difficulty to hold across player counts and roles. | Outcomes are measurable, but generic difficulty models require game-specific loss states, action economies, and AI rules. | HOLD |
+| Solo/automa design | Current solo modes and automa decks validate a real workflow. | Decision tables and priorities are deeply game-specific; search results are often game-specific content rather than tool intent. | HOLD |
+| Card/ability cost curve | Spreadsheet valuation and curve comparisons recur. | Feasible but subjective attributes require creator weighting; adjacent to economy modeling. | HOLD |
+| Draft-pool planning | Pool size, copies, seats, and archetype coverage are recurring draft concerns. | Deterministic pieces exist, but direct search demand and four-tool independence were weaker. | HOLD |
+| Hidden-information / role distribution | Role counts, bluff density, and information access are recurring social-deduction concerns. | Many player-facing setup generators compete; semantic safety depends on individual game rules. | REJECT |
+
+### Deep validation: four finalists
+
+| Finalist | Demand and long-tail | SERP / competitor gap | Independence and risk | Decision |
+| --- | --- | --- | --- | --- |
+| **Board Game Balance Test Analysis** | Repeated creator spreadsheet workflows and direct questions around win rate, first-player advantage, matchup cells, player counts, score paths, and sample uncertainty. | Reviewed results were game-specific stat sites, account-backed analytics/simulation platforms, consulting/services, or a generic win-rate calculator; a free browser-local post-hoc human-playtest CSV workbench was fragmented or absent. | Five truly different inputs/decisions; stable math; local files; editable review rules; explicit non-causal language; no internal duplicate. | **GO** |
+| Game Economy Modeling | Strong spreadsheet/source-sink workflow and useful long-tail around conversion rates, faucets/sinks, and growth curves. | Current economy calculators and Machinations compete, especially for digital/live economies. | Four possible tools, but user-defined semantics and weighting raise interpretation risk. | HOLD |
+| Map & Network Balance QA | Real adjacency, route, starting-position, and modular-map questions with sparse exact tool SERPs. | Game-specific generators exist, while a generic tabletop graph checker remains less obvious. | Input UX is costly and proposed pages naturally converge on one graph model; fails the four-independent-tool release gate. | HOLD |
+| Turn Order & Endgame Pacing Lab | First-player and equal-turn questions are recurring, with real quantitative analysis examples. | Tool SERP is sparse, but the strongest parts are a seat analyzer and duration comparison. | Only two or three strong independent outputs; both integrate naturally into quantitative balance analytics. | REJECT / MERGE |
+
+### Winner and hard-gate rationale
+
+- **Winner: Board Game Balance Test Analysis.** It passed all release gates: at least four independent tools (five released), a recurring creator problem visible in actual spreadsheet practice, several defensible long-tail intents, a weak/fragmented exact tool SERP, stable browser-local inputs, deterministic calculations, low maintenance, and low safety risk when uncertainty and confounding are stated directly.
+- This is not a duplicate of the existing Playtesting cluster, which plans sessions, prioritizes coverage/issues, and checks rulebook/readiness inputs. It also does not duplicate Data Integrity QA, which checks files and releases rather than observed game outcomes.
+- The 95% interval uses the Wilson score method. Review bands, minimum samples, baselines, and flag thresholds are creator-entered. Outputs say “review signal,” “more evidence needed,” or “interval overlaps”; they do not claim that a game, faction, seat, or strategy is balanced or causal.
+
+### Released scope
+
+- Hub: `/tools/board-game-balance-test-analysis.html`.
+- Tool 1: `/tools/board-game-win-rate-confidence-calculator.html` — observed binary win rate, 95% Wilson interval, target band, and next-evidence interpretation.
+- Tool 2: `/tools/first-player-advantage-analyzer.html` — local CSV seat results grouped by version and player count against equal-seat baselines.
+- Tool 3: `/tools/board-game-faction-matchup-analyzer.html` — order-normalized matchup results, decisive-game intervals, preserved draws, and low-sample flags.
+- Tool 4: `/tools/player-count-balance-analyzer.html` — duration and score-spread summaries compared with a creator-selected baseline count.
+- Tool 5: `/tools/board-game-score-path-analyzer.html` — long-form scoring-category share and winner association without a synthetic balance score.
+- Added shared analysis/parsing/UI behavior in `assets/js/balance-analysis-calculators.js`, cluster-only styling in `assets/css/balance-analysis.css`, and deterministic Node assertions in `tools/balance_analysis_fixtures.js`. Updated only the Tools index and sitemap outside the new files. Public HTML count is now 87.
+- All six pages include direct metadata, canonical, Open Graph, GA4, static page-specific JSON-LD, Header/Footer partials, and internal workflow links. CSV data remains local to the browser tab.
+
+### Pre-commit QA completed
+
+- Static/content: `tools/content_audit.py` passed all 87 public pages with no issue; each new page has exactly one title, description, canonical, H1, and static JSON-LD block; `git diff --check` passed apart from existing Windows line-ending notices.
+- Deterministic fixtures: quoted commas/quotes, malformed row shape, unclosed quote, Wilson interval, impossible wins, seat grouping, reversed matchup normalization, draws, player-count comparisons, and score-path aggregation all passed in `tools/balance_analysis_fixtures.js`.
+- Functional local browser: all five tools passed normal/sample runs, repeat runs, reset, clear/empty errors, enabled copy state, and expected row/group counts. Win-rate boundary 0/10 and impossible 11/10 paths passed. A real local CSV was selected through the visible file chooser and produced the expected four-game/two-seat report.
+- Responsive local browser: all six pages passed at 390, 768, 900, 1024, 1280, and 1440 px (36 page/width combinations) with Header, Footer, H1, and zero document-level horizontal overflow. A populated score-path table also passed all six widths; its 680 px table scrolls only inside the report wrapper. Mobile and desktop screenshots were visually inspected, and the mobile navigation opened successfully.
+- A real-browser check exposed a stale shared-site-CSS collision on the generic `.result-panel` name. Versioning the site CSS reference on the six new pages loaded the current stylesheet and eliminated the collision; the full responsive sweep then passed.
+- Regression checks covered the homepage, Tools index, Dice Probability Calculator, and Rulebook Completeness Checker at 390 and 1440 px. Header/Footer/H1 remained present, the new Tools section exposed six links, and the homepage remained outside the diff. The persistent test browser reported a pre-existing 12 px mobile overflow on unversioned legacy pages only; new pages passed at 0 px and no shared legacy file was changed.
+- Exercised local console errors: 0. No new install, dependency, system change, network-backed runtime, or upload endpoint was introduced.
+
+### Research references checked
+
+- Creator data workflow and balance practice: `https://www.reddit.com/r/tabletopgamedesign/comments/1c7n1av`, `https://www.reddit.com/r/tabletopgamedesign/comments/1p1afs0/how_do_you_test_game_balance_genuinely_curious/`, `https://www.reddit.com/r/tabletopgamedesign/comments/15eck82`, `https://www.reddit.com/r/tabletopgamedesign/comments/kqlzfu`, and `https://neutronium.games/blog/board-game-playtesting-guide`.
+- First-player and matchup analysis: `https://boardgamegeek.com/thread/3272118/how-to-quantify-first-player-advantage`, `https://www.reddit.com/r/BoardgameDesign/comments/1rwzk4w/first_player_advantage/`, and `https://jelmata.com/blog/does-the-first-player-have-an-advantage`.
+- Current competitors/alternatives: `https://absurdtools.com/win-rate-confidence/`, `https://github.com/TabletopFoundry/playtestai`, `https://playtestplaza.com/`, `https://dustinsdesignerden.com/`, `https://www.boardgamebalancelab.com/`, and `https://www.tabletoprnd.co.uk/`.
+- Other finalists: `https://cuzus.games/en/tools/game-economy-balance-calculator/`, `https://machinations.io/`, `https://boardgamegeek.com/thread/3556613/asymmetrical-map-region-adjacency-and-game-balance`, `https://github.com/Qsanti/catan-forge`, and `https://hexwright.app/`.
+- Statistical method: NIST Wilson/proportion interval references at `https://itl.nist.gov/div898/handbook/prc/section2/prc241.htm` and `https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/propconf.htm`.
+
+### Deployment next step
+
+- Commit and push this one cluster only, wait for the matching GitHub Pages run, then verify all six public HTML responses, shared assets/partials, committed-vs-deployed source, representative production functionality, 390/1440 production layout, and console/runtime status. Record the exact implementation SHA and Pages run below before considering the release complete.
