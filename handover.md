@@ -1348,3 +1348,16 @@ Families were screened out at this stage when they were mainly legal interpretat
 ### Deployment next step
 
 - Commit and push this single cluster, wait for the matching GitHub Pages deployment, then compare committed and deployed HTML, verify all seven public pages and shared assets, exercise representative production functionality, and repeat 390/1440 production layout and console checks. Record exact implementation and deployment identifiers below before calling the release complete.
+
+## 2026-08-31 - Board Game Royalty Reporting & Reconciliation deployment confirmation
+
+- Implementation commit `e272f6dcf3764c8831eb9ab8f41f338717c417c2` (`Build board game royalty reporting tools`) was pushed to `origin/main`; local `HEAD` and `origin/main` matched immediately after push.
+- GitHub Pages run `33351583193` (`https://github.com/canghun13/tabletopmakerlab/actions/runs/33351583193`) completed successfully for that exact implementation SHA at 2026-08-31 02:44:36 UTC.
+- Cache-bypassed public HTTP checks returned 200 for the Hub and all six Tools. Every deployed HTML response matched its committed file exactly after CRLF/LF normalization and contained its canonical, one static JSON-LD block, and GA4 `G-V25YKRCX01`.
+- Deployed shared assets passed HTTP checks: site CSS, calculator CSS, royalty-close CSS, site JS, royalty-close JS, Header/Footer partials, favicon, Tools index, and sitemap all returned 200. The public Tools index exposes all seven cluster links.
+- Actual public-browser layout QA passed all seven pages at 390 and 1440 px (14 combinations) with Header, Footer, H1, one JSON-LD block, GA4, correct canonical, loaded stylesheets, zero broken images, zero visible markup leakage, and zero document-level horizontal overflow.
+- Public functional QA passed all six Tools with the committed sample/default inputs and expected headline outputs: Statement `US$1,404.24`; Reconciler `1 review flag`; Tiered `US$1,854.00`; Sublicense `1 review flag`; Reserve `US$3,360.00`; Schedule `2 timing flags`.
+- Public mobile navigation opened at 390 px with the correct expanded state and zero overflow. Exercised production console warnings/errors: 0.
+- Public regression QA passed Home, Tools, existing Board Game Royalty Calculator, Board Game Balance Test Analysis, Distribution & Royalties Guide, Card Sizes Reference, About, Contact, and Privacy at 390 and 1440 px (18 combinations) with Header/Footer/H1, zero broken images, zero markup leakage, and zero horizontal overflow.
+- Remaining issue: no functional or deployment defect remains in this release. Search demand and discovery performance still require dated GSC/Bing/GA4 evidence; do not infer rankings or traffic from successful deployment.
+- Final release status: **GO cluster shipped and production-verified.** Before expanding toward rights administration, crowdfunding payout reconciliation, editorial QA, or sustainability tooling, measure URL-level impressions, queries, clicks, CTR, engagement, and repeat use for this cluster.
