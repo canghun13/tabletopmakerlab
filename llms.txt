@@ -4,6 +4,8 @@
 
 Tabletop Maker Lab is a static, creator-first workbench for practical tabletop-game planning: game math, components, production, crowdfunding, and publishing.
 
+Royalty reporting tools at /tools/board-game-royalty-reporting-reconciliation.html process creator-supplied sales, statement, sublicense, reserve, tier, and schedule data locally in the browser. They do not supply contract terms or legal conclusions.
+
 ## Core pages
 
 - [Home](https://tabletopmakerlab.com/): Site positioning and areas of work.

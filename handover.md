@@ -1204,3 +1204,147 @@ The selected cluster passed every implementation gate: one coherent workflow, fi
 - No page markup, user-facing wording, calculator/analyzer logic, global form CSS, homepage badge/backlink content, or unrelated page was changed.
 - Local Chromium-family QA passed for both pages at 1440, 1280, 1024, 768, and 390 px. Desktop (1440/1280/1024) had 0 px input-top, input-bottom, and field-bottom deltas; widths were balanced and document overflow was 0. At 768/390, fields stacked at full width, helpers remained directly below their inputs, no reserved blank desktop row remained, and document overflow was 0.
 - Visual inspection covered the desktop First-Player Review rules block after repair. Functional regression passed: Seat sample yielded `No configured seat signal`, 12 games, 2 rows; Matchup sample yielded `No configured matchup signal`, 10 games, 1 row; Reset restored Ready/No file selected on both. Exercised console warnings/errors: 0. `tools/balance_analysis_fixtures.js`, `tools/content_audit.py`, and `git diff --check` passed before commit.
+
+## 2026-08-31 - New workflow discovery and Board Game Royalty Reporting & Reconciliation cluster (GO)
+
+### Starting state and exclusion boundary
+
+- Started from a clean `main` at `56c85ab6122236ebc148f4af2cf0895ee3cf6183`; local `HEAD`, `origin/main`, and remote `refs/heads/main` matched after fetch and `git pull --ff-only`, with 0 ahead / 0 behind.
+- Read the full README and handover before research. The exclusion map covered every existing calculator and all released clusters: Playtesting & Rulebook Validation, Game Data Integrity & Release QA, Tabletop Art Asset Handoff, Board Game Balance Test Analysis, and the Rulebook Completeness upgrade.
+- Also excluded every previously reviewed, merged, held, or rejected workflow family recorded above, including fulfillment/cartons, publisher pitch/submission, conventions, manufacturing timelines and approvals, prototype cutting/materials/assembly, retail/wholesale, collation, setup footprint, prepress/dielines, accessibility, localization, safety/regulatory, manufacturing inspection, campaign/scenario QA, reviewer/demo copies, digital tabletop packaging, iconography, onboarding/player aids, PnP packaging, photography/media, organized play, companion apps, 3D parts, educational alignment, replacement service, and feedback collection/forms.
+- The 40 balance-analysis discovery families and the four balance finalists were hard exclusions, including economy modeling, map/network QA, turn-order/endgame pacing, score/faction/player-count analysis, and all related subfamilies.
+- Existing publishing calculators forecast proposed economics (`board-game-royalty-calculator`, `royalty-method-comparison`, `advance-recoupment-calculator`, and `licensing-deal-comparison`). The selected cluster begins only after a contract and actual sales/receipts exist; it does not change or duplicate those planning calculators.
+- The homepage and the user-managed homepage/footer badge or backlink area were not edited. No dependency, framework, backend, system setting, Guide, or Reference page was added.
+
+### Broad discovery: 60 genuinely new workflow/search families
+
+1. Royalty statement audit and reconciliation.
+2. Royalty statement generation from actual sales lines.
+3. Royalty report normalization across channel exports.
+4. Royalty payment schedule and lateness checking.
+5. Sublicense and foreign-rights revenue-share reconciliation.
+6. License rights availability and territory matrices.
+7. Rights reversion and expiry monitoring.
+8. Minimum-guarantee compliance and shortfall checks.
+9. Royalty reserve-against-returns rollforwards.
+10. Royalty deduction and calculation-base validation.
+11. Multi-title quarterly royalty close control.
+12. Royalty dispute evidence-pack assembly.
+13. Distributor remittance reconciliation.
+14. Purchase-order, invoice, and receipt three-way matching.
+15. Wholesale return and credit-note reconciliation.
+16. Tabletop publishing cash-conversion calendars.
+17. Production-order foreign-exchange exposure ledgers.
+18. Crowdfunding payout and platform-fee reconciliation.
+19. Crowdfunding refund and chargeback actuals reconciliation.
+20. Pledge-manager to payment-processor reconciliation.
+21. Preorder deposits and deferred-revenue tracking.
+22. Creator-collaborator payment approval ledgers.
+23. Freelancer milestone and invoice reconciliation.
+24. Manufacturer deposit and progress-payment reconciliation.
+25. Publishing contract obligation calendars.
+26. Contract approval-rights matrices.
+27. Designer credit and complimentary-copy entitlement tracking.
+28. License territory-overlap conflict checks.
+29. License performance-threshold monitoring.
+30. Sublicense approval-request tracking.
+31. Sell-off-period inventory and royalty tracking.
+32. Option and renewal-window tracking.
+33. Artwork and asset usage-rights matrices.
+34. Stock-art and font-license evidence checking.
+35. Contributor compensation-obligation matrices.
+36. Community and user-generated-content license logs.
+37. Open-license compatibility checks for game assets.
+38. Adaptation, digital, and platform-rights maps.
+39. Co-publishing responsibility matrices.
+40. Publishing contract term comparison and change review.
+41. Board-game editorial house-style sheet building.
+42. Copyediting consistency linting for tabletop terminology.
+43. Rules reading-level and sentence-complexity analysis.
+44. Cross-document numeric consistency checking.
+45. Rule example and page-reference auditing.
+46. Errata and change-impact logging.
+47. FAQ-to-rulebook coverage mapping.
+48. Box-copy claim consistency checking.
+49. Player-count, play-time, and age-claim consistency auditing.
+50. Copyright and trademark notice metadata auditing.
+51. Component and packaging sustainability scenario planning.
+52. Packaging plastic-reduction comparisons.
+53. Freight-mode emissions scenario comparisons.
+54. Distributor product-metadata validation.
+55. UPC, EAN, and internal SKU format validation.
+56. Cross-channel product-listing consistency checks.
+57. Crowdfunding revenue-classification worksheets.
+58. Creator royalty close dashboards.
+59. Royalty payment-notice pack generation.
+60. Publishing document-retention and evidence checklists.
+
+Families were screened out at this stage when they were mainly legal interpretation, stateful alerting, generic bookkeeping, unstable emissions-factor claims, account-backed workflow, or too close to an existing cluster. The long list is a discovery record, not a recommendation to build 60 pages.
+
+### Mid validation: 12 candidates
+
+| Candidate | Workflow / SERP finding | Static independence / risk | Mid decision |
+| --- | --- | --- | --- |
+| Royalty reporting and reconciliation | Tabletop contract guidance and creator discussions show recurring reporting/payment friction; available products are mostly account SaaS or publisher systems. | Six independent close jobs; user-entered contract terms; local CSV; deterministic arithmetic. | DEEP |
+| Royalty statement generation | Actual sales lines must be transformed into a reviewable statement rather than a deal forecast. | Strong static workflow, but most useful as one tool inside royalty close. | MERGE into finalist |
+| Licensing rights availability administration | Rights, territories, languages, terms, and availability are real publishing records. | Matrix tools are feasible, but legal interpretation and persistent catalog state are meaningful risks. | DEEP |
+| Contract obligation and deadline control | Statements, payments, approvals, renewals, and reversions create recurring deadlines. | Date checking is static; complete obligation extraction would imply legal advice and document parsing. | DEEP with narrow scope |
+| Quarterly publishing close | Sales, returns, reserves, shares, and payments form a repeatable period-close workflow. | Strong recurrence, but it is the umbrella workflow for the royalty finalist. | MERGE into finalist |
+| Crowdfunding payout reconciliation | Platform exports and processor payouts create a real post-campaign close problem. | Deterministic and export-driven, but adjacent to the existing Crowdfunding cluster. | DEEP |
+| Board-game editorial style QA | Specialist tabletop editors and recurring rulebook consistency work confirm demand. | Some deterministic checks, but broad grammar competition and semantic false positives weaken the free-tool gap. | DEEP |
+| Rules readability analysis | Long sentences, terminology, and information order are common author concerns. | Browser-local text analysis is feasible, but overlaps the existing Rulebook work and generic readability tools. | HOLD |
+| Sustainability scenario planning | Current tabletop sustainability guides validate an emerging production workflow. | Useful static comparisons exist, but factors and environmental claims need dated sourcing and frequent maintenance. | DEEP |
+| Publisher payment and invoice reconciliation | Independent publishers repeatedly reconcile invoices, deposits, remittances, and receipts. | Valuable but generic accounting SERPs are crowded; weak tabletop-specific differentiation. | HOLD |
+| Board-game product metadata QA | Distributor listings require consistent title, SKU, player, time, age, and identifiers. | Good static fit, but only two or three strong independent tools survived overlap checks. | HOLD |
+| Contributor rights and payment ledger | Art, editing, writing, licensing, credits, and payments create an evidence workflow. | Requires persistent project state and overlaps the Art Asset Handoff cluster. | REJECT |
+
+### Deep validation: five finalists
+
+| Finalist | Demand and long-tail evidence | Competitor / SERP gap | Independence and risk | Decision |
+| --- | --- | --- | --- | --- |
+| **Board Game Royalty Reporting & Reconciliation** | Contract guidance explicitly treats reporting/payment as a continuing obligation, current tabletop discussions describe missed or unclear payments, and royalty systems market recurring statements and reconciliation. Long-tail jobs include statement building, expected-vs-reported checks, escalator-band crossing, sublicense shares, returns reserves, and due-date review. | Tabletop-specific results skew toward paid/account products such as RoyaltyDesk and Pitch2Table; adjacent book/music royalty SaaS confirms the workflow but does not provide a free, no-account, browser-local tabletop close workbench. | Six independent inputs and decisions; stable arithmetic; all terms entered by the user; no upload; low maintenance. Clear post-contract boundary from existing forecast tools. | **GO** |
+| Licensing Rights Availability & Contract Obligations | Rights catalogs, territories, languages, expiries, approvals, and reversions are established publishing operations. | Rights-management products and Frankfurt Rights documentation confirm the workflow; free tabletop tooling is sparse. | Strong gap, but useful alerts require persistent state and contract interpretation can become legal advice. | HOLD |
+| Crowdfunding Payout Reconciliation | Kickstarter and BackerKit document downloadable reports, fee breakdowns, and collected-revenue reporting. | Free exact-match reconciliation tools are sparse. | Four possible tools, but the cluster sits close to existing Crowdfunding calculators and platform export schemas can change. | HOLD |
+| Board Game Editorial QA | Specialist board-game editors advertise rulebook-specific editing and proofreading. | Search results are mostly services or generic grammar/readability products. | Demand is real, but high-quality semantics are difficult without language models and the scope overlaps existing Rulebook Validation. | HOLD |
+| Tabletop Sustainability Scenario Planning | Current board-game sustainability guides and calculators show creator/publisher interest. | Free tabletop-specific scenarios remain fragmented. | Static calculations are possible, but factors, boundaries, and claims are unstable; epistemic and maintenance risk is higher than the winner. | HOLD |
+
+### Winner and release-gate rationale
+
+- **Winner: Board Game Royalty Reporting & Reconciliation.** It passed the release gates: one recurring quarterly/period-close workflow, six genuinely independent tools, a fragmented free SERP, user-entered contract rules, deterministic browser-local calculations, low ongoing data maintenance, and a precise non-overlap boundary.
+- The cluster does not infer a contract, royalty rate, deduction, reserve policy, currency conversion, tax treatment, audit right, or payment duty. Every decision-driving term comes from the user's agreement or statement. Pages identify themselves as working checks, not legal, tax, or accounting advice.
+- No synthetic rating, opaque score, or causality claim was added. Review flags compare entered expected and reported amounts or entered dates only.
+
+### Released scope
+
+- Hub: `/tools/board-game-royalty-reporting-reconciliation.html`.
+- Tool 1: `/tools/board-game-royalty-statement-builder.html` — turns actual channel sales lines into a working earned-royalty statement.
+- Tool 2: `/tools/royalty-statement-reconciler.html` — recalculates expected line royalties and flags entered reported variances.
+- Tool 3: `/tools/tiered-royalty-recalculator.html` — allocates one period across cumulative net-unit royalty bands.
+- Tool 4: `/tools/sublicense-royalty-reconciler.html` — checks gross receipts, allowed deductions, contractual share, and reported designer/publisher share.
+- Tool 5: `/tools/royalty-returns-reserve-rollforward.html` — rolls opening reserve, return reversals, release, and current holdback into a period settlement.
+- Tool 6: `/tools/royalty-statement-payment-schedule-checker.html` — compares entered statement/payment due and actual dates and distinguishes pending from late items.
+- Added shared CSV/calculation/report behavior in `assets/js/royalty-close-calculators.js` and cluster-only presentation in `assets/css/royalty-close.css`. Updated `tools/index.html`, `sitemap.xml`, and `llms.txt`. Public sitemap HTML count is now 94.
+- Each new public page has direct title, description, canonical, robots, viewport, Open Graph, GA4, favicon, and page-specific static JSON-LD. CSV content and form values stay in the browser tab.
+- No Guide or Reference page was added because the calculators already contain the necessary method, input, limitation, and interpretation content; adding a thin supporting page would not improve the workflow.
+
+### Local QA completed
+
+- Static/content: `tools/content_audit.py` passed all 96 repository HTML files (94 public pages plus two partials) with no broken target, broken anchor, duplicate ID, missing canonical, or H1 issue. A separate structural parser check found zero non-HTML5 structural errors on the seven new pages.
+- SEO/data: all seven pages passed required metadata, canonical/OG agreement, GA4 `G-V25YKRCX01`, JSON-LD parsing, and sitemap membership checks. `sitemap.xml` parses with 94 unique public URLs. `node --check assets/js/royalty-close-calculators.js` and `git diff --check` passed; only normal Windows line-ending notices were printed.
+- Deterministic calculations passed for quoted CSV parsing, statement net units and earned royalty, reported variance flags, tier breakpoint allocation, sublicense shares, reserve settlement/closing reserve, and statement/payment timing states.
+- Browser functionality passed all six tools with built-in/default datasets. Expected results were Statement `US$1,404.24`; Reconciler `1 review flag` and `-US$0.96`; Tiered `US$1,854.00` across 500/1,300 units; Sublicense `1 review flag`; Reserve settlement `US$3,360.00` and closing reserve `US$1,020.00`; Schedule `2 timing flags`.
+- Responsive browser QA passed the Hub plus six Tools at 390, 768, 900, 1024, 1280, and 1440 px: 42 page/width combinations, Header/Footer/H1 present, zero document-level horizontal overflow, zero visible `.html\">`/tag leakage, and correct mobile-nav visibility. Wide result tables remain inside their own horizontal report wrapper.
+- Representative regression browser QA passed Home, Tools, existing Board Game Royalty Calculator, Board Game Balance Test Analysis, Distribution & Royalties Guide, Card Sizes Reference, About, Contact, and Privacy at 390 and 1440 px: 18 combinations, zero overflow, zero broken images, and correct Header/Footer/H1.
+- Mobile navigation opened and closed at 390 px with correct `aria-expanded` state and zero overflow. Mobile Hub and desktop Tiered Calculator screenshots were visually inspected for text clipping, overlap, button/card layout, menu, and table behavior.
+- The local HTTP server returned 200 for every exercised HTML, CSS, JS, partial, and favicon request; exercised browser console warnings/errors were 0.
+- A same-port browser-cache collision initially reused partials from another local project on port 4173. This was a QA-environment collision, not a repository defect. Repeating the complete browser run on the unique origin `http://127.0.0.1:48937` loaded the correct Tabletop Maker Lab partials and assets. No site file was changed to hide the collision.
+
+### Research references checked
+
+- Tabletop contracts and reporting/payment practice: `https://www.ttgda.org/contract-basics`, `https://www.geniusgames.org/blogs/behind-the-scenes-at-genius-games/how-designer-royalties-work`, `https://www.reddit.com/r/tabletopgamedesign/comments/11nwfac`, `https://www.reddit.com/r/tabletopgamedesign/comments/1j52jvr`, and `https://www.reddit.com/r/tabletopgamedesign/comments/1hgtn2t`.
+- Current royalty reporting alternatives and methods: `https://royaltydesk.org/how-it-works`, `https://pitch2table.com/`, `https://royaltally.com/`, `https://royalty-reporting.com/resources/calculators/audit-exposure-estimator`, `https://royalty-reporting.com/resources/calculators/mg-shortfall-calculator`, `https://royaltieshq.com/blog/reserves-against-returns/`, and `https://www.consonance.app/docs/1-edit-a-contract/`.
+- Other finalists: `https://help.kickstarter.com/hc/en-us/articles/4401991628827-I-ve-received-my-project-payout-how-can-I-get-an-invoice-breaking-down-the-fees`, `https://help.kickstarter.com/hc/en-us/articles/115005135894-How-can-I-use-the-downloaded-backer-report`, `https://help.backerkit.com/article/704-revenue-collected-in-reporting`, `https://support.frankfurtrights.com/hc/en-001/articles/360007027837-How-do-I-assign-rights-to-my-titles`, `https://moltencloud.com/rights`, `https://theeditor.games/board-game-editing-and-proofreading/`, `https://benjaminkocher.com/rule-book-editing/`, and `https://dataspelsbranschen.se/s/Play-Create-Calculate_Guide2024.pdf`.
+
+### Deployment next step
+
+- Commit and push this single cluster, wait for the matching GitHub Pages deployment, then compare committed and deployed HTML, verify all seven public pages and shared assets, exercise representative production functionality, and repeat 390/1440 production layout and console checks. Record exact implementation and deployment identifiers below before calling the release complete.
