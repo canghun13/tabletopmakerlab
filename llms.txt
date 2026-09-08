@@ -6,6 +6,8 @@ Tabletop Maker Lab is a static, creator-first workbench for practical tabletop-g
 
 Royalty reporting tools at /tools/board-game-royalty-reporting-reconciliation.html process creator-supplied sales, statement, sublicense, reserve, tier, and schedule data locally in the browser. They do not supply contract terms or legal conclusions.
 
+Crowdfunding marketing analytics at /tools/board-game-crowdfunding-marketing-analytics.html process creator-supplied audience, follower, funnel, referral, and cumulative campaign data locally in the browser. They do not provide conversion benchmarks or predict campaign success.
+
 ## Core pages
 
 - [Home](https://tabletopmakerlab.com/): Site positioning and areas of work.

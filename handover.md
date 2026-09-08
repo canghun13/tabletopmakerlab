@@ -1380,3 +1380,137 @@ Families were screened out at this stage when they were mainly legal interpretat
 - Production rect QA: at 1440, 1280, 1024, and 900 px, Row 1/2/3 control top, bottom, and outer-height delta are each `0px`; the `%` wrapper outer height is 42 px and its content/suffix are symmetrically inset by the wrapper's 1 px border. At 768 and 390 px the form has one grid column, page overflow is 0, and Header/Footer are present.
 - Production functional QA passed the representative 222-release result (`US$3,282.00`; closing reserve `US$1,098.00`), default/repeated result (`US$3,360.00`), invalid-release error, Reset, Copy report (`Copied`), visible Print control, and the intentionally local working-table scroll. Production console warnings/errors and broken images were 0. Canonical, GA4, JSON-LD, and favicon remain present.
 - Final status: **production alignment defect fixed and verified.**
+
+## 2026-09-08 - New workflow discovery and Board Game Crowdfunding Marketing Analytics cluster (GO)
+
+### Starting state and exclusion boundary
+
+- Repository root: `C:\Users\song\Documents\tabletopmakerlab`; remote: `https://github.com/canghun13/tabletopmakerlab.git`; branch: `main`.
+- Started from clean `main` at `7fba9ffea9994b2dca8229f96e8c75c03dfa7372`. Local `HEAD`, `origin/main`, and live `refs/heads/main` matched after fetch and `git pull --ff-only`; ahead/behind was `0/0`.
+- Starting inventory: 94 public sitemap URLs, 96 repository HTML files including two partials, and 70 files in `tools/` including the Tools index and existing cluster hubs.
+- Read the complete README and handover before discovery. Excluded every implemented workflow plus all prior GO, HOLD, REJECT, MERGE, and NO-GO families. This included Playtesting & Rulebook Validation, Game Data Integrity & Release QA, Tabletop Art Asset Handoff, Board Game Balance Test Analysis, Board Game Royalty Reporting & Reconciliation, the complete 40-family Balance discovery, and complete 60-family Royalty discovery.
+- Hard exclusions also covered fulfillment/cartons, publisher pitch/submission, conventions, manufacturing timelines/approvals/inspection, prototype cutting/materials/assembly, retail/wholesale, card collation, footprint/setup, prepress/dielines, accessibility, localization, safety/regulatory, campaign/scenario QA, constrained setup generation, reviewer/demo-copy operations, iconography, education, feedback collection/forms, digital tabletop packaging, onboarding/player aids, PnP packaging, photography/campaign media production, organized play, companion apps, 3D parts, replacement service, economy/map/turn-order analysis, rights administration, payout reconciliation, editorial QA, and sustainability scenarios.
+- Recent candidates reused: **NO**. The completed Royalty Returns Reserve Rollforward alignment repair was not reopened. The homepage and user-managed footer/badge/backlink area were not edited.
+
+### Stage A - 50 genuinely new workflow/search families
+
+The broad pass looked beyond calculators and screened each family for a distinct user decision, repeat use, observable problem intent, static implementation, competition, and internal overlap. These were new discovery families rather than renamed prior candidates:
+
+1. Crowdfunding prelaunch audience scenario planning.
+2. Kickstarter follower acquisition trend analysis.
+3. Crowdfunding conversion-funnel diagnosis.
+4. Kickstarter referral-channel performance comparison.
+5. Live crowdfunding funding-pace tracking.
+6. Tabletop launch-email sequence performance analysis.
+7. Preorder waitlist-to-order conversion analysis.
+8. Campaign landing-page experiment result comparison.
+9. Prelaunch reservation-quality analysis.
+10. Paid-versus-organic campaign audience-mix analysis.
+11. Campaign-update response-window analysis.
+12. Cross-promotion referral result reconciliation.
+13. Tabletop influencer campaign performance analysis.
+14. Creator community growth-velocity analysis.
+15. Newsletter acquisition-cohort analysis.
+16. Social content experiment result comparison.
+17. Campaign source-name and UTM governance checking.
+18. Marketing spend pacing against an entered budget.
+19. Cross-list audience-overlap estimation.
+20. Campaign attribution-completeness analysis.
+21. Comparable-title feature-positioning matrices.
+22. Manual comparable-title price-band analysis.
+23. Board-game price-sensitivity survey analysis.
+24. Board-game concept preference-test analysis.
+25. Purchase-intent confidence analysis.
+26. Audience-segment response comparison.
+27. Theme-appeal survey analysis.
+28. Box-cover thumbnail-test analysis.
+29. Board-game title/name preference-test analysis.
+30. Tagline and campaign-message comprehension analysis.
+31. Reward-preference survey analysis.
+32. Preorder intent-to-deposit conversion analysis.
+33. Tabletop press-coverage inventory and deduplication.
+34. Review-score distribution analysis for publishers.
+35. Earned-media reach-assumption comparison.
+36. Coverage-type and publication-mix analysis.
+37. Campaign mention-timing impact comparison.
+38. Published media-link health checking.
+39. Post-release support-ticket category trending.
+40. Rule-question frequency analysis after release.
+41. Production-batch complaint signal analysis.
+42. Board-game return-reason mix analysis.
+43. Customer-support response-time analysis.
+44. Customer satisfaction follow-up analysis.
+45. Product-review theme coding and trend analysis.
+46. Promotional-code redemption mix analysis.
+47. Backer upgrade/downgrade movement analysis.
+48. First-time versus returning backer mix analysis.
+49. Cross-campaign audience-retention analysis.
+50. Campaign source-cohort cancellation/refund analysis.
+
+Weak families were removed here when they reduced to a generic checklist, required a proprietary live database, depended on account-backed state, or reproduced an existing site's final decision. The count does not include the previously excluded families.
+
+### Stage B - 12 mid-validation candidates
+
+| Candidate | Demand / workaround / SERP | Independent depth and fit | Decision |
+| --- | --- | --- | --- |
+| Crowdfunding Audience & Campaign Analytics | Kickstarter and BackerKit expose campaign dashboards, while creators still share follower logs, ROAS sheets, campaign projection sheets, and requests for custom reporting. | Five different campaign-stage decisions; local CSV; user-set rules; no live API. | **DEEP** |
+| Prelaunch Reservation & Waitlist Quality | Reservation, email, and follower conversion questions recur before launch. | Two or three strong analyses, but naturally belongs inside the broader audience/funnel workflow. | MERGE into finalist |
+| Tabletop Launch Email Performance | Creators compare opens, clicks, sign-ups, and backers across launch emails. | Technically easy, but email providers already calculate the core rates and retain authoritative delivery data. | **DEEP** |
+| Paid / Organic Content Experiment Analysis | Creators compare acquisition sources and creative variants in spreadsheets. | Useful but generic; channel attribution and funnel stages are stronger inside the winner. | MERGE into finalist |
+| Influencer & Cross-Promotion Performance | Custom referral tags make partner results measurable, and creators ask how to reconcile tagged pledges. | One strong comparator plus payout/CRM tasks that overlap excluded operations. | **DEEP** |
+| Board Game Concept-Test Analytics | Market uncertainty and expensive research access produce creator questions and manual surveys. | Static survey analysis is feasible, but value depends on sample design and approaches prior feedback-analysis territory. | **DEEP** |
+| Board Game Price-Sensitivity Analysis | Pricing and acceptable-value questions recur during product and campaign research. | One statistically useful tool; other pages would reuse generic survey methods or existing margin/pricing tools. | HOLD |
+| Comparable-Title Positioning | Creators use BGG/manual sheets to compare playtime, complexity, features, and price. | Manual input is feasible, but data-backed value is owned by current catalog tools and a four-tool cluster is artificial. | HOLD |
+| Tabletop Press-Coverage Measurement | Board-game publishers document large outreach spreadsheets and coverage tracking. | Meaningful coverage discovery needs current outlet/search data; operational side overlaps reviewer/demo-copy exclusion. | **DEEP** |
+| Post-Release Support Intelligence | Ticket, rule-question, return, and batch-complaint rows can expose recurring release issues. | Four local analyses exist, but support systems own state and the replacement/defect decisions overlap existing scope. | **DEEP** |
+| Community Growth & Engagement Analytics | Discord/social/newsletter communities are monitored repeatedly before launches. | Platform exports differ and generic social analytics competition is strong; tabletop-specific output is limited. | REJECT |
+| Campaign Update Response Analysis | Creators inspect pledge changes after announcements and updates. | Correlation is feasible, but timing confounding makes a stand-alone verdict unsafe; one module is insufficient for a cluster. | REJECT |
+
+### Stage C - five deep-validation finalists
+
+| Finalist | Workflow and repeat use | Demand / long-tail / competition | Tool depth, implementation, overlap | Decision |
+| --- | --- | --- | --- | --- |
+| **Board Game Crowdfunding Audience & Campaign Analytics** | A tabletop creator plans audience scenarios, logs acquisition by source, diagnoses funnel stages, compares attributed channels, and checks live funding pace from prelaunch through campaign close. The data changes daily and across every campaign. | Repeated queries include `Kickstarter followers needed`, `Kickstarter follower tracker spreadsheet`, `crowdfunding conversion funnel`, `Kickstarter referral tracking`, `Kickstarter ROAS`, and `Kickstarter funding projection`. Kickstarter's dashboard supplies daily/hourly pledges and referrers but explicitly omits referral-tag clicks; BackerKit supplies account/campaign dashboards; BackerTracker and Kicktraq cover live projection; Prelaunch Club supplies a Google Sheet; generic ROI calculators cover only broad funnel math. The reviewed free results did not combine all five creator jobs in a no-account, browser-local tabletop workbench. | Five independent tools with different inputs and final actions; deterministic arithmetic; pasted CSV; creator-set conversion ranges/rate floors; no external API, proprietary data, legal judgment, or universal benchmark. Distinct from existing campaign cost/margin/profit calculators because it analyzes audience and performance evidence. | **GO** |
+| Board Game Market & Concept-Test Analytics | Designers test concepts, purchase intent, messages, themes, and segments before committing to a product. | Community questions show inaccessible market data and survey workarounds; professional tools such as SurveyMonkey, Kantar, and research services are strong. Exact board-game tool intent is sparse. | Three strong analyses survived. Sample design, respondent quality, and prior feedback-analysis adjacency weaken independent-site value. | HOLD |
+| Tabletop Launch Email & List Analytics | Creators review acquisition, engagement, clicks, and backer conversion for repeated launch sequences. | Board-game marketing discussions show the workflow, but Mailchimp-style providers own delivery/open/click data and generic email calculators are abundant. | Static export analysis is possible, but source schemas vary and four pages would split one email report into thin variants. | REJECT |
+| Tabletop Press & Partner Coverage Measurement | Publishers track outlet pitches, coverage, link status, and partner performance for launches. | Board-game sources explicitly describe sizable spreadsheets; Signalfy and other PR/contact systems provide live discovery, classification, and tracking. | The useful gap requires live web/outlet data or CRM state. The static remainder overlaps previously excluded reviewer/demo-copy operations. | REJECT |
+| Post-Release Support Issue Intelligence | Publishers repeatedly review ticket categories, rule questions, response time, returns, and batch signals after release. | Support platforms and publisher ticket flows validate need, but exact board-game analysis queries are weak. | Local CSV is feasible, but meaningful state belongs in a helpdesk and the strongest actions overlap replacement service, defect reserve, rulebook validation, and manufacturing inspection exclusions. | REJECT |
+
+### Winner and hard-gate rationale
+
+- **Winner: Board Game Crowdfunding Audience & Campaign Analytics.** It passed all hard gates: observable problem/search demand, multiple long-tail entry points, recurring daily workflow, a fragmented free SERP, five natural independent Tools, no duplicate final task, strong creator-workbench fit, deterministic browser implementation, low data/maintenance/safety risk, user-controlled review rules, evergreen arithmetic, actionable outputs, and a reason to use the site independently of Kickstarter or BackerKit.
+- Existing Crowdfunding calculators answer cost, margin, subsidy, stretch-goal, add-on, break-even, and profit-scenario questions. This cluster answers how much audience the creator has, how it is growing, where measured conversion leaks, which attributed sources justify review, and whether actual daily funding is keeping pace. No existing formula or page was changed.
+- No conversion rate, success probability, advertising threshold, attribution quality, or funding outcome is supplied as a universal fact. Users enter all scenario rates and review floors. The live pace tool labels its result as a linear run-rate checkpoint, not a campaign-success forecast.
+- Bing Keyword Research used: **NO**. GSC/GA4 exports were not present and were not treated as a release gate.
+
+### Released scope
+
+- Hub: `/tools/board-game-crowdfunding-marketing-analytics.html`.
+- Tool 1: `/tools/kickstarter-prelaunch-audience-planner.html` — converts separate audience pools and entered low/high conversion ranges into launch-day backer and funding scenarios.
+- Tool 2: `/tools/kickstarter-follower-growth-tracker.html` — summarizes daily follower acquisition, source mix, spend, cost per follower, and remaining pace to an entered target/date.
+- Tool 3: `/tools/crowdfunding-conversion-funnel-analyzer.html` — validates non-increasing channel stages, calculates four stage rates, and identifies the first stage below creator-entered floors.
+- Tool 4: `/tools/kickstarter-referral-performance-comparator.html` — compares tracked clicks, backers, pledged value, spend, entered delivery cost, acquisition cost, pledged/spend ratio, and limited contribution by source.
+- Tool 5: `/tools/crowdfunding-funding-pace-calculator.html` — validates cumulative daily records and calculates daily changes, recent pace, required pace, and a transparent linear finish checkpoint.
+- Added `assets/js/crowdfunding-analytics.js`, cluster-only `assets/css/crowdfunding-analytics.css`, deterministic `tools/crowdfunding_analytics_fixtures.js`, and reusable DevTools browser harness `tools/crowdfunding_analytics_browser_qa.mjs`.
+- Updated only the Tools index, sitemap, llms.txt, content audit script's calculator-script recognition, and this handover outside the new cluster. The audit change accepts the new `analytics.js` naming and explicitly recognizes the non-interactive collection Hub; it does not weaken metadata, link, schema, H1, ID, or orphan checks.
+- No Guide or Reference page was added because each Tool already contains its method, limitations, interpretation, and next workflow link. Final local inventory is 100 public sitemap URLs and 102 repository HTML files including two partials.
+
+### Research evidence checked 2026-09-08
+
+- Platform behavior: `https://help.kickstarter.com/hc/en-us/articles/115005135494-Where-can-I-track-my-project-s-progress`, `https://help.kickstarter.com/hc/en-us/articles/115005138933-How-do-I-create-a-custom-referral-tag-and-track-referral-stats`, `https://updates.kickstarter.com/new-tools-to-help-creators-market-their-projects/`, and `https://help.backerkit.com/article/739-how-to-track-visits`.
+- Spreadsheet/manual workflow: `https://prelaunch.marketing/products/kickstarter-follower-tracking-sheet`, creator discussions at `https://www.reddit.com/r/BoardgameDesign/comments/t1uyk9`, `https://www.reddit.com/r/BoardgameDesign/comments/127mamp`, `https://www.reddit.com/r/kickstarter/comments/1jforrp`, and `https://www.reddit.com/r/kickstarter/comments/1vtnito`.
+- Competitors/alternatives: `https://www.backerkit.com/launch`, BackerTracker's current Chrome listing, `https://kicksonar.com/`, `https://backerbench.com/`, Kicktraq discussions, and generic funnel/ROI calculators. These established feature boundaries; no proprietary benchmark was copied.
+- Other finalists: `https://www.surveymonkey.com/product/launchpad/concept-testing/`, `https://www.kantar.com/marketplace/solutions/innovation-and-product-development/concept-testing/`, `https://signalfy.app/`, `https://www.backerkit.com/blog/166-landing-a-game-review-advice-from-an-editor-and-a-game-designer/`, and current publisher missing/damaged-parts support pages.
+
+### Local QA completed before commit
+
+- Static/content: bundled Python ran `tools/content_audit.py` across all 100 public pages with no reported issue. All six new pages have a title, description, robots, canonical, Open Graph URL, GA4 `G-V25YKRCX01`, favicon, one H1, one page-specific static JSON-LD block, valid internal targets/anchors, and sitemap membership. Canonical, Open Graph, and primary JSON-LD URLs match. Sitemap XML parses with 100 unique URLs.
+- JavaScript and fixtures: `node --check assets/js/crowdfunding-analytics.js` passed. `tools/crowdfunding_analytics_fixtures.js` passed quoted comma/quote parsing, malformed row shape, unclosed quote, audience range rules, follower boundary/invalid counts, funnel monotonicity, referral negative contribution, pace arithmetic, and cumulative-decrease rejection.
+- Local actual-browser responsive QA used installed Edge 152 in an isolated headless profile via the Chrome DevTools Protocol and the unique static origin `http://127.0.0.1:48951`. All six new pages passed at 390, 768, 900, 1024, 1280, and 1440 px with results open: 36 combinations. Home, Tools, Board Game Balance Test Analysis, and Campaign Profit Scenario passed at 390/1440: eight regression combinations. Total browser layout checks: 44.
+- Every new Tool passed its default sample, a second normal case, a boundary case, empty data, invalid/conflicting data, repeated submit, Reset, result/error state, Copy, and Print click. The shared parser fixtures cover malformed quoted CSV. Copy initially exposed five unhandled clipboard-permission page errors; the final implementation catches permission failure and provides a safe fallback. With the QA origin granted clipboard permission, all five Copy controls reached `Copied`.
+- Final browser totals: console errors `0`, console warnings `0`, page errors `0`, observed internal asset failures `0`, document-level horizontal overflow `0`, and visible `.html">`/markup leakage `0`. Mobile navigation opened at 390 px with `aria-expanded=true` and no overflow. Mobile Hub and desktop populated Funding Pace screenshots were visually inspected; labels, cards, controls, result panel, table containment, and typography remained readable.
+- No existing shared site/calculator CSS or existing calculator logic was changed. The homepage and user-managed badge/backlink area remained outside the diff.
+
+### Deployment next step
+
+- Commit and push this single cluster, wait for the matching GitHub Pages run, then verify all six public HTML responses, production assets and partials, committed-versus-deployed source, public sitemap, representative production functionality, 390/1440 production layout, mobile menu, console warnings/errors, page errors, and internal asset failures. Record exact implementation/final SHAs and final remote state below before calling the release complete.

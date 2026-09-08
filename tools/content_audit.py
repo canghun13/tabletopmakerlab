@@ -83,8 +83,10 @@ for page in pages:
                 json.loads(block)
             except json.JSONDecodeError:
                 issues.append(f"invalid schema json\t{page}")
-    if page.parts[0] == "tools" and page.name != "index.html":
-        if not any(src.startswith("/assets/js/") and src.endswith("calculators.js") for src in parser.scripts):
+    noninteractive_hubs = {"board-game-crowdfunding-marketing-analytics.html"}
+    if page.parts[0] == "tools" and page.name != "index.html" and page.name not in noninteractive_hubs:
+        calculator_scripts = [src.partition("?")[0] for src in parser.scripts]
+        if not any(src.startswith("/assets/js/") and (src.endswith("calculators.js") or src.endswith("analytics.js")) for src in calculator_scripts):
             issues.append(f"missing calculator script\t{page}")
 
 for page in link_sources:
