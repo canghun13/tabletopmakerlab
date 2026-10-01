@@ -120,7 +120,14 @@ The readiness scores below are editorial prioritization judgments, not traffic f
 
 ## Deployment
 
-Pending implementation commit, main push, matching Pages run and production repetition. Do not call this repair shipped until the production section is completed.
+- Implementation commit: `6952d711f408302a1a3de171fb578359ef1f4970` (`Fix corrupted component input unit labels`), pushed to main and verified with actual remote SHA.
+- GitHub Pages run [36823975580](https://github.com/canghun13/tabletopmakerlab/actions/runs/36823975580) completed **successfully for that exact implementation SHA**.
+- After deployment all five public HTML responses returned 200 and matched committed source after CRLF/LF normalization. Each corrected units heading is present in the actual rendered DOM.
+- W3C Nu Validator checked all five deployed URLs: errors 0; one informational message per page. Static JSON-LD parses, canonical self-matches, duplicate IDs 0, and GA4 remains present.
+- Public robots, sitemap, Header/Footer partials and favicon returned 200 and matched committed source. Sitemap retains 100 unique URLs.
+- Production Edge repeated all 40 target responsive checks plus four Tools/Rulebook regression checks. Correct labels, Header/Footer, H1 geometry, control containment, finite default results and document width passed. Mobile and desktop Cards per Sheet screenshots were visually inspected.
+- Production representative default/A4/zero-demand arithmetic, repeat run, Reset, Copy clipboard/status, Print-handler dispatch and mobile menu all passed. Production console errors/warnings, page errors and observed internal asset failures: **0 each**. Analytics transport was suppressed during QA.
+- Final production status: **FIX shipped and production-verified**. The final documentation commit records this evidence; its exact SHA is reported in the session final response and can be retrieved with `git log -1`.
 
 ## Next state
 
