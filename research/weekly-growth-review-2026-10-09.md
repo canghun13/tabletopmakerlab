@@ -109,7 +109,14 @@ Exclusion boundary remains all implemented core/six workflow clusters and all pr
 
 ## Deployment
 
-Implementation commit, matching Pages result, production-after runtime and final documentation commit are recorded after deployment below. A successful workflow alone will not substitute for the production browser checks.
+- Implementation commit: `a4a3f4e8d5bb2c152123f83b4a5a50ca58610322` (`Fix corrupted reroll prose and record weekly growth review`), pushed to main. HEAD/origin/main/actual remote agreed immediately after push, 0/0 ahead/behind, clean tree.
+- GitHub Pages run [37923751004](https://github.com/canghun13/tabletopmakerlab/actions/runs/37923751004) completed successfully for that exact SHA at 2026-10-09 11:27:26 UTC.
+- Production-after Reroll returned 200 and matched the corrected committed source after line-ending normalization. Actual rendered prose contains both normal possessives and no `???`.
+- Production Edge repeated all eight requested widths plus four Tools/Dice regression combinations. All eight production screenshots visually inspected. Correct text, open result, H1/header separation, panel/control containment, mobile stacking/menu and no clipping/horizontal overflow pass.
+- Production functional output fields exactly match the production-before baseline: default96.10%, normal2 80.25%, worst20.99%, boundary0.00%, repeated update, empty/negative validation and Reset. Actual Copy clipboard and Print-handler/print-media regression pass. No calculator/validation behavior changed.
+- Production console errors/warnings, page errors and observed internal asset failures: **0 each**, with analytics transport suppressed. Native print-dialog pagination remains unverified, not a claimed pass.
+- Production health controls and all seven internal assets return200/source match. Canonical/robots/schema/GA4/contact and sitemap100 preserved. Protected homepage/badge/backlinks byte-for-byte outside the diff.
+- A closing documentation-only commit follows this production verification. Its exact SHA is available in `git log -1` and the session final report; no self-referential SHA is fabricated in its own content. Product files remain the already verified implementation.
 
 ## Next state
 
