@@ -18,6 +18,16 @@
 <link rel="icon" href="/assets/icons/favicon.svg">
 <link rel="stylesheet" href="/assets/css/site.css">
 <link rel="stylesheet" href="/assets/css/calculators.css?v=print-20260813b">
+<style>
+[data-calc="sheet"] .result-main, [data-calc="sheet"] .breakdown strong { overflow-wrap: anywhere; }
+[data-calc="sheet"] .breakdown strong { min-width: 0; }
+[data-calc="sheet"][data-sheet-state="invalid"] .utility button { opacity: .55; cursor: not-allowed; }
+.sheet-print-note { display: none; }
+@media print {
+  [data-calc="sheet"][data-sheet-state="invalid"] { display: none !important; }
+  .sheet-print-note { display: block; overflow-wrap: anywhere; }
+}
+</style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V25YKRCX01">
 </script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V25YKRCX01');</script>
@@ -40,35 +50,35 @@
 <legend>Sheet and card</legend>
 <div class="fields">
 <div class="field">
-<label>Sheet width <input name="sheet-w" type="number" min="0" value="700">
+<label>Sheet width <input name="sheet-w" type="number" min="0" step="any" required value="700">
 </label>
 </div>
 <div class="field">
-<label>Sheet height <input name="sheet-h" type="number" min="0" value="500">
+<label>Sheet height <input name="sheet-h" type="number" min="0" step="any" required value="500">
 </label>
 </div>
 <div class="field">
-<label>Card width <input name="card-w" type="number" min="0" value="63">
+<label>Card width <input name="card-w" type="number" min="0" step="any" required value="63">
 </label>
 </div>
 <div class="field">
-<label>Card height <input name="card-h" type="number" min="0" value="88">
+<label>Card height <input name="card-h" type="number" min="0" step="any" required value="88">
 </label>
 </div>
 <div class="field">
-<label>Bleed per edge <input name="bleed" type="number" min="0" value="3">
+<label>Bleed per edge <input name="bleed" type="number" min="0" step="any" required value="3">
 </label>
 </div>
 <div class="field">
-<label>Gutter <input name="gutter" type="number" min="0" value="3">
+<label>Gutter <input name="gutter" type="number" min="0" step="any" required value="3">
 </label>
 </div>
 <div class="field">
-<label>Outer margin <input name="margin" type="number" min="0" value="10">
+<label>Outer margin <input name="margin" type="number" min="0" step="any" required value="10">
 </label>
 </div>
 <div class="field">
-<label>Cards needed <input name="need" type="number" min="0" value="360">
+<label>Cards needed <input name="need" type="number" min="0" step="1" required value="360">
 </label>
 </div>
 </div>
@@ -114,6 +124,7 @@
 </div>
 <p class="warning">Commercial imposition, grain direction, cut marks, and press constraints may produce a different final layout.</p>
 </aside>
+<p class="sheet-print-note">Measurements are in millimetres (mm); cards needed is a count.<br>https://tabletopmakerlab.com/tools/cards-per-sheet-calculator.html</p>
 </section>
 <article class="calc-copy">
 <h2>Use this to compare orientation</h2>
@@ -137,7 +148,7 @@
 </div>
 <script src="/assets/js/site.js?v=print-20260813">
 </script>
-<script src="/assets/js/calculators.js">
+<script src="/assets/js/calculators.js?v=sheet-validation-20261016">
 </script>
 </body>
 </html>
