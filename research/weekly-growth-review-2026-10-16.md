@@ -111,7 +111,13 @@ Current exclusions remain all core/six implemented clusters and prior GO/HOLD/RE
 
 ## Deployment
 
-Pending implementation commit, main push, matching Pages success and production repetition. Do not call this release shipped until the evidence below is completed.
+- Implementation commit **`7d549965fe9dbbba856de3d67a39243b93446ad4`** (`Fix cards per sheet validation and impossible layouts`) pushed to main; actual remote SHA confirmed.
+- Matching GitHub Pages run [38835043370](https://github.com/canghun13/tabletopmakerlab/actions/runs/38835043370) completed **successfully** on 2026-10-16 at 10:26:17 KST for that exact implementation SHA.
+- Production repeated all **32** target/error/large-number/no-fit/regression geometry checks plus the full browser functional suite: ordinary arithmetic, zero demand, impossible fit, all blanks, zero/negative/fractional/unsafe/overflow input, decimal/repeated inputs, recovery/Reset, actual clipboard, mobile menu, valid Print dispatch/media and invalid keyboard-print suppression.
+- Actual production default/mobile invalid/large-number/print screenshots visually inspected. Default remains42 cards/9 sheets; A4 zero allowances9 cards/40 sheets; no-fit360 cards now Not possible; empty/zero dimensions never show NaN/Infinity or stale numeric output and cannot be copied/printed. Other four shared handlers retain their defaults and Reset behavior.
+- Production console errors0, warnings0, pageerrors0, internal asset failures0 and external request failures0. Analytics transport suppressed during QA; GA4 snippet retained. Native printer-dialog pagination is not claimed.
+- All **15** representative public endpoints return200 and match committed source after line-ending normalization, including the changed HTML/JS. Canonical/robots/GA4/contact/partial/favicon checks pass; public sitemap matches source and has100 unique URLs. W3C Nu Validator for the deployed target reports **0 HTML errors**, one informational message; static JSON-LD parses and duplicate IDs0.
+- Release status: **FIX shipped and production-verified**. Targeted defect resolved; indexing backlog remains an observation requiring platform evidence, not a claimed effect of this repair. A closing documentation-only commit follows; retrieve its exact SHA from final Git state/session report rather than inventing a self-referential SHA inside its own contents.
 
 ## Next state
 
