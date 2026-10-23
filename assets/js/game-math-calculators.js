@@ -3,7 +3,51 @@ const calc={
 dice(r){if(!base(r))return;const d=v(r,'dice'),s=v(r,'sides'),a=v(r,'target'),b=v(r,'target2'),mode=$('[name="mode"]',r).value;if(!d||!s||d>30||s>100){status(r,'Use 1–30 dice with 1–100 sides for an exact distribution.',true);return}const q=dice(d,s),total=s**d,win=q.reduce((x,c,i)=>x+(pick(mode,i,a,b)?c:0),0),mean=d*(s+1)/2;txt(r,'main',pct(win/total));txt(r,'a',num(win));txt(r,'b',num(total));txt(r,'c',num(mean));txt(r,'d',`${d}–${d*s}`);txt(r,'scenario',`Target is ${(mean-a).toFixed(1)} from the average total. Peak outcome: ${q.indexOf(Math.max(...q))}.`);status(r,'Exact outcome counts are shown for this dice pool.');},
 pool(r){if(!base(r))return;const d=v(r,'dice'),s=v(r,'sides'),t=v(r,'threshold'),k=v(r,'required'),exact=$('[name="mode"]',r).value==='exact',p=Math.max(0,Math.min(1,(s-t+1)/s)),success=binTail(d,p,k,exact);txt(r,'main',pct(success));txt(r,'a',pct(p));txt(r,'b',num(d*p));txt(r,'c',pct(1-success));txt(r,'d',`0–${d} successes`);txt(r,'scenario',`One more die changes “at least ${k}” to ${pct(binTail(d+1,p,k))}.`);status(r,k>d?'Required successes exceed the pool, so the result is 0%.':'Binomial success-pool calculation updated.',k>d);},
 custom(r){if(!base(r))return;const faces=$('[name="faces"]',r).value.split(',').map(x=>Number(x.trim())).filter(Number.isFinite),d=v(r,'dice'),target=v(r,'target'),mode=$('[name="mode"]',r).value;if(!faces.length||d<1||d>20||faces.length>30){status(r,'Enter 1–30 numeric faces and 1–20 dice.',true);return}let dist=new Map([[0,1]]);for(let z=0;z<d;z++){const next=new Map;for(const [a,q] of dist)for(const f of faces)next.set(a+f,(next.get(a+f)||0)+q);dist=next}const total=faces.length**d,win=[...dist].reduce((x,[xv,c])=>x+(mode==='exact'?xv===target:xv>=target?c:0),0),ev=faces.reduce((a,x)=>a+x,0)/faces.length;txt(r,'main',pct(win/total));txt(r,'a',num(ev));txt(r,'b',num(ev*d));txt(r,'c',num(win));txt(r,'d',num(total));txt(r,'scenario',`Face values: ${faces.map(x=>`${x}: ${pct(faces.filter(y=>y===x).length/faces.length)}`).filter((x,i,a)=>a.indexOf(x)===i).join(' · ')}`);status(r,'Repeated face values are weighted by their number of faces.');},
-explode(r){if(!base(r))return;const s=v(r,'sides'),tr=v(r,'trigger'),d=v(r,'dice'),limit=v(r,'limit'),target=v(r,'target');if(!s||!d||tr<1||tr>s){status(r,'Use a trigger value within the die’s face range.',true);return}const q=1/s,meanFace=(s+1)/2,unlimited=limit===0,extra=unlimited?d*q/(1-q):d*q*(1-q**limit)/(1-q),mean=unlimited?d*meanFace/(1-q):d*meanFace*(1-q**(limit+1))/(1-q);let p=0,sim=30000;for(let i=0;i<sim;i++){let sum=0;for(let z=0;z<d;z++){let e=0,f;do{f=1+Math.floor(Math.random()*s);sum+=f;e++}while(f===tr&&(unlimited?e<80:e<=limit))}if(sum>=target)p++}txt(r,'main',num(mean));txt(r,'a',pct(1-(1-q)**d));txt(r,'b',num(extra));txt(r,'c',pct(p/sim));txt(r,'d',unlimited?'Unlimited chain (tail simulated)':'Explosion limit '+num(limit));txt(r,'scenario','Target probability is a 30,000-roll simulation; expected value and extra dice use the stated explosion rule.');status(r,'Explosion target probability is approximate; other outputs use the entered limit exactly.');},
+explode(r){
+  // Validate raw values here: the shared reader maps missing/invalid input to zero.
+  const fields=['sides','trigger','dice','limit','target'],values={};
+  $$('input[aria-invalid]',r).forEach(i=>i.removeAttribute('aria-invalid'));
+  const unavailable=(key,message)=>{
+    r.dataset.invalid='true';
+    $(`[name="${key}"]`,r).setAttribute('aria-invalid','true');
+    txt(r,'main','Check inputs');
+    ['a','b','c','d'].forEach(k=>txt(r,k,'—'));
+    txt(r,'scenario','No report is available until the input is corrected.');
+    $$('.copy,.print',r).forEach(b=>b.disabled=true);
+    status(r,message,true);
+  };
+  for(const key of fields){
+    const raw=$(`[name="${key}"]`,r).value.trim(),value=Number(raw);
+    if(raw===''||!Number.isSafeInteger(value)||value<0){unavailable(key,'Enter a finite, non-negative whole number in every field.');return}
+    values[key]=value;
+  }
+  const {sides:s,trigger:tr,dice:d,limit,target}=values;
+  if(s<1||s>1000){unavailable('sides','Use 1–1,000 sides per die within this simulator’s supported range.');return}
+  if(tr<1||tr>s){unavailable('trigger','Use a trigger value within the die’s face range.');return}
+  if(d<1||d>100){unavailable('dice','Use 1–100 initial dice within this simulator’s supported range.');return}
+  if(limit>100){unavailable('limit','Use 0 for unlimited chains or 1–100 extra rolls per initial die.');return}
+  if(s===1&&limit===0){unavailable('limit','A one-sided die always triggers and never finishes an unlimited chain. Set a finite explosion limit.');return}
+  r.dataset.invalid='false';
+  $$('.copy,.print',r).forEach(b=>b.disabled=false);
+  const q=1/s,meanFace=(s+1)/2,unlimited=limit===0;
+  // q=1 is a deterministic finite chain, not the geometric sum's 0/0 case.
+  const extra=s===1?d*limit:unlimited?d*q/(1-q):d*q*(1-q**limit)/(1-q);
+  const mean=s===1?d*(limit+1):unlimited?d*meanFace/(1-q):d*meanFace*(1-q**(limit+1))/(1-q);
+  let p=0;const sim=30000;
+  if(s===1){p=mean>=target?sim:0}
+  else for(let i=0;i<sim;i++){
+    let sum=0;
+    for(let z=0;z<d;z++){
+      let e=0,f;
+      do{f=1+Math.floor(Math.random()*s);sum+=f;e++}while(f===tr&&(unlimited?e<80:e<=limit));
+    }
+    if(sum>=target)p++;
+  }
+  txt(r,'main',num(mean));txt(r,'a',pct(1-(1-q)**d));txt(r,'b',num(extra));txt(r,'c',pct(p/sim));
+  txt(r,'d',unlimited?'Unlimited chain (tail simulated)':'Explosion limit '+num(limit));
+  txt(r,'scenario',s===1?'A one-sided die is deterministic: every initial die rolls once plus the entered number of extra rolls. All outputs are exact.':'Target probability is a 30,000-trial simulation; each trial rolls the entire pool. Unlimited chains are capped at 80 rolls per initial die in the simulation only.');
+  status(r,s===1?'Finite deterministic chain calculated.':'Target chance is approximate; expected total, initial explosion chance and expected extra rolls use the entered rule exactly.');
+},
 reroll(r){if(!base(r))return;const s=v(r,'sides'),d=v(r,'dice'),t=v(r,'threshold'),k=v(r,'required'),rule=$('[name="rule"]',r).value,p=Math.max(0,Math.min(1,(s-t+1)/s));let p2=rule==='worst'?p*p:rule==='selected'?p+(1-p)*(1/s):1-(1-p)**2;p2=Math.min(1,p2);const before=binTail(d,p,k),after=binTail(d,p2,k);txt(r,'main',pct(after));txt(r,'a',pct(before));txt(r,'b',pct(after-before));txt(r,'c',before?pct((after-before)/before):'—');txt(r,'d',num(d*p2));txt(r,'scenario',`Per-die success: ${pct(p)} before → ${pct(p2)} after the selected reroll rule.`);status(r,'Selected-values reroll means failures reroll once and one additional face is treated as a success.');},
 card(r){if(!base(r))return;const N=v(r,'deck'),K=v(r,'targets'),d=v(r,'draw'),k=v(r,'required'),exact=$('[name="mode"]',r).value==='exact';if(d>N||K>N){status(r,'Cards drawn and target cards cannot exceed deck size.',true);return}const p=hyperTail(N,K,d,k,exact);txt(r,'main',pct(p));txt(r,'a',num(d*K/N));txt(r,'b',pct(hyper(N,K,d,0)));txt(r,'c',num(k));txt(r,'d',`${N} cards, ${K} targets`);txt(r,'scenario',`Without replacement. Exactly one target: ${pct(hyper(N,K,d,1))}.`);status(r,'This uses an exact hypergeometric draw without replacement.');},
 opening(r){if(!base(r))return;const N=v(r,'deck'),h=v(r,'hand'),A=v(r,'a'),B=v(r,'b'),m=$('[name="mulligan"]',r).value;if(h>N||A>N||B>N||A+B>N){status(r,'Hand and key-card counts must fit within the deck.',true);return}const hit=x=>1-hyperTail(N,x,h,0,true),one=hit(A),either=hit(A+B),both=1-hyperTail(N,A,h,0,true)-hyperTail(N,B,h,0,true)+hyperTail(N,A+B,h,0,true),multi=p=>m==='full'?1-(1-p)**2:p;txt(r,'main',pct(multi(one)));txt(r,'a',pct(one));txt(r,'b',pct(multi(either)));txt(r,'c',pct(multi(Math.max(0,both))));txt(r,'d',m==='full'?'Full redraw once':'No mulligan');txt(r,'scenario','Full redraw assumes the entire opening hand is returned before one independent redraw.');status(r,'This is a simple generic mulligan model, not a game-specific rules engine.');},
