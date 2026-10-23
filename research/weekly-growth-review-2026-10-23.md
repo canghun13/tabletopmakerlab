@@ -113,7 +113,15 @@ All core/six implemented clusters and earlier GO/HOLD/REJECT/MERGE/NO-GO boundar
 
 ## Deployment
 
-Pending implementation commit/push, exact-SHA GitHub Pages success, public source comparison and production runtime/geometry checks. Do not treat local QA or CI alone as production verification. Append actual evidence after the release.
+- Implementation **`6838593814ed4fb6ca0d53d76c2bb7aea94718d4`** (`Fix exploding dice degenerate chains and invalid reports`) pushed to main; actual remote SHA verified.
+- Exact-SHA GitHub Pages [run39915402432](https://github.com/canghun13/tabletopmakerlab/actions/runs/39915402432) completed **successfully** at2026-10-23 07:05:07UTC (16:05:07KST).
+- Production-after all17 representative endpoints returned200 and matched committed source after line-ending normalization, including target HTML and shared math JS. Canonical,robots,static JSON-LD,GA4,Contact `canghun13@naver.com`,partials,favicon and100-URL sitemap checks pass. HTTP apex and HTTPS www requests both finish at HTTPS apex200. This does not identify the three Coverage redirect rows.
+- Public W3C Nu target validation: **HTML errors0**, one informational message. Duplicate IDs0; existing metadata/schema/links remain unchanged.
+- Actual public Edge repeated **39 geometry checks** and the complete functional suite at1440/1280/1024/900/768/600/480/390. All target screenshots plus mobile invalid/maximum and print-media screenshots visually inspected. No overflow/clipping/overlap/off-screen control/markup leakage or non-finite output in exercised states.
+- Production finite d1 limit2 yields total3/extra2 and exact100% at target3,0% at4;d1 unlimited is blocked;all five blanks and negative/fractional/unsafe/out-of-range inputs clear stale reports and disable Copy/Print. Default remains4.2/0.2;normal two-die finite case8.167/0.333. Actual clipboard,repeated inputs,recovery,Reset,mobile menu,valid Print dispatch/media/source URL and invalid keyboard-print suppression pass.
+- Eight other math handler defaults/Reset match the production-before baseline exactly. Home,Tools and Cards per Sheet regressions pass. Production console errors0,warnings0,pageerrors0,internal asset failures0,external failures0,with analytics transport suppressed. Native printer-dialog pagination remains unverified.
+- **Final release status: FIX shipped and production-verified.** No new public page or protected-area change. Indexing cohort/redirect URL and attribution limitations remain explicitly unresolved data gaps,not defects claimed fixed by this release.
+- A closing documentation-only commit records this evidence; its exact SHA comes from final Git state/session report rather than a self-reference. No further product change is included.
 
 ## Next state
 
