@@ -115,8 +115,16 @@ Core/six implemented clusters,all prior GO/HOLD/REJECT/MERGE/NO-GO exclusions an
 - Production corrected default Exact3→8/36=22.22%,two d6 Exact7→6/36=16.67%,one die1,1,2 Exact1→2/3=66.67%;two d6 At least7 remains21/36=58.33%,default At least3 remains16/36=44.44%. Independent252 fixtures validate underlying arithmetic. Empty/malformed/fractional/unsafe/out-of-range and both work-limit rejections clear reports and block utilities;recovery/Reset works.
 - Actual clipboard,repeated input/mode,mobile menu,valid Print dispatch/media/current inputs/results/source URL and invalid keyboard-print suppression pass. Other eight math handlers retain their baseline deterministic outputs/Reset;Exploding random probability stays within tolerance and exact outputs unchanged. Home/Tools/Cards regressions pass.
 - Production console errors0,warnings0,pageerrors0,internal asset failures0,external failures0. Analytics transport suppressed during QA;only snippet preservation,not live GA4 collection,is claimed. Native printer-dialog pagination remains unverified.
-- **Initial core repair shipped and production-verified; final precision follow-up awaiting revalidation.** Unsupported decimal/unbounded distributions are explicitly rejected,not silently treated as correct reports. Indexing status/redirect identity/attribution limitations remain data gaps,not claimed fixed by this repair.
+- **Final core repair and precision follow-up shipped and production-verified.** Unsupported decimal/unbounded distributions are explicitly rejected,not silently treated as correct reports. Indexing status/redirect identity/attribution limitations remain data gaps,not claimed fixed by this repair.
 - A closing documentation-only commit records this evidence. Read its exact SHA from final Git state/session report rather than a self-reference;no further product change is included.
+
+### Precision follow-up confirmation
+
+- Follow-up implementation **`e98dbf55922ee1f923f681c3885a815855321a15`** (`Preserve custom dice expectation precision at signed boundaries`) pushed to main;actual remote SHA verified. Exact-SHA Pages [run40986221310](https://github.com/canghun13/tabletopmakerlab/actions/runs/40986221310) succeeded at2026-10-30 01:31:00UTC/10:31:00KST.
+- Final local **252 Custom+52 Exploding+38 Cards=342 fixture cases** pass. Production repeat includes both added cancellation cases:faces `9007199254740991,1,-9007199254740991`,one die→per-die/pool0.333;faces `4503599627370495,1,-4503599627370495`,two dice→per-die0.333/pool0.667. These confirm the first iteration's averaging regression is resolved,not deferred.
+- Final public source18 endpoints200/HEAD-match;target W3C errors0/one informational message. Public Edge repeated all39 geometry checks and full functions including those signed boundaries,actual clipboard,Reset,menu,Print and invalid-report suppression. Deterministic regression outputs unchanged;Exploding random chance within tolerance.
+- Final production errors0,warnings0,pageerrors0,internal/external failures0. Updated representative desktop/mobile/large-count/print screenshots inspected;layout remains unchanged. Native printer-dialog pagination is still not claimed.
+- Final status:**FIX — complete for the targeted supported model,shipped and publicly verified**. Closing documentation-only commit follows;its exact SHA is taken from final Git state/session report.
 
 ## Next state
 
