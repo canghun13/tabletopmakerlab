@@ -2,7 +2,53 @@
 const calc={
 dice(r){if(!base(r))return;const d=v(r,'dice'),s=v(r,'sides'),a=v(r,'target'),b=v(r,'target2'),mode=$('[name="mode"]',r).value;if(!d||!s||d>30||s>100){status(r,'Use 1–30 dice with 1–100 sides for an exact distribution.',true);return}const q=dice(d,s),total=s**d,win=q.reduce((x,c,i)=>x+(pick(mode,i,a,b)?c:0),0),mean=d*(s+1)/2;txt(r,'main',pct(win/total));txt(r,'a',num(win));txt(r,'b',num(total));txt(r,'c',num(mean));txt(r,'d',`${d}–${d*s}`);txt(r,'scenario',`Target is ${(mean-a).toFixed(1)} from the average total. Peak outcome: ${q.indexOf(Math.max(...q))}.`);status(r,'Exact outcome counts are shown for this dice pool.');},
 pool(r){if(!base(r))return;const d=v(r,'dice'),s=v(r,'sides'),t=v(r,'threshold'),k=v(r,'required'),exact=$('[name="mode"]',r).value==='exact',p=Math.max(0,Math.min(1,(s-t+1)/s)),success=binTail(d,p,k,exact);txt(r,'main',pct(success));txt(r,'a',pct(p));txt(r,'b',num(d*p));txt(r,'c',pct(1-success));txt(r,'d',`0–${d} successes`);txt(r,'scenario',`One more die changes “at least ${k}” to ${pct(binTail(d+1,p,k))}.`);status(r,k>d?'Required successes exceed the pool, so the result is 0%.':'Binomial success-pool calculation updated.',k>d);},
-custom(r){if(!base(r))return;const faces=$('[name="faces"]',r).value.split(',').map(x=>Number(x.trim())).filter(Number.isFinite),d=v(r,'dice'),target=v(r,'target'),mode=$('[name="mode"]',r).value;if(!faces.length||d<1||d>20||faces.length>30){status(r,'Enter 1–30 numeric faces and 1–20 dice.',true);return}let dist=new Map([[0,1]]);for(let z=0;z<d;z++){const next=new Map;for(const [a,q] of dist)for(const f of faces)next.set(a+f,(next.get(a+f)||0)+q);dist=next}const total=faces.length**d,win=[...dist].reduce((x,[xv,c])=>x+(mode==='exact'?xv===target:xv>=target?c:0),0),ev=faces.reduce((a,x)=>a+x,0)/faces.length;txt(r,'main',pct(win/total));txt(r,'a',num(ev));txt(r,'b',num(ev*d));txt(r,'c',num(win));txt(r,'d',num(total));txt(r,'scenario',`Face values: ${faces.map(x=>`${x}: ${pct(faces.filter(y=>y===x).length/faces.length)}`).filter((x,i,a)=>a.indexOf(x)===i).join(' · ')}`);status(r,'Repeated face values are weighted by their number of faces.');},
+custom(r){
+  // Each physical face is an equally likely entry; repeated scores keep their multiplicity.
+  const fail=(key,message)=>{
+    r.dataset.invalid='true';
+    $(`[name="${key}"]`,r).setAttribute('aria-invalid','true');
+    txt(r,'main','Check inputs');
+    ['a','b','c','d'].forEach(k=>txt(r,k,'—'));
+    txt(r,'scenario','No report is available until the input is corrected.');
+    $$('.copy,.print',r).forEach(b=>b.disabled=true);
+    status(r,message,true);
+  };
+  $$('[aria-invalid]',r).forEach(i=>i.removeAttribute('aria-invalid'));
+  const tokens=$('[name="faces"]',r).value.split(',').map(x=>x.trim());
+  if(tokens.length>30||tokens.some(x=>x==='')){fail('faces','List 1–30 comma-separated integer face scores, with no empty entries.');return}
+  const faces=tokens.map(Number);
+  if(faces.some(x=>!Number.isSafeInteger(x))){fail('faces','Use finite safe integer face scores. For decimal scores, scale all faces and the target to integers first.');return}
+  const rawDice=$('[name="dice"]',r).value.trim(),d=Number(rawDice);
+  if(rawDice===''||!Number.isSafeInteger(d)||d<1||d>20){fail('dice','Use a whole number of dice from 1 to 20.');return}
+  const rawTarget=$('[name="target"]',r).value.trim(),target=Number(rawTarget);
+  if(rawTarget===''||!Number.isSafeInteger(target)||target<0){fail('target','Use a non-negative safe integer target, on the same scale as the faces.');return}
+  const mode=$('[name="mode"]',r).value;
+  if(!['exact','atleast'].includes(mode)){fail('mode','Select an available target mode.');return}
+  const total=faces.length**d;
+  if(!Number.isSafeInteger(total)){fail('dice','Reduce the dice or face count: ordered outcomes must fit within the safe integer range.');return}
+  // Bound every partial sum, not just the final expected value.
+  if(Math.max(...faces.map(Math.abs))>Math.floor(Number.MAX_SAFE_INTEGER/d)){fail('faces','Reduce the face scores so every possible pool total stays within the safe integer range.');return}
+  let dist=new Map([[0,1]]),steps=0;
+  for(let z=0;z<d;z++){
+    const next=new Map;
+    for(const [a,q] of dist)for(const f of faces){
+      if(++steps>2000000){fail('dice','This distribution exceeds the 2,000,000-transition browser work limit. Reduce dice or simplify the face scores.');return}
+      const sum=a+f;
+      next.set(sum,(next.get(sum)||0)+q);
+      if(next.size>50000){fail('faces','This distribution exceeds the 50,000-distinct-total browser limit. Simplify the scores or reduce dice.');return}
+    }
+    dist=next;
+  }
+  // Test the target first, then add its full ordered-outcome count (not a Boolean).
+  const win=[...dist].reduce((sum,[score,count])=>sum+((mode==='exact'?score===target:score>=target)?count:0),0);
+  // Divide before summing: a face-list subtotal can exceed safe integer precision.
+  const ev=faces.reduce((sum,x)=>sum+x/faces.length,0);
+  txt(r,'main',pct(win/total));txt(r,'a',num(ev));txt(r,'b',num(ev*d));txt(r,'c',num(win));txt(r,'d',num(total));
+  txt(r,'scenario',`Face values: ${faces.map(x=>`${x}: ${pct(faces.filter(y=>y===x).length/faces.length)}`).filter((x,i,a)=>a.indexOf(x)===i).join(' · ')}`);
+  r.dataset.invalid='false';
+  $$('.copy,.print',r).forEach(b=>b.disabled=false);
+  status(r,'Repeated face values are weighted by their number of faces. Ordered-outcome counts are exact within the supported integer model.');
+},
 explode(r){
   // Validate raw values here: the shared reader maps missing/invalid input to zero.
   const fields=['sides','trigger','dice','limit','target'],values={};
