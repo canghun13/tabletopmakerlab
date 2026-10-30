@@ -41,9 +41,10 @@ custom(r){
   }
   // Test the target first, then add its full ordered-outcome count (not a Boolean).
   const win=[...dist].reduce((sum,[score,count])=>sum+((mode==='exact'?score===target:score>=target)?count:0),0);
-  // Divide before summing: a face-list subtotal can exceed safe integer precision.
-  const ev=faces.reduce((sum,x)=>sum+x/faces.length,0);
-  txt(r,'main',pct(win/total));txt(r,'a',num(ev));txt(r,'b',num(ev*d));txt(r,'c',num(win));txt(r,'d',num(total));
+  // Sum integer scores exactly before converting averages for display.
+  const faceSum=faces.reduce((sum,x)=>sum+BigInt(x),0n);
+  const ev=Number(faceSum)/faces.length,poolEv=Number(faceSum*BigInt(d))/faces.length;
+  txt(r,'main',pct(win/total));txt(r,'a',num(ev));txt(r,'b',num(poolEv));txt(r,'c',num(win));txt(r,'d',num(total));
   txt(r,'scenario',`Face values: ${faces.map(x=>`${x}: ${pct(faces.filter(y=>y===x).length/faces.length)}`).filter((x,i,a)=>a.indexOf(x)===i).join(' · ')}`);
   r.dataset.invalid='false';
   $$('.copy,.print',r).forEach(b=>b.disabled=false);

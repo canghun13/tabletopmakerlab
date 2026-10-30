@@ -40,6 +40,8 @@ run({faces:'0,1',dice:20,target:10,mode:'exact'});valid();assert.equal(value('c'
 run({faces:'0',dice:20,target:0,mode:'exact'});valid();assert.equal(outputs.main.textContent,'100.00%');
 run({faces:' 1, 1 , 2 ',dice:1,target:1,mode:'exact'});valid();assert.equal(value('c'),2);
 run({faces:'9007199254740991',dice:1,target:'9007199254740991',mode:'exact'});valid();assert.equal(outputs.main.textContent,'100.00%');
+run({faces:'9007199254740991,1,-9007199254740991',dice:1,target:0});valid();assert.equal(outputs.a.textContent,'0.333');assert.equal(outputs.b.textContent,'0.333');
+run({faces:'4503599627370495,1,-4503599627370495',dice:2,target:0});valid();assert.equal(outputs.a.textContent,'0.333');assert.equal(outputs.b.textContent,'0.667');
 for(const faces of ['',',','1,','1,,2','1,word,2','NaN','Infinity','1e309','.5','9007199254740992',Array(31).fill(1).join(',')]){run({faces});invalid('faces')}
 for(const dice of ['',0,-1,.5,21,'Infinity','1e309','9007199254740992']){run({dice});invalid('dice')}
 for(const target of ['',-1,.5,'Infinity','1e309','9007199254740992']){run({target});invalid('target')}
