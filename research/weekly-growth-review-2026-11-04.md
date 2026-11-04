@@ -117,7 +117,16 @@ Expansion considered: **No — priority A selected**. No 40-family discovery, ne
 
 ## Deployment
 
-Pending implementation commit/push, exact-SHA Pages success and repeated public-source/functional/geometry verification. Local QA is not public deployment proof. Append measured release evidence after verification; final documentation-only SHA belongs in final Git/session status rather than a self-reference.
+- Implementation **`27795ea5844aea522160adc270e207e27d49a164`** (`Fix draw probability exact events and endpoint models`) pushed to main; actual remote SHA verified, ahead/behind 0/0 and clean tree before closing documentation.
+- Exact-SHA Pages [run 41761524835](https://github.com/canghun13/tabletopmakerlab/actions/runs/41761524835) succeeded at **2026-11-04 02:34:19 UTC / 11:34:19 KST**.
+- After deployment, all **22 representative public endpoints returned 200 and matched committed source**, including all five affected HTML and shared math JS. Canonical/robots/static JSON-LD/GA4/contact `canghun13@naver.com`/partials/favicon/sitemap 100 retained. HTTP apex and HTTPS www finish at HTTPS apex 200; this does not identify the three historical Coverage redirect rows.
+- Public-URL W3C Nu validation: five affected HTML each **0 errors**, one informational message each; duplicate IDs 0. Protected homepage badge area remains untouched, not claimed freshly W3C-valid.
+- Public installed Edge repeated **all 48 geometry checks**, eight target widths 1440/1280/1024/900/768/600/480/390, invalid/overdraw/large-count states, pool/reroll endpoints and 11 regression pages at 1440/390. All target-width/invalid/overdraw/large/print screenshots inspected. No exercised horizontal overflow, header overlap, clipped/escaping controls, markup leakage or nonfinite output.
+- Public calculations reproduce the corrected table above: Bag 10/2/3 with replacement main48.80%/exact38.40%, without replacement main53.33%/exact46.67%; zero-target impossible event0%; replacement-overdraw exact37.50% and unavailable comparison; Card exact46.67%; Opening A37.78%/either66.67%/both8.89%/redraw A61.28%; pool/reroll endpoints correct. Independent 2,416 draw fixtures plus existing342 cases underpin the arithmetic checks.
+- Invalid Bag states clear/flag/block utilities; recovery/repeated input/change/Reset, actual clipboard, mobile menu, valid print dispatch/media/input summary/result/canonical URL and invalid keyboard print suppression pass. Print summary input/value geometry also passes. Other ordinary math defaults/Reset retain their baseline values; Opening is deliberately corrected, Exploding simulation within tolerance. Custom BigInt fix is unchanged.
+- Production console errors **0**, warnings **0**, pageerrors **0**, internal asset failures **0**, external failures **0**. Analytics transport suppressed; GA4 code preservation is verified, not live collection. Native printer-dialog pagination remains unverified.
+- **FIX complete for the targeted supported models, shipped and publicly verified.** Overall indexing/redirect identities and source-to-landing engagement remain data gaps, not fixed by this repair. Other consumers' unrelated input validation/prose are outside this scoped repair; no sitewide bug-free claim.
+- This evidence is followed by a documentation-only closing commit/push. Exact final local/origin/actual-remote SHA, Pages status and clean-tree state are checked in final Git/session status rather than encoded as a self-reference. No product change accompanies closure.
 
 ## Next state
 
