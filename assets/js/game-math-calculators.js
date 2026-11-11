@@ -134,5 +134,47 @@ bag(r){
   r.dataset.invalid='false';$$('.copy,.print',r).forEach(b=>b.disabled=false);
   status(r,k>d?'The required target count exceeds the number drawn, so both target chances are 0%.':'All readouts use the selected replacement rule. Percentages are rounded for display.');
 },
-ev(r){if(!base(r))return;const rows=$$('.ev-row',r).map(x=>({label:$('[name="label"]',x).value||'Outcome',value:n($('[name="value"]',x).value),p:n($('[name="prob"]',x).value)/100})),sum=rows.reduce((a,x)=>a+x.p,0),mean=rows.reduce((a,x)=>a+x.value*x.p,0),variance=rows.reduce((a,x)=>a+(x.value-mean)**2*x.p,0);txt(r,'main',num(mean));txt(r,'a',pct(sum));txt(r,'b',num(Math.sqrt(variance)));txt(r,'c',num(Math.max(...rows.map(x=>x.value))));txt(r,'d',num(Math.min(...rows.map(x=>x.value))));$('.ev-breakdown',r).textContent=rows.map(x=>`${x.label}: ${num(x.value*x.p)}`).join(' · ');status(r,Math.abs(sum-1)<.0001?'Probabilities total 100%.':'Probabilities do not total 100%; expected value is shown from entered weights.',Math.abs(sum-1)>=.0001);}
-};document.addEventListener('DOMContentLoaded',()=>$$('[data-math-calc]').forEach(r=>{const run=()=>calc[r.dataset.mathCalc](r);r.addEventListener('input',run);r.addEventListener('change',run);$('.reset',r)?.addEventListener('click',()=>{r.querySelector('form').reset();run();status(r,'Defaults restored.')});$('.copy',r)?.addEventListener('click',()=>copy(r));$('.print',r)?.addEventListener('click',()=>window.print());$('.add-row',r)?.addEventListener('click',()=>{$('.ev-rows',r).insertAdjacentHTML('beforeend','<div class="ev-row fields"><div class="field"><label>Outcome label<input name="label" value="New outcome"></label></div><div class="field"><label>Value<input name="value" type="number" value="0"></label></div><div class="field"><label>Probability %<input name="prob" type="number" min="0" value="0"></label></div></div>');run()});run()}));})();
+ev(r){
+  const fail=(control,message)=>{
+    r.dataset.invalid='true';
+    if(control)control.setAttribute('aria-invalid','true');
+    txt(r,'main','Check inputs');['a','b','c','d'].forEach(k=>txt(r,k,'—'));
+    $('.result-unit',r).textContent='Expected value unavailable';
+    txt(r,'scenario','No report is available until the outcome table is corrected.');
+    $('.ev-breakdown',r).textContent='';
+    $$('.copy,.print',r).forEach(b=>b.disabled=true);status(r,message,true);
+  };
+  $$('[aria-invalid]',r).forEach(i=>i.removeAttribute('aria-invalid'));
+  const rows=[];
+  for(const row of $$('.ev-row',r)){
+    const valueControl=$('[name="value"]',row),probControl=$('[name="prob"]',row);
+    const rawValue=valueControl.value.trim(),rawProb=probControl.value.trim(),value=Number(rawValue),prob=Number(rawProb);
+    if(rawValue===''||!Number.isFinite(value)){fail(valueControl,'Enter a finite outcome value in every row. Negative losses and decimal values are allowed.');return}
+    if(rawProb===''||!Number.isFinite(prob)||prob<0||prob>100){fail(probControl,'Enter a probability from 0 to 100% in every row.');return}
+    rows.push({label:$('[name="label"]',row).value.trim()||'Outcome',value,prob});
+  }
+  const total=rows.reduce((sum,x)=>sum+x.prob,0);
+  if(!rows.length||Math.abs(total-100)>1e-8){
+    $$('[name="prob"]',r).forEach(i=>i.setAttribute('aria-invalid','true'));
+    fail(null,`Probabilities total ${total}%. Complete the mutually exclusive outcome table to 100%; weights are not automatically normalized.`);return;
+  }
+  // Rescale only accepted arithmetic roundoff, not incomplete/overfull tables.
+  rows.forEach(x=>x.p=x.prob/total);
+  const possible=rows.filter(x=>x.p>0);
+  // Compensate signed additions so loss/reward cancellation retains small terms.
+  const sum=values=>{let s=0,c=0;for(const x of values){const t=s+x;c+=Math.abs(s)>=Math.abs(x)?(s-t)+x:(x-t)+s;s=t}return s+c};
+  const contributions=rows.map(x=>x.value*x.p),mean=sum(contributions);
+  const variance=sum(possible.map(x=>(x.value-mean)**2*x.p)),spread=Math.sqrt(variance);
+  if(![mean,variance,spread,...contributions].every(Number.isFinite)||rows.some(x=>x.prob>0&&x.p===0)){
+    fail(null,'These magnitudes exceed supported floating-point arithmetic. Scale the values or probabilities before calculating.');return;
+  }
+  const display=x=>Math.abs(x)>=1e12?x.toExponential(3):num(x===0?0:x);
+  txt(r,'main',display(mean));txt(r,'a',`${total.toFixed(2)}%`);txt(r,'b',display(spread));
+  txt(r,'c',display(Math.max(...possible.map(x=>x.value))));txt(r,'d',display(Math.min(...possible.map(x=>x.value))));
+  txt(r,'scenario','One mutually exclusive outcome occurs per event. Zero-probability rows are excluded from the possible range.');
+  $('.ev-breakdown',r).textContent=rows.map((x,i)=>`${x.label}: ${display(contributions[i])}`).join(' · ');
+  $('.result-unit',r).textContent='Expected value per event';
+  r.dataset.invalid='false';$$('.copy,.print',r).forEach(b=>b.disabled=false);
+  status(r,'Complete outcome distribution. Values, expectation and standard deviation use the same units; results are rounded for display.');
+}
+};document.addEventListener('DOMContentLoaded',()=>$$('[data-math-calc]').forEach(r=>{const run=()=>calc[r.dataset.mathCalc](r);r.addEventListener('input',run);r.addEventListener('change',run);$('.reset',r)?.addEventListener('click',()=>{r.querySelector('form').reset();run();status(r,'Defaults restored.')});$('.copy',r)?.addEventListener('click',()=>copy(r));$('.print',r)?.addEventListener('click',()=>window.print());$('.add-row',r)?.addEventListener('click',()=>{$('.ev-rows',r).insertAdjacentHTML('beforeend','<div class="ev-row fields"><div class="field"><label>Outcome label<input name="label" value="New outcome"></label></div><div class="field"><label>Value<input name="value" type="number" step="any" required value="0"></label></div><div class="field"><label>Probability %<input name="prob" type="number" min="0" max="100" step="any" required value="0"></label></div></div>');run()});run()}));})();
