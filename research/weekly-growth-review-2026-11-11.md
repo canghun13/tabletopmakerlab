@@ -110,7 +110,16 @@ Expansion considered: **No — Priority A selected**. Latest exclusion context r
 
 ## Deployment
 
-Pending implementation commit/push, exact-SHA Pages success and repeated public source/runtime/layout/functional validation. Local QA alone is not production proof. Append measured deployment evidence before final closure; closing documentation-only SHA belongs in final Git/session state rather than a self-reference.
+- Implementation **`a8be3078cbb20f11012ec2943cbeb08bd10f0298`** (`Fix expected value signed outcomes and invalid distributions`) pushed to main; actual remote verified, ahead/behind 0/0 and clean tree before closing documentation.
+- Exact-SHA Pages [run 42959803671](https://github.com/canghun13/tabletopmakerlab/actions/runs/42959803671) succeeded at **2026-11-11 04:32:24 UTC / 13:32:24 KST**.
+- After deployment, **23 public representative endpoints returned 200 and matched committed source**, including target HTML and math JS. Canonical/robots/static JSON-LD/GA4 snippet/contact `canghun13@naver.com`/partials/favicon/sitemap 100 retained. HTTP apex and HTTPS www finish at HTTPS apex 200; these tests do not identify the three historical Coverage redirect rows.
+- Public target W3C Nu validation: **0 HTML errors**, one informational message; duplicate IDs 0. Protected homepage/badge area remains untouched and not claimed freshly W3C-valid.
+- Actual public installed Edge repeated **all 40 geometry checks**: target signed/invalid at 1440/1280/1024/900/768/600/480/390; large-number/long-label 390; 11 regression pages at 1440/390. All target-width/mobile invalid/large/long-label/print screenshots inspected. No exercised horizontal overflow/header overlap/escaping or clipped control/markup leakage/nonfinite report.
+- Public probabilities/results: default EV2/SD2; −4/+4 at50/50→EV0/SD4/range−4..4; −2/+6 at25/75→4/3.464; decimal−2.5/1.25 at20/80→0.5/1.5; sure−5 with a zero-probability9000 row→−5/0/range−5..−5; signed cancellation→0.5. Invalid mass/blank/nonfinite/out-of-range/overflow cases clear reports, set field errors where applicable and block utilities; correction/repeated/change/Add/Reset recover. Added rows use matching decimal/probability input constraints.
+- Actual clipboard, mobile menu, valid print dispatch/media/current signed input summary/result/canonical URL and invalid keyboard print suppression pass. Eight other math pages retain deterministic default/Reset results; Exploding random probability within tolerance. Prior 2,758 fixtures plus new643 remain passing; shared draw helpers/Custom BigInt fix unchanged.
+- Production console errors **0**, warnings **0**, pageerrors **0**, internal asset failures **0**, external failures **0**. Analytics transport suppressed; only GA4 source preservation, not live collection, is claimed. Native printer-dialog pagination unverified; print media/dispatch/input geometry verified.
+- **FIX complete for the targeted supported model, shipped and publicly verified.** No new cluster/page or protected-area change. Current overall indexing/redirect identity/attribution data gaps remain observation items, not claimed fixed. Unrelated validators/prose are outside scope; no sitewide bug-free claim.
+- A documentation-only closing commit/push follows. Exact final SHA/Pages status/remote equality/clean tree are verified in final Git/session state rather than inserted as a self-reference; no further product change accompanies closure.
 
 ## Next state
 
