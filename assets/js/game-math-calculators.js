@@ -1,7 +1,34 @@
 (()=>{const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)],n=x=>{const v=Number(x);return Number.isFinite(v)&&v>=0?v:0},v=(r,k)=>n($(`[name="${k}"]`,r)?.value),txt=(r,k,x)=>{const e=$(`[data-result="${k}"]`,r);if(e)e.textContent=x},pct=x=>`${(Math.max(0,Math.min(1,x))*100).toFixed(2)}%`,num=x=>Number.isFinite(x)?x.toLocaleString(undefined,{maximumFractionDigits:3}):'—',status=(r,x,b=false)=>{const e=$('.status',r);if(e){e.textContent=x;e.classList.toggle('error',b)}},valid=r=>{const bad=$$('input[type="number"]',r).some(i=>i.value.trim()===''||!Number.isFinite(Number(i.value))||Number(i.value)<0);if(bad)status(r,'Use finite, non-negative values in every numeric field.',true);return !bad},logC=(a,b)=>{if(b<0||b>a)return -Infinity;b=Math.min(b,a-b);let s=0;for(let i=1;i<=b;i++)s+=Math.log(a-b+i)-Math.log(i);return s},C=(a,b)=>Math.exp(logC(a,b)),bin=(N,p,k)=>k<0||k>N?0:p===0?Number(k===0):p===1?Number(k===N):Math.exp(logC(N,k)+k*Math.log(p)+(N-k)*Math.log(1-p)),binTail=(N,p,k,exact=false)=>{let s=0;for(let i=exact?k:Math.max(0,k);i<=(exact?k:N);i++)s+=bin(N,p,i);return s},hyper=(N,K,d,k)=>k<0||k>K||d-k>N-K?0:Math.exp(logC(K,k)+logC(N-K,d-k)-logC(N,d)),hyperTail=(N,K,d,k,exact=false)=>{let s=0;for(let i=exact?k:Math.max(0,k);i<=(exact?k:Math.min(K,d));i++)s+=hyper(N,K,d,i);return s},dice=(d,s)=>{let a=[1];for(let z=0;z<d;z++){const b=Array(a.length+s).fill(0);a.forEach((q,i)=>{for(let f=1;f<=s;f++)b[i+f]+=q});a=b}return a},pick=(mode,x,a,b)=>mode==='exact'?x===a:mode==='atleast'?x>=a:mode==='atmost'?x<=a:x>=a&&x<=b,base=r=>{if(!valid(r))return null;return r},copy=r=>navigator.clipboard?.writeText($('.result-panel',r).innerText).then(()=>status(r,'Results copied.')).catch(()=>status(r,'Copy is unavailable in this browser.',true));
 const calc={
 dice(r){if(!base(r))return;const d=v(r,'dice'),s=v(r,'sides'),a=v(r,'target'),b=v(r,'target2'),mode=$('[name="mode"]',r).value;if(!d||!s||d>30||s>100){status(r,'Use 1–30 dice with 1–100 sides for an exact distribution.',true);return}const q=dice(d,s),total=s**d,win=q.reduce((x,c,i)=>x+(pick(mode,i,a,b)?c:0),0),mean=d*(s+1)/2;txt(r,'main',pct(win/total));txt(r,'a',num(win));txt(r,'b',num(total));txt(r,'c',num(mean));txt(r,'d',`${d}–${d*s}`);txt(r,'scenario',`Target is ${(mean-a).toFixed(1)} from the average total. Peak outcome: ${q.indexOf(Math.max(...q))}.`);status(r,'Exact outcome counts are shown for this dice pool.');},
-pool(r){if(!base(r))return;const d=v(r,'dice'),s=v(r,'sides'),t=v(r,'threshold'),k=v(r,'required'),exact=$('[name="mode"]',r).value==='exact',p=Math.max(0,Math.min(1,(s-t+1)/s)),success=binTail(d,p,k,exact);txt(r,'main',pct(success));txt(r,'a',pct(p));txt(r,'b',num(d*p));txt(r,'c',pct(1-success));txt(r,'d',`0–${d} successes`);txt(r,'scenario',`One more die changes “at least ${k}” to ${pct(binTail(d+1,p,k))}.`);status(r,k>d?'Required successes exceed the pool, so the result is 0%.':'Binomial success-pool calculation updated.',k>d);},
+pool(r){
+  const fail=(key,message)=>{
+    r.dataset.invalid='true';$(`[name="${key}"]`,r).setAttribute('aria-invalid','true');
+    txt(r,'main','Check inputs');['a','b','c','d'].forEach(k=>txt(r,k,'—'));
+    $('.result-unit',r).textContent='Probability unavailable';
+    txt(r,'scenario','No report is available until the pool inputs are corrected.');
+    $$('.copy,.print',r).forEach(b=>b.disabled=true);status(r,message,true);
+  };
+  $$('[aria-invalid]',r).forEach(i=>i.removeAttribute('aria-invalid'));
+  const values={};
+  for(const key of ['dice','sides','threshold','required']){
+    const raw=$(`[name="${key}"]`,r).value.trim(),value=Number(raw);
+    if(raw===''||!Number.isSafeInteger(value)||value<0){fail(key,'Use non-negative safe whole numbers in every field. Fractional dice, sides, thresholds and success counts are not supported.');return}
+    values[key]=value;
+  }
+  const {dice:d,sides:s,threshold:t,required:k}=values,mode=$('[name="mode"]',r).value;
+  if(s<1){fail('sides','Each die needs at least one side, numbered from 1 to its side count.');return}
+  if(d>1000){fail('dice','Use at most 1,000 dice within this browser calculator’s supported work limit.');return}
+  if(!['atleast','exact'].includes(mode)){fail('mode','Select an available probability mode.');return}
+  const exact=mode==='exact',p=t===0?1:t>s?0:(s-t+1)/s,success=binTail(d,p,k,exact);
+  txt(r,'main',pct(success));txt(r,'a',pct(p));txt(r,'b',num(d*p));txt(r,'c',pct(1-success));
+  txt(r,'d',`${p===1?d:0}–${p===0?0:d} successes`);
+  const event=`${exact?'Exactly':'At least'} ${num(k)} ${k===1?'success':'successes'}`;
+  $('.result-unit',r).textContent=event;
+  txt(r,'scenario',d===1000?'At the 1,000-dice work limit; the extra-die comparison is not shown.':`${event} with one more die: ${pct(binTail(d+1,p,k,exact))}.`);
+  r.dataset.invalid='false';$$('.copy,.print',r).forEach(b=>b.disabled=false);
+  status(r,k>d?'Required successes exceed the pool. This is a valid impossible event with probability 0%.':'Independent identical fair dice; results use the selected success-count event and are rounded for display.');
+},
 custom(r){
   // Each physical face is an equally likely entry; repeated scores keep their multiplicity.
   const fail=(key,message)=>{
