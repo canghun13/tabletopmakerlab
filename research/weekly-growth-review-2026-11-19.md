@@ -97,7 +97,15 @@ Expansion considered **No — Priority A selected**. Full previous implemented/d
 
 ## Deployment
 
-Pending implementation commit/push, exact-SHA Pages and public source/runtime/functional/layout repeat. Local QA alone is not production proof. Append measured deployment evidence before closure; final documentation SHA comes from final Git/session state, not self-reference.
+- Implementation **`f8f19d9bc5adeb4aac76a6cf402027bc630373cc`** (`Fix dice pool discrete inputs and invalid reports`) pushed to main; actual remote verified, ahead/behind0/0 and clean before closing documentation.
+- Exact-SHA Pages [run44462251885](https://github.com/canghun13/tabletopmakerlab/actions/runs/44462251885) succeeded at **2026-11-19 05:02:02 UTC / 14:02:02 KST**.
+- Public **23 representative endpoints200/committed-source match** after deployment, including Pool HTML and shared math JS. Canonical/robots/static JSON-LD/GA4 snippet/contact `canghun13@naver.com`/partials/favicon/sitemap100 retained. HTTP apex and HTTPS www finish at HTTPS apex200; historical Coverage redirect identities remain unknown. Public target W3C Nu validation **0 HTML errors**, one informational message; IDs0. Protected homepage badge exceptions untouched.
+- Actual public installed Edge repeated **40 geometry checks**: target exact+invalid eight widths1440/1280/1024/900/768/600/480/390; work-boundary/large390; eleven regression pages1440/390. All target-width/invalid/boundary/large/print screenshots inspected; selected-event unit additionally asserted in DOM. No exercised overflow/header overlap/escaping or clipped control/markup leakage/nonfinite report.
+- Public default53.91% retained;3d6 threshold5 exact1=44.44%, nextdie39.51%;atleast1=70.37%, nextdie80.25%. Zero-dice/required0=100%;positive required with empty pool=0%;p0/p1 and deterministic ranges correct;required>dice valid0%. Zero sides/fractional/blank/nonfinite/unsafe/out-of-range/work-limit inputs clear and flag reports/block utilities; correction/repeated/change/Reset recover. Independent1,358 new plus3,401 retained handler fixtures underpin correctness.
+- Actual clipboard,mobile menu,valid print dispatch/media/current input/mode/result/canonical URL and invalid keyboard-print suppression pass. Eight other math default/Reset outputs match production-before baseline;Exploding simulation within tolerance. EV signed/distribution,Custom BigInt and shared draw fixes unchanged.
+- Production console errors **0**, warnings **0**, pageerrors **0**, internal asset failures **0**, external failures **0**. Analytics transport suppressed:GA4 source preservation only,not live collection. Native printer-dialog pagination unverified; print media/dispatch/input-summary geometry verified.
+- **FIX complete for the targeted supported model,shipped and publicly verified.** No new public page/cluster or protected-area change. Current Bing page/query attribution and overall indexing/redirect/landing-engagement evidence remain observation gaps,not repaired by this calculation fix. No sitewide bug-free claim or automatic expansion.
+- Closing documentation-only commit/push follows. Exact final SHA/Pages success/remote equality/clean state verified in final Git/session status rather than inserted as a self-reference; no further product change accompanies closure.
 
 ## Next state
 
