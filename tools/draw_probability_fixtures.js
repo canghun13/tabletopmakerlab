@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('nod
 const defaults={
  bag:{total:20,targets:5,draw:3,required:1,replacement:'without'},
  pool:{dice:5,sides:6,threshold:5,required:2,mode:'atleast'},
- reroll:{dice:5,sides:6,threshold:5,required:1,rule:'failed'},
+ reroll:{dice:5,sides:6,threshold:5,required:1,rule:'failures'},
  card:{deck:60,targets:4,draw:7,required:1,mode:'atleast'},
  opening:{deck:60,hand:7,a:4,b:4,mulligan:'none'}
 };
@@ -52,10 +52,19 @@ for(const sides of [1,2,6])for(let dice=0;dice<=4;dice++)for(const threshold of 
  const p=Math.max(0,Math.min(1,(sides-threshold+1)/sides)),ref=bernoulli(dice,p);
  for(let required=0;required<=dice+1;required++)for(const mode of ['exact','atleast'])probability(run('pool',{dice,sides,threshold,required,mode}),'main',mode==='exact'?(ref[required]||0):tail(ref,required));
 }
-for(const sides of [2,6])for(let dice=0;dice<=4;dice++)for(const threshold of [1,sides,sides+1])for(const rule of ['failed','worst','selected']){
+for(const sides of [2,6])for(let dice=0;dice<=4;dice++)for(const threshold of [0,1,sides,sides+1])for(const rule of ['failures','best','worst','selected']){
  let hits=0,original=0;for(let f=1;f<=sides;f++){if(f>=threshold)original++;for(let second=1;second<=sides;second++){const a=f>=threshold,b=second>=threshold;if(rule==='worst'?a&&b:rule==='selected'?a||(!a&&second===1):a||b)hits++}}
  const before=bernoulli(dice,original/sides),after=bernoulli(dice,hits/(sides*sides));
- for(let required=0;required<=dice+1;required++){const s=run('reroll',{dice,sides,threshold,required,rule});probability(s,'main',tail(after,required));probability(s,'a',tail(before,required))}
+ for(let required=0;required<=dice+1;required++){
+  const s=run('reroll',{dice,sides,threshold,required,rule}),a=tail(before,required),b=tail(after,required);
+  probability(s,'main',b);probability(s,'a',a);
+  const parse=k=>Number(s.outputs[k].textContent.replace('−','-').replace(/ pp|%/,''));
+  assert(Math.abs(parse('b')-(b-a)*100)<.0051);
+  if(a===0)assert.equal(s.outputs.c.textContent,'Unavailable');
+  else assert(Math.abs(parse('c')-(b-a)/a*100)<.0051);
+  assert(Math.abs(num(s,'d')-dice*hits/(sides*sides))<.00051);
+  assert.equal(s.dataset.invalid,'false');assert(!s.buttons.copy.disabled&&!s.buttons.print.disabled);
+ }
 }
 function opening(N,A,B,h){const hits=[0,0,0];let total=0;function draw(bag,left,a,b){if(!left){total++;hits[0]+=Number(a);hits[1]+=Number(a||b);hits[2]+=Number(a&&b);return}for(let i=0;i<bag.length;i++){const card=bag[i];draw(bag.filter((_,j)=>i!==j),left-1,a||card<A,b||(card>=A&&card<A+B))}}draw(Array.from({length:N},(_,i)=>i),h,false,false);return hits.map(n=>n/total)}
 for(let N=1;N<=6;N++)for(let hand=0;hand<=Math.min(3,N);hand++)for(let a=0;a<=N;a++)for(let b=0;b<=N-a;b++)for(const mulligan of ['none','full']){
@@ -70,4 +79,10 @@ for(const key of ['total','targets','draw','required'])for(const value of ['',-1
 invalid(run('bag',{total:0}),'total');invalid(run('bag',{targets:21}),'targets');invalid(run('bag',{draw:21}),'draw');invalid(run('bag',{draw:1001,replacement:'with'}),'draw');invalid(run('bag',{replacement:'bad'}),'replacement');
 run('bag');shells.bag.events.change();assert.equal(shells.bag.outputs.main.textContent,'60.09%');assert.equal(shells.bag.outputs.a.textContent,'46.05%');
 invalid(run('bag',{total:''}),'total');shells.bag.buttons.reset.click();assert.equal(shells.bag.dataset.invalid,'false');assert(!shells.bag.buttons.copy.disabled&&!shells.bag.buttons.print.disabled);assert(Object.values(shells.bag.fields).every(f=>!f.attrs['aria-invalid']));
+for(const key of ['sides','dice','threshold','required'])for(const value of ['',-1,.5,'Infinity','1e309','9007199254740992'])invalid(run('reroll',{[key]:value}),key);
+invalid(run('reroll',{sides:0}),'sides');invalid(run('reroll',{dice:1001}),'dice');invalid(run('reroll',{rule:'missing'}),'rule');
+const maximum=run('reroll',{dice:1000,sides:1,threshold:1,required:1000});probability(maximum,'main',1);
+const largeRelative=run('reroll',{dice:30,sides:6,threshold:6,required:30});
+assert.match(largeRelative.outputs.c.textContent,/^\+\d\.\d+e\+\d+%$/);
+invalid(run('reroll',{dice:''}),'dice');shells.reroll.buttons.reset.click();assert.equal(shells.reroll.dataset.invalid,'false');assert(!shells.reroll.buttons.copy.disabled&&!shells.reroll.buttons.print.disabled);
 console.log(`Draw probability production handlers: ${cases} cases passed (${invalidCases} invalid-state cases), plus helper normalization/exact-tail checks and change/Reset recovery. Five consumers checked by independent enumeration.`);

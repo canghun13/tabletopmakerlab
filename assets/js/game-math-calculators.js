@@ -122,7 +122,44 @@ explode(r){
   txt(r,'scenario',s===1?'A one-sided die is deterministic: every initial die rolls once plus the entered number of extra rolls. All outputs are exact.':'Target probability is a 30,000-trial simulation; each trial rolls the entire pool. Unlimited chains are capped at 80 rolls per initial die in the simulation only.');
   status(r,s===1?'Finite deterministic chain calculated.':'Target chance is approximate; expected total, initial explosion chance and expected extra rolls use the entered rule exactly.');
 },
-reroll(r){if(!base(r))return;const s=v(r,'sides'),d=v(r,'dice'),t=v(r,'threshold'),k=v(r,'required'),rule=$('[name="rule"]',r).value,p=Math.max(0,Math.min(1,(s-t+1)/s));let p2=rule==='worst'?p*p:rule==='selected'?p+(1-p)*(1/s):1-(1-p)**2;p2=Math.min(1,p2);const before=binTail(d,p,k),after=binTail(d,p2,k);txt(r,'main',pct(after));txt(r,'a',pct(before));txt(r,'b',pct(after-before));txt(r,'c',before?pct((after-before)/before):'—');txt(r,'d',num(d*p2));txt(r,'scenario',`Per-die success: ${pct(p)} before → ${pct(p2)} after the selected reroll rule.`);status(r,'Selected-values reroll means failures reroll once and one additional face is treated as a success.');},
+reroll(r){
+  const fail=(key,message)=>{
+    r.dataset.invalid='true';$('[name="'+key+'"]',r).setAttribute('aria-invalid','true');
+    txt(r,'main','Check inputs');['a','b','c','d'].forEach(k=>txt(r,k,'—'));
+    $('.result-unit',r).textContent='Probability unavailable';
+    txt(r,'scenario','No report is available until the reroll inputs are corrected.');
+    $$('.copy,.print',r).forEach(button=>button.disabled=true);status(r,message,true);
+  };
+  $$('[aria-invalid]',r).forEach(i=>i.removeAttribute('aria-invalid'));
+  const values={};
+  for(const key of ['sides','dice','threshold','required']){
+    const raw=$('[name="'+key+'"]',r).value.trim(),value=Number(raw);
+    if(raw===''||!Number.isSafeInteger(value)||value<0){fail(key,'Enter non-negative safe whole numbers in every field.');return}
+    values[key]=value;
+  }
+  const {sides:s,dice:d,threshold:t,required:k}=values,rule=$('[name="rule"]',r).value;
+  if(s<1){fail('sides','Each die needs at least one side.');return}
+  if(d>1000){fail('dice','Use at most 1,000 dice within this calculator’s browser work limit.');return}
+  if(!['failures','selected','best','worst'].includes(rule)){fail('rule','Select an available reroll rule.');return}
+  const p=t===0?1:t>s?0:(s-t+1)/s;
+  const p2=Math.min(1,rule==='worst'?p*p:rule==='selected'?p+(1-p)/s:p*(2-p));
+  const probability=x=>Math.max(0,Math.min(1,x));
+  const before=probability(binTail(d,p,k)),after=probability(binTail(d,p2,k)),delta=after-before;
+  const signed=(x,unit)=>{
+    const n=x*100,magnitude=Math.abs(n);
+    const shown=magnitude>=1e6?magnitude.toExponential(2):magnitude.toFixed(2);
+    return (Number(shown)===0?'':n<0?'−':'+')+shown+unit;
+  };
+  txt(r,'main',pct(after));txt(r,'a',pct(before));txt(r,'b',signed(delta,' pp'));
+  const ratio=before>0?delta/before:0;
+  txt(r,'c',before>0&&Number.isFinite(ratio*100)?signed(ratio,'%'):'Unavailable');
+  txt(r,'d',num(d*p2));
+  $('.result-unit',r).textContent='After the rule: at least '+num(k)+' '+(k===1?'success':'successes');
+  const note=before===0?' Relative change is unavailable at a zero computed baseline.':!Number.isFinite(ratio*100)?' Relative change exceeds the supported numeric range.':'';
+  txt(r,'scenario','Per-die success: '+pct(p)+' before → '+pct(p2)+' after.'+note);
+  r.dataset.invalid='false';$$('.copy,.print',r).forEach(button=>button.disabled=false);
+  status(r,k>d?'Required successes exceed the pool. Both probabilities are 0%.':'Both pool probabilities use the same at-least success count.');
+},
 card(r){if(!base(r))return;const N=v(r,'deck'),K=v(r,'targets'),d=v(r,'draw'),k=v(r,'required'),exact=$('[name="mode"]',r).value==='exact';if(d>N||K>N){status(r,'Cards drawn and target cards cannot exceed deck size.',true);return}const p=hyperTail(N,K,d,k,exact);txt(r,'main',pct(p));txt(r,'a',num(d*K/N));txt(r,'b',pct(hyper(N,K,d,0)));txt(r,'c',num(k));txt(r,'d',`${N} cards, ${K} targets`);txt(r,'scenario',`Without replacement. Exactly one target: ${pct(hyper(N,K,d,1))}.`);status(r,'This uses an exact hypergeometric draw without replacement.');},
 opening(r){if(!base(r))return;const N=v(r,'deck'),h=v(r,'hand'),A=v(r,'a'),B=v(r,'b'),m=$('[name="mulligan"]',r).value;if(h>N||A>N||B>N||A+B>N){status(r,'Hand and key-card counts must fit within the deck.',true);return}const hit=x=>1-hyperTail(N,x,h,0,true),one=hit(A),either=hit(A+B),both=1-hyperTail(N,A,h,0,true)-hyperTail(N,B,h,0,true)+hyperTail(N,A+B,h,0,true),multi=p=>m==='full'?1-(1-p)**2:p;txt(r,'main',pct(multi(one)));txt(r,'a',pct(one));txt(r,'b',pct(multi(either)));txt(r,'c',pct(multi(Math.max(0,both))));txt(r,'d',m==='full'?'Full redraw once':'No mulligan');txt(r,'scenario','Full redraw assumes the entire opening hand is returned before one independent redraw.');status(r,'This is a simple generic mulligan model, not a game-specific rules engine.');},
 bag(r){
