@@ -57,7 +57,10 @@ Priority A defect proved, so expansion discovery is not entered. Prior exclusion
 - Shape/SEO/anchor preservation, 100-page content audit, 102 HTML IDs, assets and 13 JS syntax checks pass; target W3C submitted source 0 errors. Existing homepage badge exceptions were not changed.
 - **5,069 handler cases passed**, including **2,726** in Draw Probability (310 more than prior). Physical face-pair enumeration checks matched probabilities, signed point and relative changes, four rules, zero baseline, invalid bounds and Reset. Previous Pool/EV/Custom/Exploding/Cards cases pass.
 - Pre-change sample: all 23 public endpoints were HTTP 200 and source-matched to the starting commit. No new site-side indexability defect on this sample; not a new 100-URL live crawl audit.
-- Implementation and deployment results recorded below after verification.
+- Implementation `9bb083c3f6780aac5ecddfebe71ba3560f9c7e30` pushed to main. Exact-SHA [Pages run 45319391031](https://github.com/canghun13/tabletopmakerlab/actions/runs/45319391031) succeeded November 24 at 12:26:05 KST.
+- After deployment: 23 public responses HTTP 200 and source-matched, including Reroll and math JS. Target W3C public URL 0 errors (one informational message); canonicals, robots/GA4, contact, partials, favicon and 100-URL sitemap retained.
+- Installed Edge passed 40 geometry checks each on local and production at 1440/1280/1024/900/768/600/480/390, including 11 regression pages at 1440/390. Signed-loss desktop/mobile, invalid-input and print screenshots reviewed. Production results: 37.57% after vs 80.25% before = −42.68 pp / −53.18%; valid default still 96.10%. All four rules, zero baseline, >100% relative change, 1,000-dice boundary, invalid inputs, recovery/Reset, real clipboard, mobile menu, print dispatch/media and invalid print suppression verified. No runtime errors, console errors/warnings or failed assets. Actual printer pagination and live analytics collection not tested; analytics transport was suppressed.
+- This verified repair closes the implementation task. Only the deployment documentation is changed in the closing commit. The closing SHA and Git synchronization are checked from Git, not self-referenced.
 
 ## Next
 
